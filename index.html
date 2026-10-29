@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f8edf0">
+<title>Seba.skincare | صبا للتجميل والعناية بالبشرة</title>
+<meta name="description" content="صبا للتجميل والعناية بالبشرة في الناصرة ويافة الناصرة. تنظيف البشرة، الماسكات، التقشير وتجهيز العرايس.">
+<style>
+:root{--pink:#f7e7eb;--rose:#b76e79;--deep:#75444c;--gold:#c6a15b;--cream:#fffaf6;--ink:#4d3739;--muted:#806c6d}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Arial,"Noto Sans Arabic",sans-serif;line-height:1.7}
+a{color:inherit}.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px clamp(16px,5vw,72px);background:#fffaf6;border-bottom:1px solid #ead9d5;position:sticky;top:0;z-index:5}
+.brand{font-weight:800;letter-spacing:.4px;color:var(--deep);font-size:1.2rem}.lang button{border:1px solid #d7b8b4;background:#fff;border-radius:999px;padding:8px 14px;color:var(--deep);cursor:pointer;font-weight:700}
+.hero{min-height:520px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:32px;padding:clamp(28px,6vw,84px);background:linear-gradient(125deg,#f7e7eb 0%,#fff6f1 55%,#f0dfd0 100%);overflow:hidden}
+.hero-copy{max-width:620px}.eyebrow{color:var(--rose);font-weight:700;letter-spacing:1.5px}.hero h1{font-size:clamp(2.2rem,5vw,4.3rem);line-height:1.15;color:var(--deep);margin:12px 0}.hero p{font-size:1.08rem;max-width:560px;color:#6c5557}
+.hero-art{min-height:350px;border:1px solid #d8bd8a;border-radius:48% 48% 24px 24px;background:radial-gradient(ellipse at 50% 35%,#fff9f3 0%,#eed6d1 42%,#d9b7a9 100%);display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 22px 55px #8c59651a}
+.hero-art:before{content:"";position:absolute;inset:18px;border:1px solid #c6a15b;border-radius:48% 48% 18px 18px}
+.art-label{position:relative;text-align:center;padding:22px;color:var(--deep)}.art-label .monogram{font-family:Georgia,serif;font-size:clamp(4rem,9vw,7rem);color:var(--gold);line-height:1}.art-label strong{display:block;font-size:1.5rem;letter-spacing:2px}.art-label small{display:block;color:#86676a;margin-top:8px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:999px;padding:12px 20px;font-weight:700;border:1px solid var(--rose);transition:.2s}.btn.primary{background:var(--rose);color:white}.btn.secondary{background:#fffaf6;color:var(--deep)}.btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px #75444c20}
+section{padding:clamp(42px,7vw,82px) clamp(18px,6vw,80px)}.section-head{text-align:center;max-width:700px;margin:0 auto 32px}.section-head h2{font-size:clamp(1.8rem,3.6vw,2.7rem);color:var(--deep);margin:0 0 8px}.section-head p{color:var(--muted);margin:0}
+.services{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.service{background:#fff;border:1px solid #ecd9d6;border-radius:20px;padding:25px 18px;text-align:center;box-shadow:0 10px 28px #75444c0a}.service .icon{font-size:2rem}.service h3{color:var(--deep);margin:10px 0 6px}.service p{color:var(--muted);font-size:.95rem;margin:0}
+.about{background:#f7e7eb;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}.about-card{background:#fffaf6;border:1px solid #e7cdbb;padding:clamp(24px,4vw,44px);border-radius:24px}.about h2{color:var(--deep);font-size:2rem;margin-top:0}.locations{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.location{border:1px solid #d8bd8a;border-radius:999px;padding:7px 14px;background:#fff}
+.contact{text-align:center;background:linear-gradient(135deg,#fffaf6,#f4e1e2)}.contact .actions{justify-content:center}.socials{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:14px}.socials .btn{border-color:#d9c5b9}
+footer{text-align:center;padding:24px 16px;background:#75444c;color:#fff0ee;font-size:.92rem}footer span{color:#f0d5a0}
+[hidden]{display:none!important}
+@media(max-width:850px){.hero{grid-template-columns:1fr;min-height:auto}.hero-art{min-height:270px;max-width:560px;width:100%;margin:0 auto}.services{grid-template-columns:repeat(2,minmax(0,1fr))}.about{grid-template-columns:1fr}}
+@media(max-width:430px){.topbar{padding:12px 15px}.brand{font-size:1rem}.hero{padding:30px 20px}.services{grid-template-columns:1fr}.btn{width:100%}.actions{gap:9px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">Seba.skincare</div>
+  <div class="lang" aria-label="Language">
+    <button type="button" id="arBtn">العربية</button>
+    <button type="button" id="heBtn">עברית</button>
+  </div>
+</header>
+
+<main id="arabic">
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow">جمالكِ يبدأ بالعناية</div>
+      <h1>صبا للتجميل<br>والعناية بالبشرة</h1>
+      <p>عناية لطيفة، لمسة أنثوية، واهتمام بكل التفاصيل لتتألقي ببشرتكِ.</p>
+      <p>خدمات تنظيف البشرة، الماسكات، التقشير وتجهيز العرايس في الناصرة ويافة الناصرة.</p>
+      <div class="actions">
+        <a class="btn primary" href="https://wa.me/972526732880" target="_blank" rel="noopener">احجزي موعدك عبر واتساب</a>
+        <a class="btn secondary" href="https://www.instagram.com/khateebseba?dlrf=eXBlc25jZTB3b3o0" target="_blank" rel="noopener">تابعينا على إنستغرام</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-label="مساحة مخصصة لصورة المركز">
+      <div class="art-label"><div class="monogram">S</div><strong>Seba.skincare</strong><small>BEAUTY • CARE • GLOW</small></div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="section-head"><h2>خدماتنا</h2><p>اختاري العناية التي تناسب بشرتكِ، بكل حب واهتمام.</p></div>
+    <div class="services">
+      <article class="service"><div class="icon">✨</div><h3>تنظيف البشرة</h3><p>لإحساس بالنظافة والانتعاش والنضارة.</p></article>
+      <article class="service"><div class="icon">🧖🏻‍♀️</div><h3>الماسكات والعناية</h3><p>عناية مخصصة ولمسة من الدلال لبشرتكِ.</p></article>
+      <article class="service"><div class="icon">🌿</div><h3>التقشير وتجديد البشرة</h3><p>خطوات عناية تساعد على مظهر أكثر إشراقًا.</p></article>
+      <article class="service"><div class="icon">👰🏻‍♀️</div><h3>تجهيز العرايس</h3><p>عناية خاصة لتتألقي في مناسبتكِ.</p></article>
+    </div>
+  </section>
+
+  <section class="about">
+    <div><div class="eyebrow">عناية قريبة منكِ</div><h2>جمالكِ يستحق الاهتمام</h2><p>في صبا، نؤمن أن لكل بشرة احتياجاتها الخاصة. نرحّب بكِ لتجربة عناية هادئة واهتمام بالتفاصيل.</p><div class="locations"><span class="location">📍 الناصرة</span><span class="location">📍 يافة الناصرة</span></div></div>
+    <div class="about-card"><h2>خلّينا نرتّب موعدكِ</h2><p>للاستفسار عن الخدمات والمواعيد، تواصلي معنا مباشرة.</p><a class="btn primary" href="https://wa.me/972526732880" target="_blank" rel="noopener">تواصلي عبر واتساب 💬</a></div>
+  </section>
+
+  <section class="contact">
+    <div class="section-head"><h2>تواصلي معنا</h2><p>يسعدنا استقبال رسائلكِ وحجز موعدكِ.</p></div>
+    <div class="actions"><a class="btn primary" href="https://wa.me/972526732880" target="_blank" rel="noopener">واتساب للحجز</a><a class="btn secondary" href="https://www.facebook.com/share/1JUU2S7T43/" target="_blank" rel="noopener">فيسبوك</a><a class="btn secondary" href="https://www.instagram.com/khateebseba?dlrf=eXBlc25jZTB3b3o0" target="_blank" rel="noopener">إنستغرام</a></div>
+  </section>
+</main>
+
+<main id="hebrew" hidden>
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow">היופי שלך מתחיל בטיפוח</div>
+      <h1>סבא – יופי<br>וטיפוח העור</h1>
+      <p>טיפוח עדין, מגע נשי ותשומת לב לכל פרט, כדי שתזרחי בביטחון.</p>
+      <p>ניקוי פנים, מסכות, פילינג והכנה לכלות בנצרת וביפיע.</p>
+      <div class="actions">
+        <a class="btn primary" href="https://wa.me/972526732880" target="_blank" rel="noopener">קביעת תור בוואטסאפ</a>
+        <a class="btn secondary" href="https://www.instagram.com/khateebseba?dlrf=eXBlc25jZTB3b3o0" target="_blank" rel="noopener">עקבו אחרינו באינסטגרם</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-label="מקום לתמונת המרכז"><div class="art-label"><div class="monogram">S</div><strong>Seba.skincare</strong><small>BEAUTY • CARE • GLOW</small></div></div>
+  </section>
+  <section>
+    <div class="section-head"><h2>השירותים שלנו</h2><p>בחרי את הטיפול שמתאים לעור שלך, באהבה ובתשומת לב.</p></div>
+    <div class="services">
+      <article class="service"><div class="icon">✨</div><h3>ניקוי פנים</h3><p>תחושת ניקיון, רעננות וזוהר.</p></article>
+      <article class="service"><div class="icon">🧖🏻‍♀️</div><h3>מסכות וטיפוח העור</h3><p>טיפוח אישי ורגע של פינוק לעור שלך.</p></article>
+      <article class="service"><div class="icon">🌿</div><h3>פילינג וחידוש העור</h3><p>טיפוח למראה רענן וזוהר יותר.</p></article>
+      <article class="service"><div class="icon">👰🏻‍♀️</div><h3>הכנה לכלות</h3><p>טיפוח מיוחד לקראת היום המרגש שלך.</p></article>
+    </div>
+  </section>
+  <section class="about">
+    <div><div class="eyebrow">טיפוח קרוב אלייך</div><h2>לעור שלך מגיע יחס אישי</h2><p>בסבא מאמינים שלכל עור יש צרכים משלו. נשמח להעניק לך חוויית טיפוח רגועה ותשומת לב לפרטים.</p><div class="locations"><span class="location">📍 נצרת</span><span class="location">📍 יפיע</span></div></div>
+    <div class="about-card"><h2>נתאם לך תור?</h2><p>לשאלות על השירותים והתורים, אפשר לפנות אלינו ישירות.</p><a class="btn primary" href="https://wa.me/972526732880" target="_blank" rel="noopener">פנייה בוואטסאפ 💬</a></div>
+  </section>
+  <section class="contact">
+    <div class="section-head"><h2>צרי קשר</h2><p>נשמח לקבל את הודעתך ולקבוע תור.</p></div>
+    <div class="actions"><a class="btn primary" href="https://wa.me/972526732880" target="_blank" rel="noopener">וואטסאפ</a><a class="btn secondary" href="https://www.facebook.com/share/1JUU2S7T43/" target="_blank" rel="noopener">פייסבוק</a><a class="btn secondary" href="https://www.instagram.com/khateebseba?dlrf=eXBlc25jZTB3b3o0" target="_blank" rel="noopener">אינסטגרם</a></div>
+  </section>
+</main>
+<footer>© <span>Seba.skincare</span> — عناية وجمال بكل حب</footer>
+<script>
+const ar=document.getElementById('arabic'), he=document.getElementById('hebrew');
+document.getElementById('arBtn').addEventListener('click',()=>{ar.hidden=false;he.hidden=true;document.documentElement.lang='ar';document.documentElement.dir='rtl';});
+document.getElementById('heBtn').addEventListener('click',()=>{ar.hidden=true;he.hidden=false;document.documentElement.lang='he';document.documentElement.dir='rtl';});
+</script>
+</body>
+</html>
