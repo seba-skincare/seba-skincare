@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -5,21 +6,78 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>لوحة تحكم صبا</title>
 <style>
-body{font-family:Arial;background:#f8f1ed;padding:20px;color:#513b35}
-h1{color:#a66d68}
-input,textarea,button{display:block;width:100%;padding:12px;margin:10px 0;box-sizing:border-box;border:1px solid #d8b9ae;border-radius:10px}
-button{background:#a66d68;color:white;font-weight:bold;border:0}
+body{font-family:Arial;background:#f8f1ed;color:#513b35;padding:18px}
+h1{color:#a66d68;text-align:center}
+.card{background:white;padding:18px;border-radius:16px;margin:15px 0}
+input,textarea,button{width:100%;padding:12px;margin:8px 0;box-sizing:border-box;border:1px solid #d8b9ae;border-radius:10px;font-size:16px}
+button{background:#a66d68;color:white;border:0;font-weight:bold}
+img{max-width:100%;max-height:220px;object-fit:contain;border-radius:12px}
 </style>
 </head>
 <body>
 <h1>لوحة تحكم صبا 🌸</h1>
-<p>تعديل معلومات الخدمات</p>
-<label>اسم الخدمة</label>
-<input id="title" placeholder="مثلاً: تنظيف البشرة">
-<label>الوصف</label>
-<textarea id="description" placeholder="اكتبي وصف الخدمة"></textarea>
-<label>السعر</label>
+<div class="card">
+<h3>إضافة خدمة</h3>
+<input id="title" placeholder="اسم الخدمة">
+<textarea id="description" placeholder="وصف الخدمة"></textarea>
 <input id="price" placeholder="السعر">
-<button onclick="alert('تم تجهيز البيانات. ربط الحفظ بالموقع يحتاج خطوة إضافية.')">حفظ</button>
+<label>صورة الخدمة</label>
+<input id="photo" type="file" accept="image/*">
+<img id="preview" hidden>
+<button onclick="addService()">إضافة الخدمة</button>
+</div>
+<div class="card">
+<h3>الخدمات المضافة</h3>
+<div id="services"></div>
+</div>
+<script>
+let services=[];
+let photoData="";
+document.getElementById("photo").onchange=function(){
+ const file=this.files[0];
+ if(!file)return;
+ if(file.size>2*1024*1024){alert("اختاري صورة أقل من 2 ميغابايت");return;}
+ const reader=new FileReader();
+ reader.onload=e=>{
+ photoData=e.target.result;
+ const img=document.getElementById("preview");
+ img.src=photoData;img.hidden=false;
+ };
+ reader.readAsDataURL(file);
+};
+function addService(){
+ const title=document.getElementById("title").value.trim();
+ const description=document.getElementById("description").value.trim();
+ const price=document.getElementById("price").value.trim();
+ if(!title){alert("اكتبي اسم الخدمة");return;}
+ services.push({title,description,price,photo:photoData});
+ render();
+ document.getElementById("title").value="";
+ document.getElementById("description").value="";
+ document.getElementById("price").value="";
+ document.getElementById("photo").value="";
+ document.getElementById("preview").hidden=true;
+ photoData="";
+}
+function render(){
+ document.getElementById("services").innerHTML="";
+ services.forEach((s,i)=>{
+ const div=document.createElement("div");
+ div.className="card";
+ const h=document.createElement("h3");h.textContent=s.title;
+ const p=document.createElement("p");p.textContent=s.description;
+ const price=document.createElement("p");price.textContent=s.price;
+ div.append(h,p,price);
+ if(s.photo){
+ const img=document.createElement("img");img.src=s.photo;div.append(img);
+ }
+ const del=document.createElement("button");
+ del.textContent="حذف";
+ del.onclick=()=>{services.splice(i,1);render();};
+ div.append(del);
+ document.getElementById("services").append(div);
+ });
+}
+</script>
 </body>
 </html>
