@@ -1,7 +1,7 @@
 const GITHUB_API = "https://api.github.com";
 const OWNER = "seba-skincare";
 const REPO = "seba-skincare";
-const BRANCH = "photo-upload-dashboard";
+const BRANCH = "main";
 
 export default async (req) => {
   const origin = req.headers.get("origin") || "";
