@@ -4,8 +4,11 @@ const REPO = "seba-skincare";
 const BRANCH = "photo-upload-dashboard";
 
 export default async (req) => {
+  const origin = req.headers.get("origin") || "";
+  const allowedOrigin = origin === "https://seba-skincare.github.io" ||
+    /^https:\/\/deploy-preview-[0-9]+--sprightly-horse-bca4a5\.netlify\.app$/.test(origin);
   const headers = {
-    "Access-Control-Allow-Origin": "https://seba-skincare.github.io",
+    "Access-Control-Allow-Origin": allowedOrigin ? origin : "https://seba-skincare.github.io",
     "Access-Control-Allow-Headers": "Content-Type",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
     "Content-Type": "application/json"
