@@ -196,7 +196,18 @@ async function saveServices(){
   const response=await fetch(SAVE_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:password(),path:"data/services.json",content:JSON.stringify({services},null,2)})});
   let result={};try{result=await response.json();}catch(_){}
   if(!response.ok||!result.success)throw new Error(response.status===401?"كلمة المرور غير صحيحة":"تعذر حفظ الخدمات");
-  message("تم حفظ الخدمات على الموقع الرسمي 🌸");return true;
+  // Verify the public data file actually contains the saved list before reporting success.
+  let verified=false;
+  for(let attempt=0;attempt<4;attempt++){
+   if(attempt)await new Promise(resolve=>setTimeout(resolve,1200));
+   const check=await fetch(DATA_URL+"?verify="+Date.now(),{cache:"no-store"});
+   if(check.ok){
+    const savedData=await check.json();
+    if(JSON.stringify(savedData.services||[])===JSON.stringify(services)){verified=true;break;}
+   }
+  }
+  if(!verified)throw new Error("وصل رد الحفظ، لكن ملف الخدمات لم يتحدّث بعد. لم نعتبر العملية ناجحة؛ أعيدي تحميل الخدمات قبل المحاولة.");
+  message("تم حفظ الخدمات والتحقق من تحديثها فعلياً 🌸");return true;
  }catch(e){message(e.message||"حدث خطأ أثناء الحفظ",true);return false;}
  finally{buttons.forEach(b=>b.disabled=false);}
 }
