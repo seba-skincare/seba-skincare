@@ -92,7 +92,7 @@ export default async (req) => {
       if (isImage) {
         verified = Boolean(file.sha);
       } else if (typeof file.content === "string") {
-        const actual = Buffer.from(file.content.replace(/\\s/g, ""), "base64").toString("utf8");
+        const actual = Buffer.from(file.content.replace(/\s/g, ""), "base64").toString("utf8");
         verified = actual === content;
       }
       if (verified) break;
