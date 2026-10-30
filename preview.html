@@ -210,6 +210,27 @@ footer span{color:#d8bd91;font-family:"Heebo",sans-serif;letter-spacing:1px}
 @keyframes sebaCinemaText{from{opacity:0;letter-spacing:.5em;filter:blur(5px)}to{opacity:1;letter-spacing:.16em;filter:blur(0)}}
 @keyframes sebaCinemaLine{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:1}}
 @media(prefers-reduced-motion:reduce){#seba-cinematic:before,.seba-cinema-inner,.seba-cinema-logo,.seba-cinema-title,.seba-cinema-sub,.seba-cinema-line{animation:none!important}#seba-cinematic{transition:none}}
+
+/* SEBA EXPERIENCE UPGRADE: ritual, smart booking, story, refined motion */
+.seba-ritual{position:relative;overflow:hidden;background:linear-gradient(135deg,#fbf4ef,#f4e4dc 52%,#f8eee8);border-block:1px solid rgba(183,154,104,.2)}
+.seba-ritual:before{content:"";position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.85),transparent 68%);top:-100px;inset-inline-start:-70px;pointer-events:none}
+.seba-ritual-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;position:relative}
+.seba-ritual-card{padding:28px 22px;background:rgba(255,255,255,.68);border:1px solid rgba(183,154,104,.25);border-radius:22px;box-shadow:0 12px 34px rgba(86,61,49,.06);transition:transform .35s ease,box-shadow .35s ease}
+.seba-ritual-card:hover{transform:translateY(-6px);box-shadow:0 18px 38px rgba(86,61,49,.12)}
+.seba-ritual-icon{font-size:1.8rem;color:#b18a67;display:block;margin-bottom:12px}
+.seba-booking{background:linear-gradient(145deg,#fffaf6,#f3e5dd);border:1px solid rgba(183,154,104,.28);border-radius:26px;padding:clamp(22px,4vw,42px);max-width:760px;margin:auto;box-shadow:0 18px 55px rgba(77,54,43,.08)}
+.seba-booking-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.seba-field{display:flex;flex-direction:column;gap:7px;text-align:start}
+.seba-field label{font-size:.9rem;color:#6d5549;font-weight:600}
+.seba-field input,.seba-field select,.seba-field textarea{width:100%;min-height:48px;border:1px solid #dfcfc3;border-radius:12px;padding:11px 13px;background:#fffdfa;color:#493a33;font:inherit;outline:none}
+.seba-field input:focus,.seba-field select:focus,.seba-field textarea:focus{border-color:#b99a68;box-shadow:0 0 0 3px rgba(185,154,104,.13)}
+.seba-booking .btn{margin-top:18px;cursor:pointer}
+.seba-booking-note{font-size:.82rem;color:#89766b;margin-top:10px}
+.seba-review-invite{margin:18px auto 0;max-width:540px;color:#8b766b;font-size:.9rem;line-height:1.8}
+.seba-reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.seba-reveal.is-visible{opacity:1;transform:translateY(0)}
+@media(max-width:700px){.seba-ritual-grid{grid-template-columns:1fr;gap:12px}.seba-ritual-card{padding:21px}.seba-booking-grid{grid-template-columns:1fr}.seba-booking{padding:20px}}
+@media(prefers-reduced-motion:reduce){.seba-ritual-card,.seba-reveal{transition:none}.seba-reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -245,7 +266,7 @@ footer span{color:#d8bd91;font-family:"Heebo",sans-serif;letter-spacing:1px}
     <article class="service"><div class="service-photo"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=85" alt="تحضيرات العروس"></div><div class="service-copy"><small>04 / BRIDAL</small><h3>تجهيز العرائس</h3><p>عناية خاصة تسبق يومكِ المميز وترافق تألقكِ.</p></div></article>
   </div>
 </section>
-<section class="section seba-gallery" id="gallery">
+<section class="section" id="smart-booking"><div class="section-head"><span class="kicker">YOUR MOMENT, YOUR CARE</span><h2>احجزي لحظة العناية الخاصة بكِ</h2><p>اختاري الخدمة وأرسلي طلبكِ مباشرة إلى صبا عبر واتساب.</p></div><form class="seba-booking" id="seba-booking-ar" data-locale="ar"><div class="seba-booking-grid"><div class="seba-field"><label for="seba-name-ar">اسمكِ</label><input id="seba-name-ar" name="name" autocomplete="name" placeholder="الاسم" required></div><div class="seba-field"><label for="seba-service-ar">الخدمة المطلوبة</label><select id="seba-service-ar" name="service" required><option value="">اختاري الخدمة</option><option>تنظيف البشرة</option><option>ماسكات وعناية</option><option>إزالة الوبر</option><option>إزالة الحبوب</option><option>استفسار عن خدمة أخرى</option></select></div><div class="seba-field"><label for="seba-date-ar">اليوم المناسب</label><input id="seba-date-ar" name="date" type="date" min="2026-10-30"></div><div class="seba-field"><label for="seba-time-ar">الوقت المفضل</label><select id="seba-time-ar" name="time"><option value="">مرن / حسب المتاح</option><option>صباحاً</option><option>بعد الظهر</option><option>مساءً</option></select></div></div><button class="btn dark" type="submit">إرسال طلب الحجز عبر واتساب ↗</button><p class="seba-booking-note">سيتم تأكيد الموعد بعد التواصل معكِ؛ إرسال الطلب لا يعني تثبيت الحجز تلقائياً.</p></form></section><section class="section seba-ritual"><div class="section-head"><span class="kicker">THE SEBA RITUAL</span><h2>أكثر من جلسة… وقت إلكِ</h2><p>تفاصيل بسيطة تجعل زيارتكِ لحظة راحة واهتمام بنفسكِ.</p></div><div class="seba-ritual-grid"><article class="seba-ritual-card"><span class="seba-ritual-icon">✧</span><h3>نبدأ بالاستماع</h3><p>نتعرّف على احتياجكِ وما تتطلعين إليه قبل اختيار الخدمة المناسبة.</p></article><article class="seba-ritual-card"><span class="seba-ritual-icon">❀</span><h3>عناية باهتمام</h3><p>أجواء هادئة ووقت مخصص لكِ مع اهتمام بالتفاصيل.</p></article><article class="seba-ritual-card"><span class="seba-ritual-icon">♡</span><h3>نصائح بعد الجلسة</h3><p>إرشادات عامة للعناية بعد الزيارة وفق الخدمة التي تلقيتِها.</p></article></div></section><section class="section seba-gallery" id="gallery">
   <div class="section-head"><span class="kicker">A TOUCH OF BEAUTY</span><h2>تفاصيل صغيرة… ولحظات من الدلال</h2><p>لمحات إلهامية من عالم العناية والجمال.</p></div>
   <div class="seba-gallery-grid">
     <figure><img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=900&q=85" alt="إلهام للعناية بالبشرة"><figcaption>لحظة عناية</figcaption></figure>
@@ -261,7 +282,7 @@ footer span{color:#d8bd91;font-family:"Heebo",sans-serif;letter-spacing:1px}
 </section>
 <section class="section seba-reviews">
   <div class="section-head"><span class="kicker">KIND WORDS</span><h2>رأيكِ يهمّنا</h2><p>تجربتكِ تساعدنا على تقديم عناية أجمل كل يوم.</p></div>
-  <div class="seba-review-card"><div class="seba-stars" aria-hidden="true">✧ ✧ ✧ ✧ ✧</div><h3>ننتظر أن نسمع تجربتكِ</h3><p>سنشارك هنا آراء زبونات صبا الحقيقية بعد موافقتهن.</p><a class="btn dark" href="https://wa.me/972526732880" target="_blank" rel="noopener">شاركي رأيكِ مع صبا ↗</a></div>
+  <div class="seba-review-card"><div class="seba-stars" aria-hidden="true">✧ ✧ ✧ ✧ ✧</div><h3>ننتظر أن نسمع تجربتكِ</h3><p>سنشارك هنا آراء زبونات صبا الحقيقية بعد موافقتهن.</p><a class="btn dark" href="https://wa.me/972526732880" target="_blank" rel="noopener">شاركي رأيكِ مع صبا ↗</a><p class="seba-review-invite">אפשר לשלוח חוויה קצרה בוואטסאפ; נפרסם רק לאחר קבלת אישור מפורש.</p></div>
 </section>
 
 <section class="section about" id="about">
@@ -291,7 +312,7 @@ footer span{color:#d8bd91;font-family:"Heebo",sans-serif;letter-spacing:1px}
 <article class="service"><div class="service-photo"><img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=900&q=85" alt="חידוש העור"></div><div class="service-copy"><small>03 / RENEW</small><h3>פילינג וחידוש העור</h3><p>טיפוח למראה חלק וזוהר יותר.</p></div></article>
 <article class="service"><div class="service-photo"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=85" alt="הכנה לכלות"></div><div class="service-copy"><small>04 / BRIDAL</small><h3>הכנה לכלות</h3><p>טיפוח מיוחד לקראת היום המרגש שלך.</p></div></article>
 </div></section>
-<section class="section seba-gallery" dir="rtl">
+<section class="section" id="smart-booking-he" dir="rtl"><div class="section-head"><span class="kicker">YOUR MOMENT, YOUR CARE</span><h2>קבעי לך רגע של טיפוח</h2><p>בחרי טיפול ושלחי בקשת תור ישירות לסבא בוואטסאפ.</p></div><form class="seba-booking" id="seba-booking-he" data-locale="he"><div class="seba-booking-grid"><div class="seba-field"><label for="seba-name-he">השם שלך</label><input id="seba-name-he" name="name" autocomplete="name" placeholder="שם מלא" required></div><div class="seba-field"><label for="seba-service-he">הטיפול המבוקש</label><select id="seba-service-he" name="service" required><option value="">בחרי טיפול</option><option>ניקוי פנים</option><option>מסכות וטיפוח</option><option>הסרת שיער פלומתי</option><option>טיפול בפצעונים</option><option>בירור לגבי טיפול אחר</option></select></div><div class="seba-field"><label for="seba-date-he">תאריך מועדף</label><input id="seba-date-he" name="date" type="date" min="2026-10-30"></div><div class="seba-field"><label for="seba-time-he">שעה מועדפת</label><select id="seba-time-he" name="time"><option value="">גמישה / לפי הזמינות</option><option>בוקר</option><option>אחר הצהריים</option><option>ערב</option></select></div></div><button class="btn dark" type="submit">שליחת בקשת תור בוואטסאפ ↗</button><p class="seba-booking-note">התור יאושר לאחר יצירת קשר; שליחת הבקשה אינה מהווה אישור סופי.</p></form></section><section class="section seba-ritual" dir="rtl"><div class="section-head"><span class="kicker">THE SEBA RITUAL</span><h2>יותר מטיפול… זמן בשבילך</h2><p>פרטים קטנים שהופכים את הביקור לרגע של רוגע וטיפוח.</p></div><div class="seba-ritual-grid"><article class="seba-ritual-card"><span class="seba-ritual-icon">✧</span><h3>מתחילות בהקשבה</h3><p>מכירות את הצרכים שלך ואת מה שחשוב לך לפני בחירת הטיפול.</p></article><article class="seba-ritual-card"><span class="seba-ritual-icon">❀</span><h3>טיפוח עם תשומת לב</h3><p>אווירה רגועה וזמן שמוקדש לך ולפרטים הקטנים.</p></article><article class="seba-ritual-card"><span class="seba-ritual-icon">♡</span><h3>הכוונה להמשך</h3><p>הנחיות כלליות לטיפוח לאחר הביקור בהתאם לטיפול שקיבלת.</p></article></div></section><section class="section seba-gallery" dir="rtl">
   <div class="section-head"><span class="kicker">A TOUCH OF BEAUTY</span><h2>רגעים קטנים של טיפוח</h2><p>השראה מעולם הטיפוח והיופי.</p></div>
   <div class="seba-gallery-grid">
     <figure><img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=900&q=85" alt="השראה לטיפוח העור"><figcaption>רגע של טיפוח</figcaption></figure>
@@ -421,6 +442,9 @@ try{
 
 <script>
 (()=>{const intro=document.getElementById('seba-cinematic');if(!intro)return;const close=()=>{intro.classList.add('is-leaving');window.setTimeout(()=>intro.remove(),1100)};window.setTimeout(close,3600);intro.addEventListener('click',close,{once:true});})();
+</script>
+<script>
+(()=>{const phone='972526732880';document.querySelectorAll('.seba-booking').forEach(form=>form.addEventListener('submit',event=>{event.preventDefault();const d=new FormData(form);const he=form.dataset.locale==='he';const lines=he?['שלום סבא, אשמח לתאם תור.','שם: '+d.get('name'),'טיפול: '+d.get('service'),'תאריך מועדף: '+(d.get('date')||'גמישה'),'שעה מועדפת: '+(d.get('time')||'גמישה')]:['مرحباً صبا، أرغب بطلب موعد.','الاسم: '+d.get('name'),'الخدمة: '+d.get('service'),'اليوم المفضل: '+(d.get('date')||'مرن'),'الوقت المفضل: '+(d.get('time')||'مرن')];window.open('https://wa.me/'+phone+'?text='+encodeURIComponent(lines.join('\n')),'_blank','noopener')}));const reveal=document.querySelectorAll('.seba-ritual-card,.seba-booking,.seba-review-card');if('IntersectionObserver'in window){const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}}),{threshold:.12});reveal.forEach(el=>{el.classList.add('seba-reveal');io.observe(el)})}}})();
 </script>
 </body>
 </html>
