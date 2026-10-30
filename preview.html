@@ -24,10 +24,10 @@ button{font:inherit}
 .topbar{height:auto;min-height:88px;padding:12px clamp(18px,6vw,90px);display:flex;align-items:center;justify-content:space-between;gap:20px;background:rgba(255,253,250,.94);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;backdrop-filter:blur(14px)}
 .brand{display:flex;align-items:center;gap:13px;font-family:"Heebo",sans-serif;font-size:1.12rem;font-weight:700;letter-spacing:.5px;color:#4b4038}
 .brand img{width:62px;height:62px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);padding:2px;background:white}
-.brand img{transform-origin:center;animation:sebaLogoFloat 4.8s ease-in-out infinite;box-shadow:0 0 0 0 rgba(183,154,104,.24);transition:box-shadow .35s ease}
-.brand:hover img{box-shadow:0 0 0 7px rgba(183,154,104,.12),0 8px 24px rgba(55,43,34,.12)}
-@keyframes sebaLogoFloat{0%,100%{transform:translateY(0) scale(1);box-shadow:0 0 0 0 rgba(183,154,104,.18)}50%{transform:translateY(-4px) scale(1.035);box-shadow:0 0 0 6px rgba(183,154,104,.08)}}
-@media(prefers-reduced-motion:reduce){.brand img{animation:none;transition:none}}
+.brand img{transform-origin:center;animation:sebaLogoShow 3.2s cubic-bezier(.45,.05,.55,.95) infinite;box-shadow:0 0 0 5px rgba(183,154,104,.14),0 8px 26px rgba(55,43,34,.16);will-change:transform}
+.brand:hover img{animation-duration:1.35s;box-shadow:0 0 0 9px rgba(183,154,104,.22),0 12px 32px rgba(55,43,34,.2)}
+@keyframes sebaLogoShow{0%,100%{transform:perspective(500px) rotateY(0deg) rotate(-5deg) scale(1);filter:drop-shadow(0 4px 3px rgba(55,43,34,.12))}25%{transform:perspective(500px) rotateY(24deg) rotate(5deg) scale(1.12)}50%{transform:perspective(500px) rotateY(0deg) rotate(0deg) scale(1.18);filter:drop-shadow(0 10px 8px rgba(55,43,34,.2))}75%{transform:perspective(500px) rotateY(-24deg) rotate(-5deg) scale(1.08)}}
+@media(prefers-reduced-motion:reduce){.brand img{animation:none;will-change:auto}}
 .nav{display:flex;align-items:center;gap:27px;font-size:.96rem;color:#5e584f}
 .nav a{transition:.2s}.nav a:hover{color:var(--rose-dark)}
 .top-actions{display:flex;align-items:center;gap:10px}
