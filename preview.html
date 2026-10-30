@@ -73,6 +73,35 @@ button{font:inherit}
 .section-head h2{font-size:clamp(2rem,3.5vw,3.2rem);font-weight:500;line-height:1.3;margin:12px 0;color:#38332c}
 .section-head p{color:var(--muted);margin:0;font-size:1.05rem}
 .services{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+/* تفاصيل تفاعلية راقية لصبا */
+.service{position:relative;overflow:hidden;border-radius:2px;box-shadow:0 5px 20px rgba(64,48,38,.045);transition:transform .55s cubic-bezier(.2,.75,.25,1),box-shadow .55s,border-color .4s}
+.service:after{content:"";position:absolute;inset:0;border:1px solid rgba(199,163,111,0);pointer-events:none;transition:border-color .45s}
+.service:hover{transform:translateY(-10px);box-shadow:0 18px 38px rgba(64,48,38,.13);border-color:var(--gold)}
+.service:hover:after{border-color:rgba(199,163,111,.55)}
+.service-photo{position:relative}
+.service-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(125deg,transparent 35%,rgba(255,255,255,.28) 50%,transparent 65%);transform:translateX(-120%);transition:transform .8s}
+.service:hover .service-photo:after{transform:translateX(120%)}
+.seba-gallery{background:#fffdfa}
+.seba-gallery-grid{display:grid;grid-template-columns:1.1fr .9fr 1.1fr;gap:18px;align-items:center}
+.seba-gallery-grid figure{margin:0;position:relative;overflow:hidden;background:var(--cream);height:310px;box-shadow:0 8px 24px rgba(64,48,38,.08)}
+.seba-gallery-grid figure:nth-child(2){height:365px}
+.seba-gallery-grid img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1),filter .6s}
+.seba-gallery-grid figure:hover img{transform:scale(1.08);filter:saturate(1.08)}
+.seba-gallery-grid figcaption{position:absolute;bottom:0;right:0;left:0;padding:28px 18px 15px;color:white;font-size:1.05rem;background:linear-gradient(transparent,rgba(35,29,24,.65))}
+.seba-photo-note{text-align:center;color:var(--muted);font-size:.82rem;margin:18px auto 0}
+.seba-before-after{background:var(--cream)}
+.seba-ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:760px;margin:auto}
+.seba-ba-slot{height:270px;border:1px dashed #c6aa83;background:rgba(255,253,250,.62);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--muted);position:relative}
+.seba-ba-slot span{font-family:"Heebo",sans-serif;letter-spacing:2px;color:var(--rose-dark);font-weight:700;font-size:1.1rem}
+.seba-ba-slot strong{font-weight:500}
+.seba-ba-slot:before{content:"✧";font-size:2rem;color:var(--gold);opacity:.8}
+.seba-reviews{background:#fffdfa}
+.seba-review-card{max-width:640px;margin:auto;text-align:center;padding:36px 28px;background:white;border:1px solid var(--line);box-shadow:0 12px 32px rgba(64,48,38,.07);position:relative}
+.seba-review-card:before{content:"";position:absolute;top:0;left:18%;right:18%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.seba-stars{color:var(--gold);letter-spacing:8px;font-size:1.25rem;margin-bottom:12px}
+.seba-review-card h3{font-size:1.5rem;font-weight:500;margin:5px 0 8px}
+.seba-review-card p{color:var(--muted);margin:0 0 22px}
+.seba-review-card .btn{display:inline-flex}
 .service{background:white;border:1px solid var(--line);transition:.3s}
 .service:hover{transform:translateY(-7px);box-shadow:var(--shadow)}
 .service-photo{height:255px;overflow:hidden;background:#e8ded4}
@@ -116,7 +145,7 @@ footer span{color:#d8bd91;font-family:"Heebo",sans-serif;letter-spacing:1px}
 .mobile-menu{display:none}
 [hidden]{display:none!important}
 @media(max-width:950px){.nav{display:none}.hero{grid-template-columns:1fr}.hero-copy{order:2;padding:55px 8vw}.hero-image{order:1;min-height:440px}.services{grid-template-columns:repeat(2,1fr)}.about{gap:35px}.about-photo{height:420px}}
-@media(max-width:600px){.topbar{min-height:74px;padding:9px 15px}.brand{font-size:.95rem;gap:8px}.brand img{width:49px;height:49px}.top-actions{gap:6px}.topbar .book{padding:9px 11px;font-size:.8rem}.lang button{padding:6px 9px}.hero-image{min-height:360px}.hero-copy{padding:48px 23px}.hero h1{font-size:2.65rem}.hero-copy p{font-size:1rem}.trust{padding:18px 10px}.trust-item{padding:3px 8px}.trust-item strong{font-size:.9rem}.trust-item span{font-size:.72rem}.section{padding:68px 19px}.section-head{margin-bottom:30px}.services{grid-template-columns:1fr 1fr;gap:11px}.service-photo{height:170px}.service-copy{padding:15px 13px 18px}.service-copy h3{font-size:1.08rem}.service-copy p{font-size:.82rem}.about{grid-template-columns:1fr}.about-photo{height:330px;order:2}.about-copy{order:1}.social-link{min-width:100%;justify-content:flex-start}.cta{margin:0 14px 55px;padding:43px 20px}footer{flex-direction:column;text-align:center}}
+@media(max-width:600px){.topbar{min-height:74px;padding:9px 15px}.brand{font-size:.95rem;gap:8px}.brand img{width:49px;height:49px}.top-actions{gap:6px}.topbar .book{padding:9px 11px;font-size:.8rem}.lang button{padding:6px 9px}.hero-image{min-height:360px}.hero-copy{padding:48px 23px}.hero h1{font-size:2.65rem}.hero-copy p{font-size:1rem}.trust{padding:18px 10px}.trust-item{padding:3px 8px}.trust-item strong{font-size:.9rem}.trust-item span{font-size:.72rem}.section{padding:68px 19px}.section-head{margin-bottom:30px}.services{grid-template-columns:1fr 1fr;gap:11px}.service-photo{height:170px}.service-copy{padding:15px 13px 18px}.service-copy h3{font-size:1.08rem}.service-copy p{font-size:.82rem}.about{grid-template-columns:1fr}.about-photo{height:330px;order:2}.about-copy{order:1}.social-link{min-width:100%;justify-content:flex-start}.seba-gallery-grid{grid-template-columns:1fr 1fr;gap:10px}.seba-gallery-grid figure,.seba-gallery-grid figure:nth-child(2){height:190px}.seba-gallery-grid figure:last-child{grid-column:1/-1;height:220px}.seba-ba-grid{gap:9px}.seba-ba-slot{height:190px}.seba-review-card{padding:28px 18px}.cta{margin:0 14px 55px;padding:43px 20px}footer{flex-direction:column;text-align:center}}
 
 /* فقاعة التواصل العائمة */
 .seba-chat-bubble {
@@ -128,14 +157,15 @@ footer span{color:#d8bd91;font-family:"Heebo",sans-serif;letter-spacing:1px}
   align-items: center;
   gap: 10px;
   padding: 12px 20px;
-  background: #b77d79;
+  background: linear-gradient(115deg,#725044,#b58b69,#725044);
+  background-size:200% auto;
   color: white;
   border-radius: 40px;
   box-shadow: 0 5px 22px rgba(55,43,34,.22);
   font-family: "Tajawal", sans-serif;
   font-size: 16px;
   font-weight: 700;
-  animation: sebaFloat 2.5s ease-in-out infinite;
+  animation: sebaFloat 2.5s ease-in-out infinite, sebaGoldSweep 5s linear infinite;
   transition: .25s;
 }
 
@@ -147,6 +177,8 @@ footer span{color:#d8bd91;font-family:"Heebo",sans-serif;letter-spacing:1px}
 .seba-chat-bubble .chat-icon {
   font-size: 23px;
 }
+
+@keyframes sebaGoldSweep {to{background-position:200% center}}
 
 @keyframes sebaFloat {
   0%, 100% { transform: translateY(0); }
@@ -194,6 +226,25 @@ footer span{color:#d8bd91;font-family:"Heebo",sans-serif;letter-spacing:1px}
     <article class="service"><div class="service-photo"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=85" alt="تحضيرات العروس"></div><div class="service-copy"><small>04 / BRIDAL</small><h3>تجهيز العرائس</h3><p>عناية خاصة تسبق يومكِ المميز وترافق تألقكِ.</p></div></article>
   </div>
 </section>
+<section class="section seba-gallery" id="gallery">
+  <div class="section-head"><span class="kicker">A TOUCH OF BEAUTY</span><h2>تفاصيل صغيرة… ولحظات من الدلال</h2><p>لمحات إلهامية من عالم العناية والجمال.</p></div>
+  <div class="seba-gallery-grid">
+    <figure><img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=900&q=85" alt="إلهام للعناية بالبشرة"><figcaption>لحظة عناية</figcaption></figure>
+    <figure><img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=900&q=85" alt="منتجات عناية"><figcaption>طقوس الجمال</figcaption></figure>
+    <figure><img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=900&q=85" alt="أجواء عناية واسترخاء"><figcaption>وقت لنفسكِ</figcaption></figure>
+  </div>
+  <p class="seba-photo-note">صور إلهامية توضيحية، وليست صوراً لنتائج زبونات.</p>
+</section>
+<section class="section seba-before-after">
+  <div class="section-head"><span class="kicker">REAL SKIN STORIES</span><h2>رحلة العناية… قبل وبعد</h2><p>نخصص هذه المساحة لصور نتائج حقيقية، بموافقة صاحباتها، وبإضاءة وظروف تصوير متقاربة.</p></div>
+  <div class="seba-ba-grid"><div class="seba-ba-slot"><span>قبل</span><strong>مساحة للصورة</strong></div><div class="seba-ba-slot"><span>بعد</span><strong>مساحة للصورة</strong></div></div>
+  <p class="seba-photo-note">سنضيف صوراً حقيقية هنا بعد الحصول على موافقة صاحباتها؛ لا توجد نتائج تجميلية افتراضية.</p>
+</section>
+<section class="section seba-reviews">
+  <div class="section-head"><span class="kicker">KIND WORDS</span><h2>رأيكِ يهمّنا</h2><p>تجربتكِ تساعدنا على تقديم عناية أجمل كل يوم.</p></div>
+  <div class="seba-review-card"><div class="seba-stars" aria-hidden="true">✧ ✧ ✧ ✧ ✧</div><h3>ننتظر أن نسمع تجربتكِ</h3><p>سنشارك هنا آراء زبونات صبا الحقيقية بعد موافقتهن.</p><a class="btn dark" href="https://wa.me/972526732880" target="_blank" rel="noopener">شاركي رأيكِ مع صبا ↗</a></div>
+</section>
+
 <section class="section about" id="about">
   <div class="about-photo"><img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=1200&q=85" alt="أجواء استرخاء وعناية"></div>
   <div class="about-copy"><span class="kicker">A LITTLE ABOUT US</span><h2>لأن العناية بنفسكِ<br>ليست رفاهية</h2><p>في Seba.skincare نؤمن أن الجمال يبدأ من الاهتمام بالنفس. نرحّب بكِ لتجربة عناية هادئة، واهتمام بالتفاصيل، ولمسة شخصية في كل زيارة.</p><div class="places"><span class="place">📍 الناصرة</span><span class="place">📍 يافة الناصرة</span></div><a class="btn dark" href="https://wa.me/972526732880" target="_blank" rel="noopener">تواصلي معنا للحجز ↗</a></div>
@@ -221,6 +272,25 @@ footer span{color:#d8bd91;font-family:"Heebo",sans-serif;letter-spacing:1px}
 <article class="service"><div class="service-photo"><img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=900&q=85" alt="חידוש העור"></div><div class="service-copy"><small>03 / RENEW</small><h3>פילינג וחידוש העור</h3><p>טיפוח למראה חלק וזוהר יותר.</p></div></article>
 <article class="service"><div class="service-photo"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=85" alt="הכנה לכלות"></div><div class="service-copy"><small>04 / BRIDAL</small><h3>הכנה לכלות</h3><p>טיפוח מיוחד לקראת היום המרגש שלך.</p></div></article>
 </div></section>
+<section class="section seba-gallery" dir="rtl">
+  <div class="section-head"><span class="kicker">A TOUCH OF BEAUTY</span><h2>רגעים קטנים של טיפוח</h2><p>השראה מעולם הטיפוח והיופי.</p></div>
+  <div class="seba-gallery-grid">
+    <figure><img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=900&q=85" alt="השראה לטיפוח העור"><figcaption>רגע של טיפוח</figcaption></figure>
+    <figure><img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=900&q=85" alt="מוצרי טיפוח"><figcaption>טקסי יופי</figcaption></figure>
+    <figure><img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=900&q=85" alt="אווירת רוגע וטיפוח"><figcaption>זמן לעצמך</figcaption></figure>
+  </div>
+  <p class="seba-photo-note">תמונות השראה להמחשה, ולא תמונות של תוצאות לקוחות.</p>
+</section>
+<section class="section seba-before-after" dir="rtl">
+  <div class="section-head"><span class="kicker">REAL SKIN STORIES</span><h2>מסע הטיפוח – לפני ואחרי</h2><p>כאן נציג תמונות אמיתיות באישור המצולמות ובתנאי צילום דומים.</p></div>
+  <div class="seba-ba-grid"><div class="seba-ba-slot"><span>לפני</span><strong>מקום לתמונה</strong></div><div class="seba-ba-slot"><span>אחרי</span><strong>מקום לתמונה</strong></div></div>
+  <p class="seba-photo-note">נוסיף תמונות אמיתיות רק לאחר קבלת אישור; לא נציג תוצאות מדומות.</p>
+</section>
+<section class="section seba-reviews" dir="rtl">
+  <div class="section-head"><span class="kicker">KIND WORDS</span><h2>החוויה שלך חשובה לנו</h2><p>נשמח לשמוע איך הייתה חוויית הטיפוח שלך.</p></div>
+  <div class="seba-review-card"><div class="seba-stars" aria-hidden="true">✧ ✧ ✧ ✧ ✧</div><h3>מחכות לשמוע ממך</h3><p>נשתף כאן חוות דעת אמיתיות של לקוחות Seba באישורן.</p><a class="btn dark" href="https://wa.me/972526732880" target="_blank" rel="noopener">שתפי אותנו בחוויה ↗</a></div>
+</section>
+
 <section class="section about"><div class="about-photo"><img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=1200&q=85" alt="אווירת רוגע וטיפוח"></div><div class="about-copy"><span class="kicker">A LITTLE ABOUT US</span><h2>כי טיפוח עצמי<br>הוא לא מותרות</h2><p>ב־Seba.skincare מאמינות שיופי מתחיל בתשומת לב לעצמך. נשמח להעניק לך חוויית טיפוח רגועה, יחס אישי ותשומת לב לכל פרט.</p><div class="places"><span class="place">📍 נצרת</span><span class="place">📍 יפיע</span></div><a class="btn dark" href="https://wa.me/972526732880" target="_blank" rel="noopener">צרי קשר לקביעת תור ↗</a></div></section>
 <section class="section social-section"><div class="section-head"><span class="kicker">LET'S CONNECT</span><h2>נשמח לשמוע ממך</h2><p>לקביעת תור ולשאלות, בחרי את דרך ההתקשרות הנוחה לך.</p></div><div class="social-row">
 <a class="social-link" href="https://wa.me/972526732880" target="_blank" rel="noopener"><span class="social-icon">◉</span><span><strong>וואטסאפ</strong><small>לקביעת תורים</small></span></a>
@@ -231,8 +301,8 @@ footer span{color:#d8bd91;font-family:"Heebo",sans-serif;letter-spacing:1px}
 </main>
 <footer><span>Seba.skincare</span><div>© כל הזכויות שמורות · عناية وجمال بكل حب</div></footer>
 <a class="seba-chat-bubble" href="https://wa.me/972526732880" target="_blank" rel="noopener" aria-label="احكي مع صبا">
-  <span class="chat-icon">💬</span>
-  <span id="sebaChatText">احكي مع صبا</span>
+  <span class="chat-icon">✧</span>
+  <span id="sebaChatText">احجزي موعدكِ</span>
 </a><script>
   const ar = document.getElementById('arabic');
 const he = document.getElementById('hebrew');
