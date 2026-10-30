@@ -36,7 +36,7 @@ export default async (req) => {
         return new Response(JSON.stringify({ error: "ملف الصورة غير صالح أو حجمه كبير" }), { status: 400, headers });
       }
     } else {
-      const allowedPaths = ["data/services.json", "data/settings.json"];
+      const allowedPaths = ["data/services.json", "data/settings.json", "data/offers.json"];
       if (!allowedPaths.includes(path) || typeof content !== "string") {
         return new Response(JSON.stringify({ error: "Invalid file or content" }), { status: 400, headers });
       }
