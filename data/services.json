@@ -1,12 +1,6 @@
 {
   "services": [
     {
-      "title": "ازالة الوبر",
-      "description": "من الصباح",
-      "price": "٥",
-      "image": "assets/services/service-1793381579694-0.jpg"
-    },
-    {
       "title": "ازالة حبوب",
       "description": "",
       "price": ""
