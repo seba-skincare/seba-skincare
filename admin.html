@@ -5,197 +5,117 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>لوحة تحكم صبا</title>
 <style>
-body{font-family:Arial;background:#f8f1ed;color:#513b35;padding:18px}
-h1{color:#a66d68;text-align:center}
-.card{background:white;padding:18px;border-radius:16px;margin:15px 0}
-input,textarea,button{width:100%;padding:12px;margin:8px 0;box-sizing:border-box;border:1px solid #d8b9ae;border-radius:10px;font-size:16px}
-button{background:#a66d68;color:white;border:0;font-weight:bold;cursor:pointer}
-button:disabled{opacity:.6}
-.service{border:1px solid #eadbd5;padding:12px;border-radius:12px;margin:12px 0}
-.status{text-align:center;font-weight:bold}
+:root{--ink:#49362f;--rose:#a66d68;--cream:#f8f1ed;--line:#eadbd5}
+*{box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:var(--cream);color:var(--ink);padding:16px;max-width:760px;margin:auto}
+h1{color:var(--rose);text-align:center}
+.card{background:#fff;padding:18px;border-radius:16px;margin:15px 0;box-shadow:0 5px 20px #513b3510}
+input,textarea,button{width:100%;padding:12px;margin:7px 0;box-sizing:border-box;border:1px solid #d8b9ae;border-radius:10px;font-size:16px;font-family:inherit}
+textarea{min-height:76px;resize:vertical}
+button{background:var(--rose);color:white;border:0;font-weight:bold;cursor:pointer}
+button:disabled{opacity:.6;cursor:wait}
+button.secondary{background:#77645c}
+button.danger{background:#a94442}
+.service{border:1px solid var(--line);padding:14px;border-radius:12px;margin:12px 0;background:#fffdfa}
+.service h3{margin:0 0 8px;color:var(--rose)}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.status{text-align:center;font-weight:bold;min-height:24px}
+.hint{font-size:13px;color:#76665f;line-height:1.6}
 </style>
 </head>
 <body>
-
 <h1>لوحة تحكم صبا 🌸</h1>
-
 <div class="card">
-  <h3>كلمة مرور لوحة التحكم</h3>
-  <input id="password" type="password" placeholder="كلمة مرور اللوحة">
-  <button onclick="loadServices()">دخول وتحميل الخدمات</button>
+<h3>الدخول إلى اللوحة</h3>
+<input id="password" type="password" autocomplete="current-password" placeholder="كلمة مرور لوحة التحكم">
+<button id="loadButton" onclick="loadServices()">دخول وتحميل الخدمات</button>
+<p class="hint">كلمة المرور مطلوبة للحفظ. لا تشاركيها مع أي شخص.</p>
 </div>
-
 <div class="card">
-  <h3>إضافة خدمة</h3>
-  <input id="title" placeholder="اسم الخدمة">
-  <textarea id="description" placeholder="وصف الخدمة"></textarea>
-  <input id="price" placeholder="السعر">
-  <button id="addButton" onclick="addService()">إضافة وحفظ الخدمة</button>
+<h3>إضافة خدمة جديدة</h3>
+<input id="title" placeholder="اسم الخدمة">
+<textarea id="description" placeholder="وصف الخدمة"></textarea>
+<input id="price" placeholder="السعر (اختياري)">
+<button id="addButton" onclick="addService()">إضافة وحفظ الخدمة</button>
 </div>
-
 <div class="card">
-  <h3>الخدمات المحفوظة</h3>
-  <div id="services"></div>
+<h3>الخدمات المحفوظة</h3>
+<p class="hint">يمكنك تعديل الاسم والوصف والسعر ثم الضغط على «حفظ التعديل» لكل خدمة.</p>
+<div id="services">سجّلي الدخول لتحميل الخدمات.</div>
 </div>
-
-<p id="status" class="status"></p>
-
+<p id="status" class="status" role="status" aria-live="polite"></p>
 <script>
-const DATA_URL =
-"https://raw.githubusercontent.com/seba-skincare/seba-skincare/main/data/services.json";
-
-const SAVE_URL =
-"https://sprightly-horse-bca4a5.netlify.app/.netlify/functions/save";
-
-let services = [];
-
-function message(text, error=false) {
-  const el = document.getElementById("status");
-  el.textContent = text;
-  el.style.color = error ? "#b00020" : "#39744a";
+const DATA_URL="https://raw.githubusercontent.com/seba-skincare/seba-skincare/main/data/services.json";
+const SAVE_URL="https://sprightly-horse-bca4a5.netlify.app/.netlify/functions/save";
+let services=[];
+let loaded=false;
+function message(text,error=false){const el=document.getElementById("status");el.textContent=text;el.style.color=error?"#b00020":"#39744a";}
+function password(){return document.getElementById("password").value.trim();}
+async function loadServices(){
+ if(!password()){message("اكتبي كلمة مرور اللوحة أولاً",true);return;}
+ const button=document.getElementById("loadButton");button.disabled=true;
+ try{
+  message("جاري تحميل الخدمات...");
+  const response=await fetch(DATA_URL+"?t="+Date.now());
+  if(!response.ok)throw new Error("تعذر تحميل ملف الخدمات");
+  const data=await response.json();
+  services=Array.isArray(data.services)?data.services:[];
+  loaded=true;render();message("تم تحميل الخدمات. يمكنك الآن الإضافة والتعديل والحذف.");
+ }catch(e){message("تعذر تحميل الخدمات. حاولي مرة أخرى.",true);}
+ finally{button.disabled=false;}
 }
-
-async function loadServices() {
-  const password = document.getElementById("password").value.trim();
-
-  if (!password) {
-    message("اكتبي كلمة مرور اللوحة أولاً", true);
-    return;
-  }
-
-  try {
-    message("جاري تحميل الخدمات...");
-
-    const response = await fetch(DATA_URL + "?t=" + Date.now());
-
-    if (!response.ok) throw new Error("تعذر تحميل ملف الخدمات");
-
-    const data = await response.json();
-    services = Array.isArray(data.services) ? data.services : [];
-
-    render();
-    message("تم تحميل الخدمات. يمكنك الآن الإضافة والحذف.");
-  } catch (error) {
-    message("تعذر تحميل الخدمات. تأكدي من نشر الملف data/services.json.", true);
-  }
+async function saveServices(){
+ if(!password()){message("اكتبي كلمة مرور اللوحة أولاً",true);return false;}
+ const buttons=[...document.querySelectorAll("button")];buttons.forEach(b=>b.disabled=true);
+ message("جاري حفظ التغييرات...");
+ try{
+  const response=await fetch(SAVE_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:password(),path:"data/services.json",content:JSON.stringify({services},null,2)})});
+  let result={};try{result=await response.json();}catch(_){}
+  if(!response.ok||!result.success)throw new Error(response.status===401?"كلمة المرور غير صحيحة":"تعذر حفظ الخدمات");
+  message("تم حفظ التغييرات في GitHub بنجاح 🌸");return true;
+ }catch(e){message(e.message||"حدث خطأ أثناء الحفظ",true);return false;}
+ finally{buttons.forEach(b=>b.disabled=false);}
 }
-
-async function saveServices() {
-  const password = document.getElementById("password").value.trim();
-
-  if (!password) {
-    message("اكتبي كلمة مرور اللوحة أولاً", true);
-    return false;
-  }
-
-  const button = document.getElementById("addButton");
-  button.disabled = true;
-  message("جاري حفظ التغييرات...");
-
-  try {
-    const response = await fetch(SAVE_URL, {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({
-        password: password,
-        path: "data/services.json",
-        content: JSON.stringify({services: services}, null, 2)
-      })
-    });
-
-    const result = await response.json();
-
-    if (!response.ok || !result.success) {
-      throw new Error(
-        response.status === 401
-          ? "كلمة المرور غير صحيحة"
-          : "تعذر حفظ الخدمات"
-      );
-    }
-
-    message("تم حفظ الخدمات في GitHub بنجاح 🌸");
-    return true;
-
-  } catch (error) {
-    message(error.message || "حدث خطأ أثناء الحفظ", true);
-    return false;
-
-  } finally {
-    button.disabled = false;
-  }
+async function addService(){
+ if(!loaded){message("حمّلي الخدمات أولاً قبل الإضافة",true);return;}
+ const title=document.getElementById("title").value.trim();
+ const description=document.getElementById("description").value.trim();
+ const price=document.getElementById("price").value.trim();
+ if(!title){message("اكتبي اسم الخدمة أولاً",true);return;}
+ services.push({title,description,price});
+ if(await saveServices()){document.getElementById("title").value="";document.getElementById("description").value="";document.getElementById("price").value="";render();}
+ else{services.pop();render();}
 }
-
-async function addService() {
-  const title = document.getElementById("title").value.trim();
-  const description = document.getElementById("description").value.trim();
-  const price = document.getElementById("price").value.trim();
-
-  if (!title) {
-    message("اكتبي اسم الخدمة أولاً", true);
-    return;
-  }
-
-  services.push({title, description, price});
-
-  const saved = await saveServices();
-
-  if (saved) {
-    document.getElementById("title").value = "";
-    document.getElementById("description").value = "";
-    document.getElementById("price").value = "";
-    render();
-  } else {
-    services.pop();
-    render();
-  }
+async function editService(index){
+ const box=document.querySelector('[data-service="'+index+'"]');
+ const old={...services[index]};
+ const title=box.querySelector(".edit-title").value.trim();
+ const description=box.querySelector(".edit-description").value.trim();
+ const price=box.querySelector(".edit-price").value.trim();
+ if(!title){message("اسم الخدمة لا يمكن أن يكون فارغاً",true);return;}
+ services[index]={title,description,price};
+ if(await saveServices())render();else{services[index]=old;render();}
 }
-
-async function deleteService(index) {
-  const oldServices = [...services];
-
-  if (!confirm("متأكدة من حذف هذه الخدمة؟")) return;
-
-  services.splice(index, 1);
-  render();
-
-  const saved = await saveServices();
-
-  if (!saved) {
-    services = oldServices;
-    render();
-  }
+async function deleteService(index){
+ if(!confirm("متأكدة من حذف هذه الخدمة؟"))return;
+ const old=services[index];services.splice(index,1);render();
+ if(!(await saveServices())){services.splice(index,0,old);render();}
 }
-
-function render() {
-  const container = document.getElementById("services");
-  container.replaceChildren();
-
-  services.forEach((service, index) => {
-    const box = document.createElement("div");
-    box.className = "service";
-
-    const title = document.createElement("h3");
-    title.textContent = service.title || "";
-
-    const description = document.createElement("p");
-    description.textContent = service.description || "";
-
-    const price = document.createElement("p");
-    price.textContent = service.price || "";
-
-    const del = document.createElement("button");
-    del.textContent = "حذف الخدمة";
-    del.onclick = () => deleteService(index);
-
-    box.append(title, description, price, del);
-    container.append(box);
-  });
-
-  if (services.length === 0) {
-    container.textContent = "لا توجد خدمات محفوظة حالياً.";
-  }
+function render(){
+ const container=document.getElementById("services");container.replaceChildren();
+ if(!services.length){container.textContent="لا توجد خدمات محفوظة حالياً.";return;}
+ services.forEach((service,index)=>{
+  const box=document.createElement("div");box.className="service";box.dataset.service=String(index);
+  const heading=document.createElement("h3");heading.textContent="الخدمة "+(index+1);box.append(heading);
+  const title=document.createElement("input");title.className="edit-title";title.value=service.title||"";title.placeholder="اسم الخدمة";
+  const description=document.createElement("textarea");description.className="edit-description";description.value=service.description||"";description.placeholder="وصف الخدمة";
+  const price=document.createElement("input");price.className="edit-price";price.value=service.price||"";price.placeholder="السعر";
+  const actions=document.createElement("div");actions.className="actions";
+  const save=document.createElement("button");save.textContent="حفظ التعديل";save.onclick=()=>editService(index);
+  const del=document.createElement("button");del.className="danger";del.textContent="حذف الخدمة";del.onclick=()=>deleteService(index);
+  actions.append(save,del);box.append(title,description,price,actions);container.append(box);
+ });
 }
 </script>
-
 </body>
 </html>
