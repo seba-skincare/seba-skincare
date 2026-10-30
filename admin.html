@@ -47,13 +47,53 @@ button.danger{background:#a94442}
 <p class="hint">يمكنك تعديل الاسم والوصف والسعر، ورفع صورة من معرض الهاتف لكل خدمة. اضغطي حفظ التعديل بعد الانتهاء.</p>
 <div id="services">سجّلي الدخول لتحميل الخدمات.</div>
 </div>
+<div class="card" id="offerCard">
+<h3>العروض والخصومات 🎁</h3>
+<p class="hint">جهّزي عرضاً واحداً يظهر على الموقع بعد اعتماد النشر. يمكنك إيقافه متى شئت.</p>
+<input id="offerTitle" placeholder="عنوان العرض، مثال: عرض العناية هذا الأسبوع">
+<textarea id="offerDescription" placeholder="تفاصيل العرض"></textarea>
+<input id="offerDiscount" placeholder="قيمة الخصم أو السعر الخاص، مثال: خصم ٢٠٪">
+<label class="file-label" for="offerEndDate">تاريخ انتهاء العرض</label>
+<input id="offerEndDate" type="date">
+<label style="display:flex;align-items:center;gap:10px;margin:10px 0"><input id="offerActive" type="checkbox" style="width:auto;margin:0"> تفعيل العرض في بيانات الموقع</label>
+<button id="saveOfferButton" onclick="saveOffer()">حفظ العرض</button>
+</div>
 <p id="status" class="status" role="status" aria-live="polite"></p>
 <script>
 const DATA_URL="https://raw.githubusercontent.com/seba-skincare/seba-skincare/photo-upload-dashboard/data/services.json";
 const SAVE_URL="/.netlify/functions/save";
+const OFFERS_URL="https://raw.githubusercontent.com/seba-skincare/seba-skincare/photo-upload-dashboard/data/offers.json";
 const IMAGE_BASE="https://raw.githubusercontent.com/seba-skincare/seba-skincare/photo-upload-dashboard/";
 let services=[];
 let loaded=false;
+let offer={title:"",description:"",discount:"",endDate:"",active:false};
+function renderOffer(){
+ document.getElementById("offerTitle").value=offer.title||"";
+ document.getElementById("offerDescription").value=offer.description||"";
+ document.getElementById("offerDiscount").value=offer.discount||"";
+ document.getElementById("offerEndDate").value=offer.endDate||"";
+ document.getElementById("offerActive").checked=!!offer.active;
+}
+async function saveOffer(){
+ if(!loaded){message("حمّلي الخدمات أولاً قبل حفظ العرض",true);return;}
+ const next={
+  title:document.getElementById("offerTitle").value.trim(),
+  description:document.getElementById("offerDescription").value.trim(),
+  discount:document.getElementById("offerDiscount").value.trim(),
+  endDate:document.getElementById("offerEndDate").value,
+  active:document.getElementById("offerActive").checked
+ };
+ if(next.active&&!next.title){message("اكتبي عنوان العرض قبل تفعيله",true);return;}
+ const button=document.getElementById("saveOfferButton");button.disabled=true;
+ message("جاري حفظ العرض...");
+ try{
+  const response=await fetch(SAVE_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:password(),path:"data/offers.json",content:JSON.stringify({offer:next},null,2)})});
+  let result={};try{result=await response.json();}catch(_){}
+  if(!response.ok||!result.success)throw new Error(result.error||"تعذر حفظ العرض");
+  offer=next;message("تم حفظ العرض بنجاح 🌸");
+ }catch(e){message(e.message||"حدث خطأ أثناء حفظ العرض",true);}
+ finally{button.disabled=false;}
+}
 function message(text,error=false){const el=document.getElementById("status");el.textContent=text;el.style.color=error?"#b00020":"#39744a";}
 function password(){return document.getElementById("password").value.trim();}
 async function loadServices(){
@@ -65,7 +105,9 @@ async function loadServices(){
   if(!response.ok)throw new Error("تعذر تحميل ملف الخدمات");
   const data=await response.json();
   services=Array.isArray(data.services)?data.services:[];
-  loaded=true;render();message("تم تحميل الخدمات. يمكنك الآن الإضافة والتعديل والحذف.");
+  loaded=true;render();
+  try{const offersResponse=await fetch(OFFERS_URL+"?t="+Date.now());if(offersResponse.ok){const offersData=await offersResponse.json();offer=offersData.offer||offer;renderOffer();}}catch(_){/* تبقى قيم العرض الافتراضية عند تعذر التحميل */}
+  message("تم تحميل الخدمات والعروض. يمكنك الآن التعديل والحفظ.");
  }catch(e){message("تعذر تحميل الخدمات. حاولي مرة أخرى.",true);}
  finally{button.disabled=false;}
 }
