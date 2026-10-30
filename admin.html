@@ -60,7 +60,7 @@ button.danger{background:#a94442}
 </div>
 <div class="card" id="settingsCard">
 <h3>إعدادات الموقع 🎨</h3>
-<p class="hint">هذه إعدادات مسودة محفوظة في المشروع التجريبي. لا تغيّر شكل الشعار الأصلي ولا تنشر التعديلات تلقائياً.</p>
+<p class="hint">هذه الإعدادات تُحفظ مباشرة في بيانات الموقع الرسمي، وتظهر للزوار بعد اكتمال تحديث الموقع.</p>
 <input id="siteName" placeholder="اسم المركز">
 <input id="heroTitle" placeholder="العنوان الرئيسي">
 <textarea id="heroDescription" placeholder="النص التعريفي في واجهة الموقع"></textarea>
@@ -76,22 +76,21 @@ button.danger{background:#a94442}
 </div>
 <div class="card" id="publishCard">
 <h3>مراجعة التعديلات قبل النشر 🚀</h3>
-<p class="hint">كل ما تحفظيه من هذه اللوحة يبقى في النسخة التجريبية فقط. عند الانتهاء افتحي طلب المراجعة لمشاهدة التغييرات ومناقشتها. لن يتغير الموقع العام إلا بعد اعتماد الطلب ودمجه بموافقتك.</p>
+<p class="hint">الحفظ يحدّث بيانات الموقع الرسمي مباشرة. قد يحتاج ظهور التغييرات على الموقع بضع لحظات بسبب التخزين المؤقت.</p>
 <div style="background:#f8f1ed;border:1px solid #eadbd5;border-radius:12px;padding:12px;margin:10px 0">
-<strong>حالة المشروع:</strong> نسخة تجريبية — غير منشورة<br>
-<strong>فرع العمل:</strong> photo-upload-dashboard<br>
-<strong>الموقع الأساسي:</strong> محمي من التعديلات المباشرة
+<strong>حالة التحكم:</strong> متصل بالموقع الرسمي<br>
+<strong>فرع الحفظ:</strong> main<br>
+<strong>الموقع:</strong> https://seba-skincare.github.io/seba-skincare/
 </div>
-<a href="https://github.com/seba-skincare/seba-skincare/pull/1" target="_blank" rel="noopener" style="display:block;text-align:center;padding:13px;margin-top:8px;border-radius:10px;background:#49362f;color:white;text-decoration:none;font-weight:bold">فتح طلب المراجعة على GitHub ↗</a>
-<p class="hint">هذا الزر يفتح طلب المراجعة فقط، ولا ينشر أو يدمج أي تغيير تلقائياً.</p>
+<a href="https://seba-skincare.github.io/seba-skincare/" target="_blank" rel="noopener" style="display:block;text-align:center;padding:13px;margin-top:8px;border-radius:10px;background:#49362f;color:white;text-decoration:none;font-weight:bold">فتح الموقع الرسمي ↗</a>
 </div>
 <p id="status" class="status" role="status" aria-live="polite"></p>
 <script>
-const DATA_URL="https://raw.githubusercontent.com/seba-skincare/seba-skincare/photo-upload-dashboard/data/services.json";
-const SAVE_URL="/.netlify/functions/save";
-const OFFERS_URL="https://raw.githubusercontent.com/seba-skincare/seba-skincare/photo-upload-dashboard/data/offers.json";
-const SETTINGS_URL="https://raw.githubusercontent.com/seba-skincare/seba-skincare/photo-upload-dashboard/data/settings.json";
-const IMAGE_BASE="https://raw.githubusercontent.com/seba-skincare/seba-skincare/photo-upload-dashboard/";
+const DATA_URL="https://raw.githubusercontent.com/seba-skincare/seba-skincare/main/data/services.json";
+const SAVE_URL="https://sprightly-horse-bca4a5.netlify.app/.netlify/functions/save";
+const OFFERS_URL="https://raw.githubusercontent.com/seba-skincare/seba-skincare/main/data/offers.json";
+const SETTINGS_URL="https://raw.githubusercontent.com/seba-skincare/seba-skincare/main/data/settings.json";
+const IMAGE_BASE="https://raw.githubusercontent.com/seba-skincare/seba-skincare/main/";
 let services=[];
 let loaded=false;
 let offer={title:"",description:"",discount:"",endDate:"",active:false};
@@ -110,7 +109,7 @@ async function saveSettings(){
   const response=await fetch(SAVE_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:password(),path:"data/settings.json",content:JSON.stringify(next,null,2)})});
   let result={};try{result=await response.json();}catch(_){}
   if(!response.ok||!result.success)throw new Error(result.error||"تعذر حفظ الإعدادات");
-  siteSettings=next;message("تم حفظ إعدادات الموقع في النسخة التجريبية 🌸");
+  siteSettings=next;message("تم حفظ إعدادات الموقع الرسمي 🌸");
  }catch(e){message(e.message||"حدث خطأ أثناء حفظ الإعدادات",true);}
  finally{button.disabled=false;}
 }
@@ -137,7 +136,7 @@ async function saveOffer(){
   const response=await fetch(SAVE_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:password(),path:"data/offers.json",content:JSON.stringify({offer:next},null,2)})});
   let result={};try{result=await response.json();}catch(_){}
   if(!response.ok||!result.success)throw new Error(result.error||"تعذر حفظ العرض");
-  offer=next;message("تم حفظ العرض بنجاح 🌸");
+  offer=next;message("تم حفظ العرض على الموقع الرسمي 🌸");
  }catch(e){message(e.message||"حدث خطأ أثناء حفظ العرض",true);}
  finally{button.disabled=false;}
 }
@@ -197,7 +196,7 @@ async function saveServices(){
   const response=await fetch(SAVE_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:password(),path:"data/services.json",content:JSON.stringify({services},null,2)})});
   let result={};try{result=await response.json();}catch(_){}
   if(!response.ok||!result.success)throw new Error(response.status===401?"كلمة المرور غير صحيحة":"تعذر حفظ الخدمات");
-  message("تم حفظ التغييرات في GitHub بنجاح 🌸");return true;
+  message("تم حفظ الخدمات على الموقع الرسمي 🌸");return true;
  }catch(e){message(e.message||"حدث خطأ أثناء الحفظ",true);return false;}
  finally{buttons.forEach(b=>b.disabled=false);}
 }
