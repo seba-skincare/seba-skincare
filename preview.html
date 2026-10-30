@@ -398,6 +398,21 @@ heBtn.addEventListener('click', () => setLanguage('he'));
   // cannot hide the actual service catalogue.
   const servicesData=await load("services.json");
   const list=Array.isArray(servicesData.services)?servicesData.services:[];
+  // Keep both booking forms in sync with the live service catalogue.
+  const syncBookingServices=(selector,placeholder,extra)=>{
+   document.querySelectorAll(selector).forEach(select=>{
+    const selected=select.value;
+    select.replaceChildren(new Option(placeholder,""));
+    list.forEach(item=>{
+     const title=String(item.title||"").trim();
+     if(title)select.add(new Option(title,title));
+    });
+    if(extra)select.add(new Option(extra,extra));
+    if([...select.options].some(option=>option.value===selected))select.value=selected;
+   });
+  };
+  syncBookingServices("#seba-service-ar","اختاري الخدمة","استفسار عن خدمة أخرى");
+  syncBookingServices("#seba-service-he","בחרי טיפול","בירור לגבי טיפול אחר");
   const cards=(arr,lang)=>arr.map((item,i)=>{
    const article=document.createElement("article");article.className="service";
    const photo=document.createElement("div");photo.className="service-photo";
@@ -434,6 +449,7 @@ heBtn.addEventListener('click', () => setLanguage('he'));
    if(/^#[0-9a-f]{6}$/i.test(s.textColor||""))css.setProperty("--ink",s.textColor);
    document.querySelectorAll(".brand span,footer>span").forEach(e=>{if(s.siteName)e.textContent=s.siteName;});
    const wa=s.whatsapp||"https://wa.me/972526732880";
+   window.sebaWhatsAppURL=wa;
    document.querySelectorAll('a[href*="wa.me"]').forEach(a=>a.href=wa);
    const social=document.querySelectorAll(".social-link");
    if(s.instagram&&social[1])social[1].href=s.instagram;
@@ -468,7 +484,27 @@ heBtn.addEventListener('click', () => setLanguage('he'));
 (()=>{const intro=document.getElementById('seba-cinematic');if(!intro)return;const close=()=>{intro.classList.add('is-leaving');window.setTimeout(()=>intro.remove(),1100)};window.setTimeout(close,3600);intro.addEventListener('click',close,{once:true});})();
 </script>
 <script>
-(()=>{const phone='972526732880';document.querySelectorAll('.seba-booking').forEach(form=>form.addEventListener('submit',event=>{event.preventDefault();const d=new FormData(form);const he=form.dataset.locale==='he';const lines=he?['שלום סבא, אשמח לתאם תור.','שם: '+d.get('name'),'טיפול: '+d.get('service'),'תאריך מועדף: '+(d.get('date')||'גמישה'),'שעה מועדפת: '+(d.get('time')||'גמישה')]:['مرحباً صبا، أرغب بطلب موعد.','الاسم: '+d.get('name'),'الخدمة: '+d.get('service'),'اليوم المفضل: '+(d.get('date')||'مرن'),'الوقت المفضل: '+(d.get('time')||'مرن')];window.open('https://wa.me/'+phone+'?text='+encodeURIComponent(lines.join('\n')),'_blank','noopener')}));const reveal=document.querySelectorAll('.seba-ritual-card,.seba-booking,.seba-review-card');if('IntersectionObserver'in window){const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}}),{threshold:.12});reveal.forEach(el=>{el.classList.add('seba-reveal');io.observe(el)})}}})();
+(()=>{
+ const defaultPhone="972526732880";
+ document.querySelectorAll(".seba-booking").forEach(form=>form.addEventListener("submit",event=>{
+  event.preventDefault();
+  if(!form.reportValidity())return;
+  const d=new FormData(form);
+  const he=form.dataset.locale==="he";
+  const lines=he
+   ?["שלום סבא, אשמח לתאם תור.","שם: "+d.get("name"),"טיפול: "+d.get("service"),"תאריך מועדף: "+(d.get("date")||"גמישה"),"שעה מועדפת: "+(d.get("time")||"גמישה")]
+   :["مرحباً صبا، أرغب بطلب موعد.","الاسم: "+d.get("name"),"الخدمة: "+d.get("service"),"اليوم المفضل: "+(d.get("date")||"مرن"),"الوقت المفضل: "+(d.get("time")||"مرن")];
+  const configured=window.sebaWhatsAppURL||"https://wa.me/"+defaultPhone;
+  let phone=defaultPhone;
+  try{const parsed=new URL(configured);const digits=parsed.pathname.replace(/\\D/g,"");if(digits)phone=digits;}catch(_){}
+  const url="https://wa.me/"+phone+"?text="+encodeURIComponent(lines.join("\\n"));
+  const link=document.createElement("a");
+  link.href=url;link.target="_blank";link.rel="noopener noreferrer";
+  document.body.append(link);link.click();link.remove();
+ }));
+ const reveal=document.querySelectorAll(".seba-ritual-card,.seba-booking,.seba-review-card");
+ if("IntersectionObserver"in window){const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("is-visible");io.unobserve(e.target)}}),{threshold:.12});reveal.forEach(el=>{el.classList.add("seba-reveal");io.observe(el)})}
+})();
 </script>
 </body>
 </html>
