@@ -1,11 +1,6 @@
 {
   "services": [
     {
-      "title": "ازالة الشعر بالشمع من الوجه",
-      "description": "من الصباح",
-      "price": "٥"
-    },
-    {
       "title": "ازالة حبوب",
       "description": "",
       "price": ""
@@ -14,6 +9,12 @@
       "title": "جلسات عناية بالبشرة",
       "description": "",
       "price": ""
+    },
+    {
+      "title": "ميزوثرابس",
+      "description": "",
+      "price": "",
+      "image": "assets/services/service-1793384624331-3.jpg"
     }
   ]
 }
