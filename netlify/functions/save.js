@@ -79,8 +79,35 @@ export default async (req) => {
     }
 
     const savedData = await saved.json();
+
+    // Confirm GitHub now serves the exact saved content from the production branch.
+    let verified = false;
+    for (let attempt = 0; attempt < 5; attempt++) {
+      if (attempt) await new Promise(resolve => setTimeout(resolve, 800));
+      const check = await fetch(`${apiUrl}?ref=${BRANCH}&verify=${Date.now()}`, {
+        headers: { ...authHeaders, "Cache-Control": "no-cache" }
+      });
+      if (!check.ok) continue;
+      const file = await check.json();
+      if (isImage) {
+        verified = Boolean(file.sha);
+      } else if (typeof file.content === "string") {
+        const actual = Buffer.from(file.content.replace(/\\s/g, ""), "base64").toString("utf8");
+        verified = actual === content;
+      }
+      if (verified) break;
+    }
+
+    if (!verified) {
+      return new Response(JSON.stringify({
+        success: false,
+        error: "وصل طلب الحفظ إلى GitHub، لكن تعذّر التحقق من الملف بعد الحفظ. لم نعلن نجاح العملية."
+      }), { status: 502, headers });
+    }
+
     return new Response(JSON.stringify({
       success: true,
+      verified: true,
       path,
       commit: savedData.commit?.sha || null,
       contentSha: savedData.content?.sha || null
