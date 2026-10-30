@@ -78,8 +78,14 @@ export default async (req) => {
       return new Response(JSON.stringify({ error: "فشل الحفظ على GitHub", details: details.slice(0, 300) }), { status: 502, headers });
     }
 
-    return new Response(JSON.stringify({ success: true, path }), { status: 200, headers });
+    const savedData = await saved.json();
+    return new Response(JSON.stringify({
+      success: true,
+      path,
+      commit: savedData.commit?.sha || null,
+      contentSha: savedData.content?.sha || null
+    }), { status: 200, headers });
   } catch (error) {
-    return new Response(JSON.stringify({ error: "Save failed" }), { status: 500, headers });
+    return new Response(JSON.stringify({ error: error?.message || "Save failed" }), { status: 500, headers });
   }
 };
