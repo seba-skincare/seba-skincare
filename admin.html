@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -10,74 +9,193 @@ body{font-family:Arial;background:#f8f1ed;color:#513b35;padding:18px}
 h1{color:#a66d68;text-align:center}
 .card{background:white;padding:18px;border-radius:16px;margin:15px 0}
 input,textarea,button{width:100%;padding:12px;margin:8px 0;box-sizing:border-box;border:1px solid #d8b9ae;border-radius:10px;font-size:16px}
-button{background:#a66d68;color:white;border:0;font-weight:bold}
-img{max-width:100%;max-height:220px;object-fit:contain;border-radius:12px}
+button{background:#a66d68;color:white;border:0;font-weight:bold;cursor:pointer}
+button:disabled{opacity:.6}
+.service{border:1px solid #eadbd5;padding:12px;border-radius:12px;margin:12px 0}
+.status{text-align:center;font-weight:bold}
 </style>
 </head>
 <body>
+
 <h1>لوحة تحكم صبا 🌸</h1>
+
 <div class="card">
-<h3>إضافة خدمة</h3>
-<input id="title" placeholder="اسم الخدمة">
-<textarea id="description" placeholder="وصف الخدمة"></textarea>
-<input id="price" placeholder="السعر">
-<label>صورة الخدمة</label>
-<input id="photo" type="file" accept="image/*">
-<img id="preview" hidden>
-<button onclick="addService()">إضافة الخدمة</button>
+  <h3>كلمة مرور لوحة التحكم</h3>
+  <input id="password" type="password" placeholder="كلمة مرور اللوحة">
+  <button onclick="loadServices()">دخول وتحميل الخدمات</button>
 </div>
+
 <div class="card">
-<h3>الخدمات المضافة</h3>
-<div id="services"></div>
+  <h3>إضافة خدمة</h3>
+  <input id="title" placeholder="اسم الخدمة">
+  <textarea id="description" placeholder="وصف الخدمة"></textarea>
+  <input id="price" placeholder="السعر">
+  <button id="addButton" onclick="addService()">إضافة وحفظ الخدمة</button>
 </div>
+
+<div class="card">
+  <h3>الخدمات المحفوظة</h3>
+  <div id="services"></div>
+</div>
+
+<p id="status" class="status"></p>
+
 <script>
-let services=[];
-let photoData="";
-document.getElementById("photo").onchange=function(){
- const file=this.files[0];
- if(!file)return;
- if(file.size>2*1024*1024){alert("اختاري صورة أقل من 2 ميغابايت");return;}
- const reader=new FileReader();
- reader.onload=e=>{
- photoData=e.target.result;
- const img=document.getElementById("preview");
- img.src=photoData;img.hidden=false;
- };
- reader.readAsDataURL(file);
-};
-function addService(){
- const title=document.getElementById("title").value.trim();
- const description=document.getElementById("description").value.trim();
- const price=document.getElementById("price").value.trim();
- if(!title){alert("اكتبي اسم الخدمة");return;}
- services.push({title,description,price,photo:photoData});
- render();
- document.getElementById("title").value="";
- document.getElementById("description").value="";
- document.getElementById("price").value="";
- document.getElementById("photo").value="";
- document.getElementById("preview").hidden=true;
- photoData="";
+const DATA_URL =
+"https://raw.githubusercontent.com/seba-skincare/seba-skincare/main/data/services.json";
+
+const SAVE_URL =
+"https://sprightly-horse-bca4a5.netlify.app/.netlify/functions/save";
+
+let services = [];
+
+function message(text, error=false) {
+  const el = document.getElementById("status");
+  el.textContent = text;
+  el.style.color = error ? "#b00020" : "#39744a";
 }
-function render(){
- document.getElementById("services").innerHTML="";
- services.forEach((s,i)=>{
- const div=document.createElement("div");
- div.className="card";
- const h=document.createElement("h3");h.textContent=s.title;
- const p=document.createElement("p");p.textContent=s.description;
- const price=document.createElement("p");price.textContent=s.price;
- div.append(h,p,price);
- if(s.photo){
- const img=document.createElement("img");img.src=s.photo;div.append(img);
- }
- const del=document.createElement("button");
- del.textContent="حذف";
- del.onclick=()=>{services.splice(i,1);render();};
- div.append(del);
- document.getElementById("services").append(div);
- });
+
+async function loadServices() {
+  const password = document.getElementById("password").value.trim();
+
+  if (!password) {
+    message("اكتبي كلمة مرور اللوحة أولاً", true);
+    return;
+  }
+
+  try {
+    message("جاري تحميل الخدمات...");
+
+    const response = await fetch(DATA_URL + "?t=" + Date.now());
+
+    if (!response.ok) throw new Error("تعذر تحميل ملف الخدمات");
+
+    const data = await response.json();
+    services = Array.isArray(data.services) ? data.services : [];
+
+    render();
+    message("تم تحميل الخدمات. يمكنك الآن الإضافة والحذف.");
+  } catch (error) {
+    message("تعذر تحميل الخدمات. تأكدي من نشر الملف data/services.json.", true);
+  }
+}
+
+async function saveServices() {
+  const password = document.getElementById("password").value.trim();
+
+  if (!password) {
+    message("اكتبي كلمة مرور اللوحة أولاً", true);
+    return false;
+  }
+
+  const button = document.getElementById("addButton");
+  button.disabled = true;
+  message("جاري حفظ التغييرات...");
+
+  try {
+    const response = await fetch(SAVE_URL, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        password: password,
+        path: "data/services.json",
+        content: JSON.stringify({services: services}, null, 2)
+      })
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      throw new Error(
+        response.status === 401
+          ? "كلمة المرور غير صحيحة"
+          : "تعذر حفظ الخدمات"
+      );
+    }
+
+    message("تم حفظ الخدمات في GitHub بنجاح 🌸");
+    return true;
+
+  } catch (error) {
+    message(error.message || "حدث خطأ أثناء الحفظ", true);
+    return false;
+
+  } finally {
+    button.disabled = false;
+  }
+}
+
+async function addService() {
+  const title = document.getElementById("title").value.trim();
+  const description = document.getElementById("description").value.trim();
+  const price = document.getElementById("price").value.trim();
+
+  if (!title) {
+    message("اكتبي اسم الخدمة أولاً", true);
+    return;
+  }
+
+  services.push({title, description, price});
+
+  const saved = await saveServices();
+
+  if (saved) {
+    document.getElementById("title").value = "";
+    document.getElementById("description").value = "";
+    document.getElementById("price").value = "";
+    render();
+  } else {
+    services.pop();
+    render();
+  }
+}
+
+async function deleteService(index) {
+  const oldServices = [...services];
+
+  if (!confirm("متأكدة من حذف هذه الخدمة؟")) return;
+
+  services.splice(index, 1);
+  render();
+
+  const saved = await saveServices();
+
+  if (!saved) {
+    services = oldServices;
+    render();
+  }
+}
+
+function render() {
+  const container = document.getElementById("services");
+  container.replaceChildren();
+
+  services.forEach((service, index) => {
+    const box = document.createElement("div");
+    box.className = "service";
+
+    const title = document.createElement("h3");
+    title.textContent = service.title || "";
+
+    const description = document.createElement("p");
+    description.textContent = service.description || "";
+
+    const price = document.createElement("p");
+    price.textContent = service.price || "";
+
+    const del = document.createElement("button");
+    del.textContent = "حذف الخدمة";
+    del.onclick = () => deleteService(index);
+
+    box.append(title, description, price, del);
+    container.append(box);
+  });
+
+  if (services.length === 0) {
+    container.textContent = "لا توجد خدمات محفوظة حالياً.";
+  }
 }
 </script>
+
 </body>
 </html>
