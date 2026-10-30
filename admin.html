@@ -18,6 +18,10 @@ button.secondary{background:#77645c}
 button.danger{background:#a94442}
 .service{border:1px solid var(--line);padding:14px;border-radius:12px;margin:12px 0;background:#fffdfa}
 .service h3{margin:0 0 8px;color:var(--rose)}
+.preview{display:block;width:100%;max-height:220px;object-fit:cover;border-radius:12px;margin:8px 0;background:#f4e9e3}
+.file-label{display:block;font-weight:bold;margin-top:10px}
+.image-actions{display:flex;gap:8px;align-items:center}
+.image-actions button{flex:1}
 .actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .status{text-align:center;font-weight:bold;min-height:24px}
 .hint{font-size:13px;color:#76665f;line-height:1.6}
@@ -40,15 +44,103 @@ button.danger{background:#a94442}
 </div>
 <div class="card">
 <h3>الخدمات المحفوظة</h3>
-<p class="hint">يمكنك تعديل الاسم والوصف والسعر ثم الضغط على «حفظ التعديل» لكل خدمة.</p>
+<p class="hint">يمكنك تعديل الاسم والوصف والسعر، ورفع صورة من معرض الهاتف لكل خدمة. اضغطي حفظ التعديل بعد الانتهاء.</p>
 <div id="services">سجّلي الدخول لتحميل الخدمات.</div>
+</div>
+<div class="card" id="offerCard">
+<h3>العروض والخصومات 🎁</h3>
+<p class="hint">جهّزي عرضاً واحداً يظهر على الموقع بعد اعتماد النشر. يمكنك إيقافه متى شئت.</p>
+<input id="offerTitle" placeholder="عنوان العرض، مثال: عرض العناية هذا الأسبوع">
+<textarea id="offerDescription" placeholder="تفاصيل العرض"></textarea>
+<input id="offerDiscount" placeholder="قيمة الخصم أو السعر الخاص، مثال: خصم ٢٠٪">
+<label class="file-label" for="offerEndDate">تاريخ انتهاء العرض</label>
+<input id="offerEndDate" type="date">
+<label style="display:flex;align-items:center;gap:10px;margin:10px 0"><input id="offerActive" type="checkbox" style="width:auto;margin:0"> تفعيل العرض في بيانات الموقع</label>
+<button id="saveOfferButton" onclick="saveOffer()">حفظ العرض</button>
+</div>
+<div class="card" id="settingsCard">
+<h3>إعدادات الموقع 🎨</h3>
+<p class="hint">هذه إعدادات مسودة محفوظة في المشروع التجريبي. لا تغيّر شكل الشعار الأصلي ولا تنشر التعديلات تلقائياً.</p>
+<input id="siteName" placeholder="اسم المركز">
+<input id="heroTitle" placeholder="العنوان الرئيسي">
+<textarea id="heroDescription" placeholder="النص التعريفي في واجهة الموقع"></textarea>
+<input id="phone" placeholder="رقم الهاتف">
+<input id="whatsapp" placeholder="رابط واتساب">
+<input id="instagram" placeholder="رابط إنستغرام">
+<input id="facebook" placeholder="رابط فيسبوك">
+<label class="file-label" for="primaryColor">اللون الأساسي</label><input id="primaryColor" type="color" value="#b77d79">
+<label class="file-label" for="backgroundColor">لون الخلفية</label><input id="backgroundColor" type="color" value="#f8f1ed">
+<label class="file-label" for="textColor">لون النص</label><input id="textColor" type="color" value="#513b35">
+<button id="saveSettingsButton" onclick="saveSettings()">حفظ إعدادات الموقع</button>
+<a href="/preview.html" target="_blank" rel="noopener" style="display:block;text-align:center;padding:12px;margin-top:8px;border-radius:10px;background:#49362f;color:white;text-decoration:none;font-weight:bold">فتح معاينة الموقع قبل النشر ↗</a>
+</div>
+<div class="card" id="publishCard">
+<h3>مراجعة التعديلات قبل النشر 🚀</h3>
+<p class="hint">كل ما تحفظيه من هذه اللوحة يبقى في النسخة التجريبية فقط. عند الانتهاء افتحي طلب المراجعة لمشاهدة التغييرات ومناقشتها. لن يتغير الموقع العام إلا بعد اعتماد الطلب ودمجه بموافقتك.</p>
+<div style="background:#f8f1ed;border:1px solid #eadbd5;border-radius:12px;padding:12px;margin:10px 0">
+<strong>حالة المشروع:</strong> نسخة تجريبية — غير منشورة<br>
+<strong>فرع العمل:</strong> photo-upload-dashboard<br>
+<strong>الموقع الأساسي:</strong> محمي من التعديلات المباشرة
+</div>
+<a href="https://github.com/seba-skincare/seba-skincare/pull/1" target="_blank" rel="noopener" style="display:block;text-align:center;padding:13px;margin-top:8px;border-radius:10px;background:#49362f;color:white;text-decoration:none;font-weight:bold">فتح طلب المراجعة على GitHub ↗</a>
+<p class="hint">هذا الزر يفتح طلب المراجعة فقط، ولا ينشر أو يدمج أي تغيير تلقائياً.</p>
 </div>
 <p id="status" class="status" role="status" aria-live="polite"></p>
 <script>
-const DATA_URL="https://raw.githubusercontent.com/seba-skincare/seba-skincare/main/data/services.json";
-const SAVE_URL="https://sprightly-horse-bca4a5.netlify.app/.netlify/functions/save";
+const DATA_URL="https://raw.githubusercontent.com/seba-skincare/seba-skincare/photo-upload-dashboard/data/services.json";
+const SAVE_URL="/.netlify/functions/save";
+const OFFERS_URL="https://raw.githubusercontent.com/seba-skincare/seba-skincare/photo-upload-dashboard/data/offers.json";
+const SETTINGS_URL="https://raw.githubusercontent.com/seba-skincare/seba-skincare/photo-upload-dashboard/data/settings.json";
+const IMAGE_BASE="https://raw.githubusercontent.com/seba-skincare/seba-skincare/photo-upload-dashboard/";
 let services=[];
 let loaded=false;
+let offer={title:"",description:"",discount:"",endDate:"",active:false};
+let siteSettings={};
+function renderSettings(){
+ const fields={siteName:"siteName",heroTitle:"heroTitle",heroDescription:"heroDescription",phone:"phone",whatsapp:"whatsapp",instagram:"instagram",facebook:"facebook",primaryColor:"primaryColor",backgroundColor:"backgroundColor",textColor:"textColor"};
+ Object.entries(fields).forEach(([key,id])=>{const el=document.getElementById(id);if(el)el.value=siteSettings[key]||el.value||"";});
+}
+async function saveSettings(){
+ if(!loaded){message("حمّلي الخدمات أولاً قبل حفظ الإعدادات",true);return;}
+ const keys=["siteName","heroTitle","heroDescription","phone","whatsapp","instagram","facebook","primaryColor","backgroundColor","textColor"];
+ const next={...siteSettings};keys.forEach(key=>next[key]=document.getElementById(key).value.trim());
+ const button=document.getElementById("saveSettingsButton");button.disabled=true;
+ message("جاري حفظ إعدادات الموقع...");
+ try{
+  const response=await fetch(SAVE_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:password(),path:"data/settings.json",content:JSON.stringify(next,null,2)})});
+  let result={};try{result=await response.json();}catch(_){}
+  if(!response.ok||!result.success)throw new Error(result.error||"تعذر حفظ الإعدادات");
+  siteSettings=next;message("تم حفظ إعدادات الموقع في النسخة التجريبية 🌸");
+ }catch(e){message(e.message||"حدث خطأ أثناء حفظ الإعدادات",true);}
+ finally{button.disabled=false;}
+}
+function renderOffer(){
+ document.getElementById("offerTitle").value=offer.title||"";
+ document.getElementById("offerDescription").value=offer.description||"";
+ document.getElementById("offerDiscount").value=offer.discount||"";
+ document.getElementById("offerEndDate").value=offer.endDate||"";
+ document.getElementById("offerActive").checked=!!offer.active;
+}
+async function saveOffer(){
+ if(!loaded){message("حمّلي الخدمات أولاً قبل حفظ العرض",true);return;}
+ const next={
+  title:document.getElementById("offerTitle").value.trim(),
+  description:document.getElementById("offerDescription").value.trim(),
+  discount:document.getElementById("offerDiscount").value.trim(),
+  endDate:document.getElementById("offerEndDate").value,
+  active:document.getElementById("offerActive").checked
+ };
+ if(next.active&&!next.title){message("اكتبي عنوان العرض قبل تفعيله",true);return;}
+ const button=document.getElementById("saveOfferButton");button.disabled=true;
+ message("جاري حفظ العرض...");
+ try{
+  const response=await fetch(SAVE_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:password(),path:"data/offers.json",content:JSON.stringify({offer:next},null,2)})});
+  let result={};try{result=await response.json();}catch(_){}
+  if(!response.ok||!result.success)throw new Error(result.error||"تعذر حفظ العرض");
+  offer=next;message("تم حفظ العرض بنجاح 🌸");
+ }catch(e){message(e.message||"حدث خطأ أثناء حفظ العرض",true);}
+ finally{button.disabled=false;}
+}
 function message(text,error=false){const el=document.getElementById("status");el.textContent=text;el.style.color=error?"#b00020":"#39744a";}
 function password(){return document.getElementById("password").value.trim();}
 async function loadServices(){
@@ -60,9 +152,42 @@ async function loadServices(){
   if(!response.ok)throw new Error("تعذر تحميل ملف الخدمات");
   const data=await response.json();
   services=Array.isArray(data.services)?data.services:[];
-  loaded=true;render();message("تم تحميل الخدمات. يمكنك الآن الإضافة والتعديل والحذف.");
+  loaded=true;render();
+  try{const offersResponse=await fetch(OFFERS_URL+"?t="+Date.now());if(offersResponse.ok){const offersData=await offersResponse.json();offer=offersData.offer||offer;renderOffer();}}catch(_){/* تبقى قيم العرض الافتراضية عند تعذر التحميل */}
+  try{const settingsResponse=await fetch(SETTINGS_URL+"?t="+Date.now());if(settingsResponse.ok){siteSettings=await settingsResponse.json();renderSettings();}}catch(_){/* تبقى إعدادات النموذج الافتراضية */}
+  message("تم تحميل الخدمات والعروض. يمكنك الآن التعديل والحفظ.");
  }catch(e){message("تعذر تحميل الخدمات. حاولي مرة أخرى.",true);}
  finally{button.disabled=false;}
+}
+async function uploadServiceImage(index,file){
+ if(!loaded||!file)return;
+ if(!file.type.startsWith("image/")){message("اختاري ملف صورة فقط",true);return;}
+ if(file.size>5*1024*1024){message("حجم الصورة كبير. الحد الأقصى 5 ميغابايت",true);return;}
+ const old=services[index].image||"";
+ const ext=(file.name.split(".").pop()||"jpg").toLowerCase().replace(/[^a-z0-9]/g,"")||"jpg";
+ const safeName="service-"+Date.now()+"-"+index+"."+ext;
+ const path="assets/services/"+safeName;
+ const box=document.querySelector('[data-service="'+index+'"]');
+ const picker=box.querySelector(".image-file");
+ picker.disabled=true;
+ message("جاري رفع الصورة إلى مكتبة صبا...");
+ try{
+  const dataUrl=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=reject;reader.readAsDataURL(file);});
+  const base64=String(dataUrl).split(",")[1];
+  const response=await fetch(SAVE_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:password(),action:"upload-image",path,imageBase64:base64})});
+  let result={};try{result=await response.json();}catch(_){}
+  if(!response.ok||!result.success)throw new Error(result.error||"تعذر رفع الصورة");
+  services[index].image=path;
+  if(await saveServices()) {render();message("تم رفع الصورة وحفظها للخدمة 🌸");}
+  else {services[index].image=old;render();}
+ }catch(e){message(e.message||"حدث خطأ أثناء رفع الصورة",true);picker.disabled=false;}
+}
+async function removeServiceImage(index){
+ const old=services[index].image||"";
+ if(!old)return;
+ services[index].image="";
+ if(await saveServices()){render();message("تم حذف الصورة من الخدمة");}
+ else{services[index].image=old;render();}
 }
 async function saveServices(){
  if(!password()){message("اكتبي كلمة مرور اللوحة أولاً",true);return false;}
@@ -110,10 +235,17 @@ function render(){
   const title=document.createElement("input");title.className="edit-title";title.value=service.title||"";title.placeholder="اسم الخدمة";
   const description=document.createElement("textarea");description.className="edit-description";description.value=service.description||"";description.placeholder="وصف الخدمة";
   const price=document.createElement("input");price.className="edit-price";price.value=service.price||"";price.placeholder="السعر";
+  const preview=document.createElement("img");preview.className="preview";preview.alt="صورة "+(service.title||"الخدمة");preview.src=service.image?(service.image.startsWith("http")?service.image:IMAGE_BASE+service.image):"";preview.hidden=!service.image;
+  const fileLabel=document.createElement("label");fileLabel.className="file-label";fileLabel.textContent="صورة الخدمة من معرض الهاتف";
+  const file=document.createElement("input");file.type="file";file.accept="image/*";file.className="image-file";fileLabel.append(file);
+  file.onchange=()=>{if(file.files&&file.files[0])uploadServiceImage(index,file.files[0]);};
+  const imageActions=document.createElement("div");imageActions.className="image-actions";
+  const removeImage=document.createElement("button");removeImage.type="button";removeImage.className="secondary";removeImage.textContent="حذف الصورة";removeImage.disabled=!service.image;removeImage.onclick=()=>removeServiceImage(index);
+  imageActions.append(removeImage);
   const actions=document.createElement("div");actions.className="actions";
   const save=document.createElement("button");save.textContent="حفظ التعديل";save.onclick=()=>editService(index);
   const del=document.createElement("button");del.className="danger";del.textContent="حذف الخدمة";del.onclick=()=>deleteService(index);
-  actions.append(save,del);box.append(title,description,price,actions);container.append(box);
+  actions.append(save,del);box.append(title,description,price,preview,fileLabel,imageActions,actions);container.append(box);
  });
 }
 </script>

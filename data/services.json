@@ -3,12 +3,24 @@
     {
       "title": "ازالة الوبر",
       "description": "من الصباح",
-      "price": "٥"
+      "price": "٥",
+      "image": "assets/services/service-1793381579694-0.jpg"
     },
     {
       "title": "ازالة حبوب",
       "description": "",
       "price": ""
+    },
+    {
+      "title": "جلسات عناية بالبشرة",
+      "description": "",
+      "price": ""
+    },
+    {
+      "title": "ميزوثرابس",
+      "description": "",
+      "price": "",
+      "image": "assets/services/service-1793384624331-3.jpg"
     }
   ]
 }
