@@ -18,6 +18,10 @@ button.secondary{background:#77645c}
 button.danger{background:#a94442}
 .service{border:1px solid var(--line);padding:14px;border-radius:12px;margin:12px 0;background:#fffdfa}
 .service h3{margin:0 0 8px;color:var(--rose)}
+.preview{display:block;width:100%;max-height:220px;object-fit:cover;border-radius:12px;margin:8px 0;background:#f4e9e3}
+.file-label{display:block;font-weight:bold;margin-top:10px}
+.image-actions{display:flex;gap:8px;align-items:center}
+.image-actions button{flex:1}
 .actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .status{text-align:center;font-weight:bold;min-height:24px}
 .hint{font-size:13px;color:#76665f;line-height:1.6}
@@ -40,13 +44,14 @@ button.danger{background:#a94442}
 </div>
 <div class="card">
 <h3>الخدمات المحفوظة</h3>
-<p class="hint">يمكنك تعديل الاسم والوصف والسعر ثم الضغط على «حفظ التعديل» لكل خدمة.</p>
+<p class="hint">يمكنك تعديل الاسم والوصف والسعر، ورفع صورة من معرض الهاتف لكل خدمة. اضغطي حفظ التعديل بعد الانتهاء.</p>
 <div id="services">سجّلي الدخول لتحميل الخدمات.</div>
 </div>
 <p id="status" class="status" role="status" aria-live="polite"></p>
 <script>
-const DATA_URL="https://raw.githubusercontent.com/seba-skincare/seba-skincare/main/data/services.json";
+const DATA_URL="https://raw.githubusercontent.com/seba-skincare/seba-skincare/photo-upload-dashboard/data/services.json";
 const SAVE_URL="https://sprightly-horse-bca4a5.netlify.app/.netlify/functions/save";
+const IMAGE_BASE="https://raw.githubusercontent.com/seba-skincare/seba-skincare/photo-upload-dashboard/";
 let services=[];
 let loaded=false;
 function message(text,error=false){const el=document.getElementById("status");el.textContent=text;el.style.color=error?"#b00020":"#39744a";}
@@ -63,6 +68,36 @@ async function loadServices(){
   loaded=true;render();message("تم تحميل الخدمات. يمكنك الآن الإضافة والتعديل والحذف.");
  }catch(e){message("تعذر تحميل الخدمات. حاولي مرة أخرى.",true);}
  finally{button.disabled=false;}
+}
+async function uploadServiceImage(index,file){
+ if(!loaded||!file)return;
+ if(!file.type.startsWith("image/")){message("اختاري ملف صورة فقط",true);return;}
+ if(file.size>5*1024*1024){message("حجم الصورة كبير. الحد الأقصى 5 ميغابايت",true);return;}
+ const old=services[index].image||"";
+ const ext=(file.name.split(".").pop()||"jpg").toLowerCase().replace(/[^a-z0-9]/g,"")||"jpg";
+ const safeName="service-"+Date.now()+"-"+index+"."+ext;
+ const path="assets/services/"+safeName;
+ const box=document.querySelector('[data-service="'+index+'"]');
+ const picker=box.querySelector(".image-file");
+ picker.disabled=true;
+ message("جاري رفع الصورة إلى مكتبة صبا...");
+ try{
+  const dataUrl=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=reject;reader.readAsDataURL(file);});
+  const base64=String(dataUrl).split(",")[1];
+  const response=await fetch(SAVE_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:password(),action:"upload-image",path,imageBase64:base64})});
+  let result={};try{result=await response.json();}catch(_){}
+  if(!response.ok||!result.success)throw new Error(result.error||"تعذر رفع الصورة");
+  services[index].image=path;
+  if(await saveServices()) {render();message("تم رفع الصورة وحفظها للخدمة 🌸");}
+  else {services[index].image=old;render();}
+ }catch(e){message(e.message||"حدث خطأ أثناء رفع الصورة",true);picker.disabled=false;}
+}
+async function removeServiceImage(index){
+ const old=services[index].image||"";
+ if(!old)return;
+ services[index].image="";
+ if(await saveServices()){render();message("تم حذف الصورة من الخدمة");}
+ else{services[index].image=old;render();}
 }
 async function saveServices(){
  if(!password()){message("اكتبي كلمة مرور اللوحة أولاً",true);return false;}
@@ -110,10 +145,17 @@ function render(){
   const title=document.createElement("input");title.className="edit-title";title.value=service.title||"";title.placeholder="اسم الخدمة";
   const description=document.createElement("textarea");description.className="edit-description";description.value=service.description||"";description.placeholder="وصف الخدمة";
   const price=document.createElement("input");price.className="edit-price";price.value=service.price||"";price.placeholder="السعر";
+  const preview=document.createElement("img");preview.className="preview";preview.alt="صورة "+(service.title||"الخدمة");preview.src=service.image?(service.image.startsWith("http")?service.image:IMAGE_BASE+service.image):"";preview.hidden=!service.image;
+  const fileLabel=document.createElement("label");fileLabel.className="file-label";fileLabel.textContent="صورة الخدمة من معرض الهاتف";
+  const file=document.createElement("input");file.type="file";file.accept="image/*";file.capture="environment";file.className="image-file";fileLabel.append(file);
+  file.onchange=()=>{if(file.files&&file.files[0])uploadServiceImage(index,file.files[0]);};
+  const imageActions=document.createElement("div");imageActions.className="image-actions";
+  const removeImage=document.createElement("button");removeImage.type="button";removeImage.className="secondary";removeImage.textContent="حذف الصورة";removeImage.disabled=!service.image;removeImage.onclick=()=>removeServiceImage(index);
+  imageActions.append(removeImage);
   const actions=document.createElement("div");actions.className="actions";
   const save=document.createElement("button");save.textContent="حفظ التعديل";save.onclick=()=>editService(index);
   const del=document.createElement("button");del.className="danger";del.textContent="حذف الخدمة";del.onclick=()=>deleteService(index);
-  actions.append(save,del);box.append(title,description,price,actions);container.append(box);
+  actions.append(save,del);box.append(title,description,price,preview,fileLabel,imageActions,actions);container.append(box);
  });
 }
 </script>
