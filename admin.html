@@ -50,7 +50,7 @@ button.danger{background:#a94442}
 <p id="status" class="status" role="status" aria-live="polite"></p>
 <script>
 const DATA_URL="https://raw.githubusercontent.com/seba-skincare/seba-skincare/photo-upload-dashboard/data/services.json";
-const SAVE_URL="https://sprightly-horse-bca4a5.netlify.app/.netlify/functions/save";
+const SAVE_URL="/.netlify/functions/save";
 const IMAGE_BASE="https://raw.githubusercontent.com/seba-skincare/seba-skincare/photo-upload-dashboard/";
 let services=[];
 let loaded=false;
@@ -147,7 +147,7 @@ function render(){
   const price=document.createElement("input");price.className="edit-price";price.value=service.price||"";price.placeholder="السعر";
   const preview=document.createElement("img");preview.className="preview";preview.alt="صورة "+(service.title||"الخدمة");preview.src=service.image?(service.image.startsWith("http")?service.image:IMAGE_BASE+service.image):"";preview.hidden=!service.image;
   const fileLabel=document.createElement("label");fileLabel.className="file-label";fileLabel.textContent="صورة الخدمة من معرض الهاتف";
-  const file=document.createElement("input");file.type="file";file.accept="image/*";file.capture="environment";file.className="image-file";fileLabel.append(file);
+  const file=document.createElement("input");file.type="file";file.accept="image/*";file.className="image-file";fileLabel.append(file);
   file.onchange=()=>{if(file.files&&file.files[0])uploadServiceImage(index,file.files[0]);};
   const imageActions=document.createElement("div");imageActions.className="image-actions";
   const removeImage=document.createElement("button");removeImage.type="button";removeImage.className="secondary";removeImage.textContent="حذف الصورة";removeImage.disabled=!service.image;removeImage.onclick=()=>removeServiceImage(index);
