@@ -1,0 +1,21 @@
+backend:
+  name: github
+  repo: seba-skincare/seba-skincare
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+locale: "ar"
+
+collections:
+  - name: "services"
+    label: "الخدمات"
+    folder: "_services"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "اسم الخدمة", name: "title", widget: "string" }
+      - { label: "الوصف", name: "description", widget: "text" }
+      - { label: "السعر", name: "price", widget: "string", required: false }
+      - { label: "الصورة", name: "image", widget: "image", required: false }
