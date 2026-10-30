@@ -1,0 +1,304 @@
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f3ed">
+<title>معاينة صبا | Seba.skincare</title>
+<meta name="description" content="Seba.skincare مركز للعناية بالبشرة في يافة الناصرة والناصرة. نقدم تنظيف البشرة، الماسكات، التقشير وتجديد البشرة وتجهيز العرائس. احجزي موعدك عبر واتساب.">
+  <meta name="google-site-verification" content="NHXYhon6nz2xmlkMkxBP5a5a1eDho6Sxbs6V1HjM3gw" />
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Seba.skincare | صبا للعناية بالبشرة">
+<meta property="og:description" content="تنظيف البشرة والماسكات والتقشير وتجديد البشرة وتجهيز العرائس في يافة الناصرة والناصرة. احجزي موعدك عبر واتساب.">
+<meta property="og:url" content="https://seba-skincare.github.io/seba-skincare/">
+<meta property="og:site_name" content="Seba.skincare">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&family=Tajawal:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#292722;--muted:#77736b;--cream:#f7f3ed;--paper:#fffdfa;--rose:#b77d79;--rose-dark:#865653;--gold:#b79a68;--line:#e8dfd3;--shadow:0 22px 60px rgba(55,43,34,.09)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Tajawal",sans-serif;line-height:1.8}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.topbar{height:auto;min-height:88px;padding:12px clamp(18px,6vw,90px);display:flex;align-items:center;justify-content:space-between;gap:20px;background:rgba(255,253,250,.94);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;backdrop-filter:blur(14px)}
+.brand{display:flex;align-items:center;gap:13px;font-family:"Heebo",sans-serif;font-size:1.12rem;font-weight:700;letter-spacing:.5px;color:#4b4038}
+.brand img{width:62px;height:62px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);padding:2px;background:white}
+.nav{display:flex;align-items:center;gap:27px;font-size:.96rem;color:#5e584f}
+.nav a{transition:.2s}.nav a:hover{color:var(--rose-dark)}
+.top-actions{display:flex;align-items:center;gap:10px}
+.lang button{border:1px solid var(--line);background:transparent;color:var(--ink);padding:7px 12px;border-radius:30px;cursor:pointer;font-size:.85rem}
+.lang button.active{background:var(--ink);color:white;border-color:var(--ink)}
+.book{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:11px 19px;background:var(--ink);color:white;border-radius:3px;font-size:.92rem;transition:.25s}
+.book:hover{background:var(--rose-dark);transform:translateY(-2px)}
+.hero{display:grid;grid-template-columns:1fr 1.05fr;min-height:650px;background:var(--cream);overflow:hidden}
+.hero-copy{padding:clamp(55px,9vw,130px) clamp(25px,8vw,115px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.kicker{font-family:"Heebo",sans-serif;text-transform:uppercase;letter-spacing:3px;color:var(--rose-dark);font-size:.78rem;font-weight:600}
+.hero h1{font-size:clamp(2.7rem,5.3vw,5.3rem);line-height:1.22;font-weight:500;letter-spacing:-1.4px;margin:18px 0 16px;color:#38332c}
+.hero h1 em{font-style:normal;color:var(--rose-dark)}
+.hero-copy p{max-width:490px;color:var(--muted);font-size:1.13rem;margin:0 0 28px}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 22px;border:1px solid var(--ink);font-size:.94rem;transition:.25s}
+.btn.dark{background:var(--ink);color:white}.btn.dark:hover{background:var(--rose-dark);border-color:var(--rose-dark)}
+.btn.light{background:transparent;color:var(--ink)}.btn.light:hover{background:white}
+.hero-image{min-height:560px;position:relative;background:#ded1c4}
+.hero-image img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:center}
+.hero-image:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(30,25,20,.08),transparent 50%)}
+.image-note{position:absolute;bottom:34px;right:34px;z-index:2;background:rgba(255,253,250,.91);padding:16px 22px;max-width:240px;box-shadow:var(--shadow)}
+.image-note small{display:block;color:var(--rose-dark);letter-spacing:2px;font-family:"Heebo",sans-serif;font-size:.65rem}
+.image-note strong{font-weight:500;font-size:1.1rem}
+.trust{display:grid;grid-template-columns:repeat(3,1fr);padding:25px clamp(20px,8vw,110px);background:#fffdfa;border-bottom:1px solid var(--line)}
+.trust-item{text-align:center;padding:5px 15px;border-left:1px solid var(--line)}
+.trust-item:last-child{border:0}.trust-item strong{display:block;font-size:1.08rem;font-weight:600}.trust-item span{font-size:.83rem;color:var(--muted)}
+.section{padding:100px clamp(20px,8vw,115px)}
+.section-head{text-align:center;max-width:650px;margin:0 auto 48px}
+.section-head .kicker{display:block}
+.section-head h2{font-size:clamp(2rem,3.5vw,3.2rem);font-weight:500;line-height:1.3;margin:12px 0;color:#38332c}
+.section-head p{color:var(--muted);margin:0;font-size:1.05rem}
+.services{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.service{background:white;border:1px solid var(--line);transition:.3s}
+.service:hover{transform:translateY(-7px);box-shadow:var(--shadow)}
+.service-photo{height:255px;overflow:hidden;background:#e8ded4}
+.service-photo img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.service:hover .service-photo img{transform:scale(1.05)}
+.service-copy{padding:23px 22px 26px}
+.service-copy small{color:var(--gold);font-family:"Heebo",sans-serif;letter-spacing:2px}
+.service-copy h3{font-size:1.35rem;font-weight:600;margin:5px 0 7px}
+.service-copy p{font-size:.94rem;color:var(--muted);margin:0}
+.about{background:var(--cream);display:grid;grid-template-columns:1fr 1fr;gap:7vw;align-items:center}
+.about-photo{height:500px;position:relative}
+.about-photo img{width:100%;height:100%;object-fit:cover}
+.about-copy h2{font-size:clamp(2.1rem,4vw,3.5rem);line-height:1.3;font-weight:500;margin:14px 0}
+.about-copy p{color:var(--muted);font-size:1.06rem;max-width:540px}
+.places{display:flex;gap:10px;flex-wrap:wrap;margin:25px 0}
+.place{border:1px solid #d9cbb9;padding:7px 16px;color:#5e584f;font-size:.9rem}
+.social-section{background:#fffdfa;text-align:center}
+.social-row{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.social-link{display:flex;align-items:center;gap:12px;padding:15px 22px;border:1px solid var(--line);min-width:190px;text-align:right;transition:.25s;background:white}
+.social-link:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:var(--shadow)}
+.social-icon{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--cream);color:var(--rose-dark)}
+.social-link strong{display:block;font-size:1rem;font-weight:600}
+.social-link small{display:block;color:var(--muted);font-size:.78rem}
+.cta{margin:0 clamp(18px,6vw,85px) 90px;background:#3b3730;color:white;padding:58px 30px;text-align:center}
+.cta .kicker{color:#d8bd91}.cta h2{font-size:clamp(2rem,4vw,3.4rem);font-weight:500;margin:10px 0}
+.cta p{color:#d8d1c7;margin:0 0 24px}.cta .btn{border-color:#d8bd91;background:#d8bd91;color:#28241f}
+footer{padding:30px clamp(20px,8vw,115px);display:flex;justify-content:space-between;gap:20px;align-items:center;background:#292722;color:#eee7dc;font-size:.88rem}
+footer span{color:#d8bd91;font-family:"Heebo",sans-serif;letter-spacing:1px}
+.mobile-menu{display:none}
+[hidden]{display:none!important}
+@media(max-width:950px){.nav{display:none}.hero{grid-template-columns:1fr}.hero-copy{order:2;padding:55px 8vw}.hero-image{order:1;min-height:440px}.services{grid-template-columns:repeat(2,1fr)}.about{gap:35px}.about-photo{height:420px}}
+@media(max-width:600px){.topbar{min-height:74px;padding:9px 15px}.brand{font-size:.95rem;gap:8px}.brand img{width:49px;height:49px}.top-actions{gap:6px}.topbar .book{padding:9px 11px;font-size:.8rem}.lang button{padding:6px 9px}.hero-image{min-height:360px}.hero-copy{padding:48px 23px}.hero h1{font-size:2.65rem}.hero-copy p{font-size:1rem}.trust{padding:18px 10px}.trust-item{padding:3px 8px}.trust-item strong{font-size:.9rem}.trust-item span{font-size:.72rem}.section{padding:68px 19px}.section-head{margin-bottom:30px}.services{grid-template-columns:1fr 1fr;gap:11px}.service-photo{height:170px}.service-copy{padding:15px 13px 18px}.service-copy h3{font-size:1.08rem}.service-copy p{font-size:.82rem}.about{grid-template-columns:1fr}.about-photo{height:330px;order:2}.about-copy{order:1}.social-link{min-width:100%;justify-content:flex-start}.cta{margin:0 14px 55px;padding:43px 20px}footer{flex-direction:column;text-align:center}}
+
+/* فقاعة التواصل العائمة */
+.seba-chat-bubble {
+  position: fixed;
+  bottom: 22px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  background: #b77d79;
+  color: white;
+  border-radius: 40px;
+  box-shadow: 0 5px 22px rgba(55,43,34,.22);
+  font-family: "Tajawal", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  animation: sebaFloat 2.5s ease-in-out infinite;
+  transition: .25s;
+}
+
+.seba-chat-bubble:hover {
+  background: #865653;
+  transform: translateY(-4px);
+}
+
+.seba-chat-bubble .chat-icon {
+  font-size: 23px;
+}
+
+@keyframes sebaFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@media(max-width:600px) {
+  .seba-chat-bubble {
+    bottom: 16px;
+    right: 14px;
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:10000;background:#49362f;color:#fff;text-align:center;padding:9px 12px;font:600 14px Arial">نسخة معاينة فقط — التعديلات لا تظهر للزوار بعد</div>
+<header class="topbar">
+  <a class="brand" href="#home"><img src="IMG_%D9%A2%D9%A0%D9%A2%D9%A6%D9%A1%D9%A0%D9%A2%D9%A9_%D9%A2%D9%A1%D9%A0%D9%A5%D9%A0%D9%A5.jpg" alt="Seba.skincare"><span>Seba.skincare</span></a>
+  <nav class="nav" aria-label="التنقل"><a href="#home" data-ar="الرئيسية" data-he="ראשי">الرئيسية</a><a href="#services" data-ar="الخدمات" data-he="השירותים">الخدمات</a><a href="#about" data-ar="عن صبا" data-he="על סבא">عن صبا</a><a href="#contact" data-ar="تواصل معنا" data-he="יצירת קשר">تواصل معنا</a></nav>
+  <div class="top-actions">
+    <div class="lang"><button class="active" id="arBtn" type="button">عربي</button><button id="heBtn" type="button">עברית</button></div>
+    <a class="book" href="https://wa.me/972526732880" target="_blank" rel="noopener"><span data-ar="احجزي موعدك" data-he="קביעת תור">احجزي موعدك</span> <span aria-hidden="true">↗</span></a>
+  </div>
+</header>
+
+<main id="arabic">
+<section class="hero" id="home">
+  <div class="hero-copy">
+    <span class="kicker">SEBA · SKINCARE STUDIO</span>
+    <h1>جمالكِ يبدأ<br><em>بلحظة عناية</em></h1>
+    <p>مساحة من الهدوء والاهتمام، نعتني فيها ببشرتكِ بتفاصيل لطيفة وتجربة تمنحكِ إحساسًا متجددًا بالثقة والجمال.</p>
+    <div class="hero-buttons"><a class="btn dark" href="https://wa.me/972526732880" target="_blank" rel="noopener">احجزي موعدكِ <span>↗</span></a><a class="btn light" href="#services">اكتشفي خدماتنا <span>↓</span></a></div>
+  </div>
+  <div class="hero-image"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1500&q=88" alt="جلسة عناية احترافية بالبشرة"><div class="image-note"><small>YOUR SKIN, OUR CARE</small><strong>عناية تليق بكِ</strong></div></div>
+</section>
+<div class="trust"><div class="trust-item"><strong>عناية شخصية</strong><span>اهتمام بتفاصيل بشرتكِ</span></div><div class="trust-item"><strong>أجواء هادئة</strong><span>وقت مخصص لكِ</span></div><div class="trust-item"><strong>الناصرة ويافة</strong><span>قريبون منكِ</span></div></div>
+<section class="section" id="services">
+  <div class="section-head"><span class="kicker">OUR TREATMENTS</span><h2>اختاري لحظة العناية الخاصة بكِ</h2><p>مجموعة من خدمات العناية لتمنحي بشرتكِ الاهتمام الذي تستحقه.</p></div>
+  <div class="services">
+    <article class="service"><div class="service-photo"><img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=900&q=85" alt="تنظيف وعناية بالبشرة"></div><div class="service-copy"><small>01 / CARE</small><h3>تنظيف البشرة</h3><p>جلسة عناية وانتعاش لبشرة تبدو أكثر صفاءً ونضارة.</p></div></article>
+    <article class="service"><div class="service-photo"><img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=900&q=85" alt="منتجات ماسكات وعناية بالبشرة"></div><div class="service-copy"><small>02 / NOURISH</small><h3>الماسكات والعناية</h3><p>لحظات من الدلال والعناية التي تناسب احتياجات بشرتكِ.</p></div></article>
+    <article class="service"><div class="service-photo"><img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=900&q=85" alt="عناية وتجديد البشرة"></div><div class="service-copy"><small>03 / RENEW</small><h3>التقشير وتجديد البشرة</h3><p>خطوات عناية مدروسة لمظهر أكثر نعومة وإشراقًا.</p></div></article>
+    <article class="service"><div class="service-photo"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=85" alt="تحضيرات العروس"></div><div class="service-copy"><small>04 / BRIDAL</small><h3>تجهيز العرائس</h3><p>عناية خاصة تسبق يومكِ المميز وترافق تألقكِ.</p></div></article>
+  </div>
+</section>
+<section class="section about" id="about">
+  <div class="about-photo"><img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=1200&q=85" alt="أجواء استرخاء وعناية"></div>
+  <div class="about-copy"><span class="kicker">A LITTLE ABOUT US</span><h2>لأن العناية بنفسكِ<br>ليست رفاهية</h2><p>في Seba.skincare نؤمن أن الجمال يبدأ من الاهتمام بالنفس. نرحّب بكِ لتجربة عناية هادئة، واهتمام بالتفاصيل، ولمسة شخصية في كل زيارة.</p><div class="places"><span class="place">📍 الناصرة</span><span class="place">📍 يافة الناصرة</span></div><a class="btn dark" href="https://wa.me/972526732880" target="_blank" rel="noopener">تواصلي معنا للحجز ↗</a></div>
+</section>
+<section class="section social-section" id="contact">
+  <div class="section-head"><span class="kicker">LET'S CONNECT</span><h2>يسعدنا أن نسمع منكِ</h2><p>للحجز والاستفسار، اختاري طريقة التواصل المناسبة لكِ.</p></div>
+  <div class="social-row">
+    <a class="social-link" href="https://wa.me/972526732880" target="_blank" rel="noopener"><span class="social-icon"><svg viewBox="0 0 24 24" width="23" height="23" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 2 17.7L.5 23.5l6-1.6A11.8 11.8 0 0 0 20.5 3.5ZM12 21a9.7 9.7 0 0 1-4.9-1.3l-.4-.2-3.6 1 1-3.5-.2-.4A9.7 9.7 0 1 1 12 21Zm5.3-7.3c-.3-.2-1.7-.9-2-.9s-.5-.2-.7.2-.8.9-1 1.1-.4.2-.7.1a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.4.3-.6s0-.4 0-.6l-.9-2.1c-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.6.1-.9.4s-1.2 1.2-1.2 2.8 1.2 3.2 1.4 3.4a11 11 0 0 0 4.3 3.8c.6.3 1.1.5 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.4s.2-1.3.2-1.4-.2-.2-.5-.4Z"/></svg></span><span><strong>واتساب</strong><small>للحجز والمواعيد</small></span></a>
+    <a class="social-link" href="https://www.instagram.com/khateebseba?dlrf=eXBlc25jZTB3b3o0" target="_blank" rel="noopener"><span class="social-icon"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/></svg></span><span><strong>إنستغرام</strong><small>تابعي أعمالنا</small></span></a>
+    <a class="social-link" href="https://www.facebook.com/share/1JUU2S7T43/" target="_blank" rel="noopener"><span class="social-icon"><svg viewBox="0 0 24 24" width="23" height="23" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4.1 1.5-4.1 4.2v2.3H7.6V13h2.7v8h3.2Z"/></svg></span><span><strong>فيسبوك</strong><small>تابعي صفحتنا</small></span></a>
+  </div>
+</section>
+<section class="cta"><span class="kicker">YOUR MOMENT STARTS HERE</span><h2>امنحي بشرتكِ وقتًا لنفسها</h2><p>نحن هنا لمساعدتكِ في اختيار موعدكِ القادم.</p><a class="btn" href="https://wa.me/972526732880" target="_blank" rel="noopener">احجزي عبر واتساب ↗</a></section>
+</main>
+
+<main id="hebrew" hidden>
+<section class="hero" id="home-he">
+  <div class="hero-copy"><span class="kicker">SEBA · SKINCARE STUDIO</span><h1>היופי שלך מתחיל<br><em>ברגע של טיפוח</em></h1><p>מרחב של רוגע, תשומת לב וטיפוח אישי, עם דגש על הפרטים הקטנים ועל תחושת ביטחון ויופי.</p><div class="hero-buttons"><a class="btn dark" href="https://wa.me/972526732880" target="_blank" rel="noopener">קביעת תור ↗</a><a class="btn light" href="#services-he">לגלות את הטיפולים ↓</a></div></div>
+  <div class="hero-image"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1500&q=88" alt="טיפול מקצועי לעור"><div class="image-note"><small>YOUR SKIN, OUR CARE</small><strong>טיפוח שמגיע לך</strong></div></div>
+</section>
+<div class="trust"><div class="trust-item"><strong>טיפוח אישי</strong><span>תשומת לב לעור שלך</span></div><div class="trust-item"><strong>אווירה רגועה</strong><span>זמן שמוקדש לך</span></div><div class="trust-item"><strong>נצרת ויפיע</strong><span>קרובות אלייך</span></div></div>
+<section class="section" id="services-he"><div class="section-head"><span class="kicker">OUR TREATMENTS</span><h2>בחרי את רגע הטיפוח שלך</h2><p>מגוון טיפולים כדי להעניק לעור שלך את תשומת הלב שמגיעה לו.</p></div><div class="services">
+<article class="service"><div class="service-photo"><img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=900&q=85" alt="ניקוי פנים"></div><div class="service-copy"><small>01 / CARE</small><h3>ניקוי פנים</h3><p>טיפול מרענן למראה עור נקי ורענן.</p></div></article>
+<article class="service"><div class="service-photo"><img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=900&q=85" alt="מסכות וטיפוח"></div><div class="service-copy"><small>02 / NOURISH</small><h3>מסכות וטיפוח</h3><p>רגעים של פינוק וטיפוח לפי צורכי העור שלך.</p></div></article>
+<article class="service"><div class="service-photo"><img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=900&q=85" alt="חידוש העור"></div><div class="service-copy"><small>03 / RENEW</small><h3>פילינג וחידוש העור</h3><p>טיפוח למראה חלק וזוהר יותר.</p></div></article>
+<article class="service"><div class="service-photo"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=85" alt="הכנה לכלות"></div><div class="service-copy"><small>04 / BRIDAL</small><h3>הכנה לכלות</h3><p>טיפוח מיוחד לקראת היום המרגש שלך.</p></div></article>
+</div></section>
+<section class="section about"><div class="about-photo"><img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=1200&q=85" alt="אווירת רוגע וטיפוח"></div><div class="about-copy"><span class="kicker">A LITTLE ABOUT US</span><h2>כי טיפוח עצמי<br>הוא לא מותרות</h2><p>ב־Seba.skincare מאמינות שיופי מתחיל בתשומת לב לעצמך. נשמח להעניק לך חוויית טיפוח רגועה, יחס אישי ותשומת לב לכל פרט.</p><div class="places"><span class="place">📍 נצרת</span><span class="place">📍 יפיע</span></div><a class="btn dark" href="https://wa.me/972526732880" target="_blank" rel="noopener">צרי קשר לקביעת תור ↗</a></div></section>
+<section class="section social-section"><div class="section-head"><span class="kicker">LET'S CONNECT</span><h2>נשמח לשמוע ממך</h2><p>לקביעת תור ולשאלות, בחרי את דרך ההתקשרות הנוחה לך.</p></div><div class="social-row">
+<a class="social-link" href="https://wa.me/972526732880" target="_blank" rel="noopener"><span class="social-icon">◉</span><span><strong>וואטסאפ</strong><small>לקביעת תורים</small></span></a>
+<a class="social-link" href="https://www.instagram.com/khateebseba?dlrf=eXBlc25jZTB3b3o0" target="_blank" rel="noopener"><span class="social-icon">◎</span><span><strong>אינסטגרם</strong><small>עקבי אחרי העבודות שלנו</small></span></a>
+<a class="social-link" href="https://www.facebook.com/share/1JUU2S7T43/" target="_blank" rel="noopener"><span class="social-icon">f</span><span><strong>פייסבוק</strong><small>העמוד שלנו</small></span></a>
+</div></section>
+<section class="cta"><span class="kicker">YOUR MOMENT STARTS HERE</span><h2>העניקי לעור שלך זמן לעצמו</h2><p>אנחנו כאן כדי לעזור לך לבחור את התור הבא שלך.</p><a class="btn" href="https://wa.me/972526732880" target="_blank" rel="noopener">קביעת תור בוואטסאפ ↗</a></section>
+</main>
+<footer><span>Seba.skincare</span><div>© כל הזכויות שמורות · عناية وجمال بكل حب</div></footer>
+<a class="seba-chat-bubble" href="https://wa.me/972526732880" target="_blank" rel="noopener" aria-label="احكي مع صبا">
+  <span class="chat-icon">💬</span>
+  <span id="sebaChatText">احكي مع صبا</span>
+</a><script>
+  const ar = document.getElementById('arabic');
+const he = document.getElementById('hebrew');
+const arBtn = document.getElementById('arBtn');
+const heBtn = document.getElementById('heBtn');
+
+function setLanguage(lang) {
+  const isHe = lang === 'he';
+
+  ar.hidden = isHe;
+  he.hidden = !isHe;
+
+  document.documentElement.lang = isHe ? 'he' : 'ar';
+  document.documentElement.dir = 'rtl';
+
+  arBtn.classList.toggle('active', !isHe);
+  heBtn.classList.toggle('active', isHe);
+
+  document.querySelectorAll('.nav a').forEach(a => {
+    a.textContent = a.dataset[isHe ? 'he' : 'ar'];
+  });
+
+  document.querySelector('.nav').setAttribute(
+    'aria-label',
+    isHe ? 'ניווט' : 'التنقل'
+  );
+
+  document.getElementById('sebaChatText').textContent =
+    isHe ? 'דברי איתי' : 'احكي مع صبا';
+}
+
+arBtn.addEventListener('click', () => setLanguage('ar'));
+heBtn.addEventListener('click', () => setLanguage('he'));
+</script>
+
+<script>
+(async function(){
+const root="https://raw.githubusercontent.com/seba-skincare/seba-skincare/photo-upload-dashboard/data/";
+const imageRoot="https://raw.githubusercontent.com/seba-skincare/seba-skincare/photo-upload-dashboard/";
+const get=async file=>{const r=await fetch(root+file+"?v="+Date.now());if(!r.ok)throw new Error("تعذر تحميل "+file);return r.json();};
+try{
+ const [settingsData,servicesData,offersData]=await Promise.all([get("settings.json"),get("services.json"),get("offers.json")]);
+ const s=settingsData||{}, list=Array.isArray(servicesData.services)?servicesData.services:[], offer=offersData.offer||{};
+ const css=document.documentElement.style;
+ if(/^#[0-9a-f]{6}$/i.test(s.primaryColor||"")){css.setProperty("--rose",s.primaryColor);css.setProperty("--rose-dark",s.primaryColor);}
+ if(/^#[0-9a-f]{6}$/i.test(s.backgroundColor||""))css.setProperty("--cream",s.backgroundColor);
+ if(/^#[0-9a-f]{6}$/i.test(s.textColor||""))css.setProperty("--ink",s.textColor);
+ document.querySelectorAll(".brand span,footer>span").forEach(e=>{if(s.siteName)e.textContent=s.siteName;});
+ const wa=s.whatsapp||"https://wa.me/972526732880";
+ document.querySelectorAll('a[href*="wa.me"]').forEach(a=>a.href=wa);
+ const social=document.querySelectorAll(".social-link");
+ if(s.instagram&&social[1])social[1].href=s.instagram;
+ if(s.facebook&&social[2])social[2].href=s.facebook;
+ const phone=s.phone||"";
+ const hero=document.querySelector("#arabic .hero-copy");
+ if(hero){
+  const h=hero.querySelector("h1"),p=hero.querySelector("p");
+  if(s.heroTitle)h.textContent=s.heroTitle;
+  if(s.heroDescription)p.textContent=s.heroDescription;
+ }
+ const heHero=document.querySelector("#hebrew .hero-copy");
+ if(heHero){
+  const h=heHero.querySelector("h1"),p=heHero.querySelector("p");
+  if(s.heroTitleHe)h.textContent=s.heroTitleHe;
+  if(s.heroDescriptionHe)p.textContent=s.heroDescriptionHe;
+ }
+ const cards=(arr,lang)=>arr.map((item,i)=>{
+  const article=document.createElement("article");article.className="service";
+  const photo=document.createElement("div");photo.className="service-photo";
+  if(item.image){const img=document.createElement("img");img.src=item.image.startsWith("http")?item.image:imageRoot+item.image;img.alt=item.title||"Seba service";photo.append(img);}
+  const copy=document.createElement("div");copy.className="service-copy";
+  const small=document.createElement("small");small.textContent=String(i+1).padStart(2,"0")+" / SEBA CARE";
+  const title=document.createElement("h3");title.textContent=item.title||"";
+  const desc=document.createElement("p");desc.textContent=item.description||"";
+  copy.append(small,title,desc);
+  if(item.price){const price=document.createElement("p");price.style.fontWeight="700";price.style.marginTop="8px";price.textContent=(lang==="he"?"מחיר: ":"السعر: ")+item.price;copy.append(price);}
+  article.append(photo,copy);return article;
+ });
+ document.querySelectorAll("#arabic .services").forEach(el=>{el.replaceChildren(...cards(list,"ar"));});
+ document.querySelectorAll("#hebrew .services").forEach(el=>{el.replaceChildren(...cards(list,"he"));});
+ const active=!!offer.active&&offer.title&&(!offer.endDate||offer.endDate>=new Date().toISOString().slice(0,10));
+ if(active){
+  document.querySelectorAll("main").forEach(main=>{
+   const banner=document.createElement("section");banner.className="section";banner.style.cssText="padding:25px 20px;background:var(--cream);text-align:center";
+   const title=document.createElement("h2");title.textContent=offer.title;title.style.margin="0 0 8px";
+   const desc=document.createElement("p");desc.textContent=[offer.description,offer.discount].filter(Boolean).join(" · ");
+   banner.append(title,desc);
+   const trust=main.querySelector(".trust");if(trust)trust.after(banner);else main.prepend(banner);
+  });
+ }
+ document.querySelectorAll(".book,.hero-buttons .btn.dark,.about-copy .btn,.cta .btn").forEach(a=>{a.href=wa;});
+ document.title=(s.siteName||"Seba.skincare")+" | معاينة";
+}catch(e){const n=document.createElement("div");n.textContent="تعذر تحميل بيانات المعاينة. حدّثي الصفحة بعد قليل.";n.style.cssText="padding:20px;text-align:center;background:#fff0e8;color:#733";document.body.prepend(n);}
+})();
+</script>
+
+</body>
+</html>
