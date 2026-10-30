@@ -380,62 +380,86 @@ heBtn.addEventListener('click', () => setLanguage('he'));
 
 <script>
 (async function(){
-const root="https://raw.githubusercontent.com/seba-skincare/seba-skincare/photo-upload-dashboard/data/";
-const imageRoot="https://raw.githubusercontent.com/seba-skincare/seba-skincare/photo-upload-dashboard/";
-const get=async file=>{const r=await fetch(root+file+"?v="+Date.now());if(!r.ok)throw new Error("تعذر تحميل "+file);return r.json();};
-try{
- const [settingsData,servicesData,offersData]=await Promise.all([get("settings.json"),get("services.json"),get("offers.json")]);
- const s=settingsData||{}, list=Array.isArray(servicesData.services)?servicesData.services:[], offer=offersData.offer||{};
- const css=document.documentElement.style;
- if(/^#[0-9a-f]{6}$/i.test(s.primaryColor||"")){css.setProperty("--rose",s.primaryColor);css.setProperty("--rose-dark",s.primaryColor);}
- if(/^#[0-9a-f]{6}$/i.test(s.backgroundColor||""))css.setProperty("--cream",s.backgroundColor);
- if(/^#[0-9a-f]{6}$/i.test(s.textColor||""))css.setProperty("--ink",s.textColor);
- document.querySelectorAll(".brand span,footer>span").forEach(e=>{if(s.siteName)e.textContent=s.siteName;});
- const wa=s.whatsapp||"https://wa.me/972526732880";
- document.querySelectorAll('a[href*="wa.me"]').forEach(a=>a.href=wa);
- const social=document.querySelectorAll(".social-link");
- if(s.instagram&&social[1])social[1].href=s.instagram;
- if(s.facebook&&social[2])social[2].href=s.facebook;
- const phone=s.phone||"";
- const hero=document.querySelector("#arabic .hero-copy");
- if(hero){
-  const h=hero.querySelector("h1"),p=hero.querySelector("p");
-  if(s.heroTitle)h.textContent=s.heroTitle;
-  if(s.heroDescription)p.textContent=s.heroDescription;
- }
- const heHero=document.querySelector("#hebrew .hero-copy");
- if(heHero){
-  const h=heHero.querySelector("h1"),p=heHero.querySelector("p");
-  if(s.heroTitleHe)h.textContent=s.heroTitleHe;
-  if(s.heroDescriptionHe)p.textContent=s.heroDescriptionHe;
- }
- const cards=(arr,lang)=>arr.map((item,i)=>{
-  const article=document.createElement("article");article.className="service";
-  const photo=document.createElement("div");photo.className="service-photo";
-  if(item.image){const img=document.createElement("img");img.src=item.image.startsWith("http")?item.image:imageRoot+item.image;img.alt=item.title||"Seba service";photo.append(img);}
-  const copy=document.createElement("div");copy.className="service-copy";
-  const small=document.createElement("small");small.textContent=String(i+1).padStart(2,"0")+" / SEBA CARE";
-  const title=document.createElement("h3");title.textContent=item.title||"";
-  const desc=document.createElement("p");desc.textContent=item.description||"";
-  copy.append(small,title,desc);
-  if(item.price){const price=document.createElement("p");price.style.fontWeight="700";price.style.marginTop="8px";price.textContent=(lang==="he"?"מחיר: ":"السعر: ")+item.price;copy.append(price);}
-  article.append(photo,copy);return article;
- });
- document.querySelectorAll("#arabic .services").forEach(el=>{el.replaceChildren(...cards(list,"ar"));});
- document.querySelectorAll("#hebrew .services").forEach(el=>{el.replaceChildren(...cards(list,"he"));});
- const active=!!offer.active&&offer.title&&(!offer.endDate||offer.endDate>=new Date().toISOString().slice(0,10));
- if(active){
-  document.querySelectorAll("main").forEach(main=>{
-   const banner=document.createElement("section");banner.className="section";banner.style.cssText="padding:25px 20px;background:var(--cream);text-align:center";
-   const title=document.createElement("h2");title.textContent=offer.title;title.style.margin="0 0 8px";
-   const desc=document.createElement("p");desc.textContent=[offer.description,offer.discount].filter(Boolean).join(" · ");
-   banner.append(title,desc);
-   const trust=main.querySelector(".trust");if(trust)trust.after(banner);else main.prepend(banner);
+ const branchRoot="https://raw.githubusercontent.com/seba-skincare/seba-skincare/photo-upload-dashboard/";
+ const dataRoot=branchRoot+"data/";
+ const load=async name=>{
+  const response=await fetch(dataRoot+name+"?v="+Date.now(),{cache:"no-store"});
+  if(!response.ok)throw new Error(name+" HTTP "+response.status);
+  return response.json();
+ };
+ const showLoadError=message=>{
+  let note=document.getElementById("preview-data-status");
+  if(!note){note=document.createElement("div");note.id="preview-data-status";document.body.prepend(note);}
+  note.textContent=message;
+  note.style.cssText="position:relative;z-index:20;padding:10px 16px;text-align:center;background:#fff0e8;color:#733;font-size:14px";
+ };
+ try{
+  // Services are loaded and rendered independently so a settings/offers issue
+  // cannot hide the actual service catalogue.
+  const servicesData=await load("services.json");
+  const list=Array.isArray(servicesData.services)?servicesData.services:[];
+  const cards=(arr,lang)=>arr.map((item,i)=>{
+   const article=document.createElement("article");article.className="service";
+   const photo=document.createElement("div");photo.className="service-photo";
+   if(item.image){
+    const img=document.createElement("img");
+    img.src=item.image.startsWith("http")?item.image:branchRoot+item.image;
+    img.alt=item.title||"Seba service";
+    img.loading="lazy";
+    img.onerror=()=>{img.remove();const unavailable=document.createElement("span");unavailable.textContent=lang==="he"?"התמונה אינה זמינה":"الصورة غير متاحة حالياً";unavailable.style.cssText="display:grid;place-items:center;height:100%;padding:12px;color:#806b61;font-size:13px";photo.append(unavailable);};
+    photo.append(img);
+   }
+   const copy=document.createElement("div");copy.className="service-copy";
+   const small=document.createElement("small");small.textContent=String(i+1).padStart(2,"0")+" / SEBA CARE";
+   const title=document.createElement("h3");title.textContent=item.title||"";
+   const desc=document.createElement("p");desc.textContent=item.description||"";
+   copy.append(small,title,desc);
+   if(item.price){const price=document.createElement("p");price.style.fontWeight="700";price.style.marginTop="8px";price.textContent=(lang==="he"?"מחיר: ":"السعر: ")+item.price;copy.append(price);}
+   article.append(photo,copy);return article;
   });
+  const arabic=document.querySelectorAll("#arabic .services");
+  const hebrew=document.querySelectorAll("#hebrew .services");
+  arabic.forEach(el=>el.replaceChildren(...cards(list,"ar")));
+  hebrew.forEach(el=>el.replaceChildren(...cards(list,"he")));
+  if(!arabic.length&&!hebrew.length)showLoadError("تم تحميل الخدمات لكن لم يتم العثور على مكان عرضها في الصفحة.");
+  else{
+   const note=document.getElementById("preview-data-status");if(note)note.remove();
+  }
+  // Optional site settings must never block services from appearing.
+  try{
+   const s=await load("settings.json");
+   const css=document.documentElement.style;
+   if(/^#[0-9a-f]{6}$/i.test(s.primaryColor||"")){css.setProperty("--rose",s.primaryColor);css.setProperty("--rose-dark",s.primaryColor);}
+   if(/^#[0-9a-f]{6}$/i.test(s.backgroundColor||""))css.setProperty("--cream",s.backgroundColor);
+   if(/^#[0-9a-f]{6}$/i.test(s.textColor||""))css.setProperty("--ink",s.textColor);
+   document.querySelectorAll(".brand span,footer>span").forEach(e=>{if(s.siteName)e.textContent=s.siteName;});
+   const wa=s.whatsapp||"https://wa.me/972526732880";
+   document.querySelectorAll('a[href*="wa.me"]').forEach(a=>a.href=wa);
+   const social=document.querySelectorAll(".social-link");
+   if(s.instagram&&social[1])social[1].href=s.instagram;
+   if(s.facebook&&social[2])social[2].href=s.facebook;
+   const hero=document.querySelector("#arabic .hero-copy");
+   if(hero){const h=hero.querySelector("h1"),p=hero.querySelector("p");if(s.heroTitle&&h)h.textContent=s.heroTitle;if(s.heroDescription&&p)p.textContent=s.heroDescription;}
+   const heHero=document.querySelector("#hebrew .hero-copy");
+   if(heHero){const h=heHero.querySelector("h1"),p=heHero.querySelector("p");if(s.heroTitleHe&&h)h.textContent=s.heroTitleHe;if(s.heroDescriptionHe&&p)p.textContent=s.heroDescriptionHe;}
+   document.querySelectorAll(".book,.hero-buttons .btn.dark,.about-copy .btn,.cta .btn").forEach(a=>a.href=wa);
+   document.title=(s.siteName||"Seba.skincare")+" | معاينة";
+  }catch(settingsError){console.warn("Preview settings could not be loaded:",settingsError);}
+  // Offers are optional too.
+  try{
+   const offersData=await load("offers.json"),offer=offersData.offer||{};
+   const active=!!offer.active&&offer.title&&(!offer.endDate||offer.endDate>=new Date().toISOString().slice(0,10));
+   if(active)document.querySelectorAll("main").forEach(main=>{
+    const banner=document.createElement("section");banner.className="section";banner.style.cssText="padding:25px 20px;background:var(--cream);text-align:center";
+    const title=document.createElement("h2");title.textContent=offer.title;title.style.margin="0 0 8px";
+    const desc=document.createElement("p");desc.textContent=[offer.description,offer.discount].filter(Boolean).join(" · ");
+    banner.append(title,desc);const trust=main.querySelector(".trust");if(trust)trust.after(banner);else main.prepend(banner);
+   });
+  }catch(offerError){console.warn("Preview offers could not be loaded:",offerError);}
+ }catch(error){
+  console.error("Seba preview services failed:",error);
+  showLoadError("تعذر تحميل قائمة الخدمات ("+error.message+"). جرّبي تحديث الصفحة بعد قليل.");
  }
- document.querySelectorAll(".book,.hero-buttons .btn.dark,.about-copy .btn,.cta .btn").forEach(a=>{a.href=wa;});
- document.title=(s.siteName||"Seba.skincare")+" | معاينة";
-}catch(e){const n=document.createElement("div");n.textContent="تعذر تحميل بيانات المعاينة. حدّثي الصفحة بعد قليل.";n.style.cssText="padding:20px;text-align:center;background:#fff0e8;color:#733";document.body.prepend(n);}
 })();
 </script>
 
