@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://seba-skincare.github.io/seba-skincare/sitemap.xml
