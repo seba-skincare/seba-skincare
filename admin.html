@@ -44,7 +44,7 @@ button.danger{background:#a94442}
 </div>
 <div class="card">
 <h3>الخدمات المحفوظة</h3>
-<p class="hint">يمكنك تعديل الاسم والوصف والسعر، ورفع صورة من معرض الهاتف لكل خدمة. اضغطي حفظ التعديل بعد الانتهاء.</p>
+<p class="hint">لتعديل خدمة موجودة: غيّري الاسم أو الوصف أو السعر داخل بطاقة الخدمة نفسها، ثم اضغطي «حفظ التعديل». زر «إضافة خدمة جديدة» مخصص لخدمة غير موجودة فقط.</p>
 <div id="services">سجّلي الدخول لتحميل الخدمات.</div>
 </div>
 <div class="card" id="offerCard">
@@ -206,6 +206,16 @@ async function addService(){
  const description=document.getElementById("description").value.trim();
  const price=document.getElementById("price").value.trim();
  if(!title){message("اكتبي اسم الخدمة أولاً",true);return;}
+ const existingIndex=services.findIndex(item=>String(item.title||"").trim().toLocaleLowerCase("ar")===title.toLocaleLowerCase("ar"));
+ if(existingIndex!==-1){
+  const previous={...services[existingIndex]};
+  services[existingIndex]={...previous,description,price};
+  if(await saveServices()){
+   document.getElementById("title").value="";document.getElementById("description").value="";document.getElementById("price").value="";
+   render();message("الخدمة موجودة من قبل؛ تم تحديث بياناتها بدل إنشاء نسخة مكررة 🌸");
+  }else{services[existingIndex]=previous;render();}
+  return;
+ }
  services.push({title,description,price});
  if(await saveServices()){document.getElementById("title").value="";document.getElementById("description").value="";document.getElementById("price").value="";render();}
  else{services.pop();render();}
