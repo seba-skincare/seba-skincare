@@ -195,7 +195,7 @@ async function saveServices(){
  try{
   const response=await fetch(SAVE_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:password(),path:"data/services.json",content:JSON.stringify({services},null,2)})});
   let result={};try{result=await response.json();}catch(_){}
-  if(!response.ok||!result.success)throw new Error(response.status===401?"كلمة المرور غير صحيحة":"تعذر حفظ الخدمات");
+  if(!response.ok||!result.success||!result.verified)throw new Error(result.error||(response.status===401?"كلمة المرور غير صحيحة":"تعذر حفظ الخدمات والتحقق منها"));
   if(!result.commit)throw new Error("وصل رد الحفظ بدون رقم تأكيد من GitHub");
   message("تم حفظ الخدمات على GitHub بنجاح 🌸");return true;
  }catch(e){message(e.message||"حدث خطأ أثناء الحفظ",true);return false;}
