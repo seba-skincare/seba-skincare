@@ -58,15 +58,50 @@ button.danger{background:#a94442}
 <label style="display:flex;align-items:center;gap:10px;margin:10px 0"><input id="offerActive" type="checkbox" style="width:auto;margin:0"> تفعيل العرض في بيانات الموقع</label>
 <button id="saveOfferButton" onclick="saveOffer()">حفظ العرض</button>
 </div>
+<div class="card" id="settingsCard">
+<h3>إعدادات الموقع 🎨</h3>
+<p class="hint">هذه إعدادات مسودة محفوظة في المشروع التجريبي. لا تغيّر شكل الشعار الأصلي ولا تنشر التعديلات تلقائياً.</p>
+<input id="siteName" placeholder="اسم المركز">
+<input id="heroTitle" placeholder="العنوان الرئيسي">
+<textarea id="heroDescription" placeholder="النص التعريفي في واجهة الموقع"></textarea>
+<input id="phone" placeholder="رقم الهاتف">
+<input id="whatsapp" placeholder="رابط واتساب">
+<input id="instagram" placeholder="رابط إنستغرام">
+<input id="facebook" placeholder="رابط فيسبوك">
+<label class="file-label" for="primaryColor">اللون الأساسي</label><input id="primaryColor" type="color" value="#b77d79">
+<label class="file-label" for="backgroundColor">لون الخلفية</label><input id="backgroundColor" type="color" value="#f8f1ed">
+<label class="file-label" for="textColor">لون النص</label><input id="textColor" type="color" value="#513b35">
+<button id="saveSettingsButton" onclick="saveSettings()">حفظ إعدادات الموقع</button>
+</div>
 <p id="status" class="status" role="status" aria-live="polite"></p>
 <script>
 const DATA_URL="https://raw.githubusercontent.com/seba-skincare/seba-skincare/photo-upload-dashboard/data/services.json";
 const SAVE_URL="/.netlify/functions/save";
 const OFFERS_URL="https://raw.githubusercontent.com/seba-skincare/seba-skincare/photo-upload-dashboard/data/offers.json";
+const SETTINGS_URL="https://raw.githubusercontent.com/seba-skincare/seba-skincare/photo-upload-dashboard/data/settings.json";
 const IMAGE_BASE="https://raw.githubusercontent.com/seba-skincare/seba-skincare/photo-upload-dashboard/";
 let services=[];
 let loaded=false;
 let offer={title:"",description:"",discount:"",endDate:"",active:false};
+let siteSettings={};
+function renderSettings(){
+ const fields={siteName:"siteName",heroTitle:"heroTitle",heroDescription:"heroDescription",phone:"phone",whatsapp:"whatsapp",instagram:"instagram",facebook:"facebook",primaryColor:"primaryColor",backgroundColor:"backgroundColor",textColor:"textColor"};
+ Object.entries(fields).forEach(([key,id])=>{const el=document.getElementById(id);if(el)el.value=siteSettings[key]||el.value||"";});
+}
+async function saveSettings(){
+ if(!loaded){message("حمّلي الخدمات أولاً قبل حفظ الإعدادات",true);return;}
+ const keys=["siteName","heroTitle","heroDescription","phone","whatsapp","instagram","facebook","primaryColor","backgroundColor","textColor"];
+ const next={...siteSettings};keys.forEach(key=>next[key]=document.getElementById(key).value.trim());
+ const button=document.getElementById("saveSettingsButton");button.disabled=true;
+ message("جاري حفظ إعدادات الموقع...");
+ try{
+  const response=await fetch(SAVE_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:password(),path:"data/settings.json",content:JSON.stringify(next,null,2)})});
+  let result={};try{result=await response.json();}catch(_){}
+  if(!response.ok||!result.success)throw new Error(result.error||"تعذر حفظ الإعدادات");
+  siteSettings=next;message("تم حفظ إعدادات الموقع في النسخة التجريبية 🌸");
+ }catch(e){message(e.message||"حدث خطأ أثناء حفظ الإعدادات",true);}
+ finally{button.disabled=false;}
+}
 function renderOffer(){
  document.getElementById("offerTitle").value=offer.title||"";
  document.getElementById("offerDescription").value=offer.description||"";
@@ -107,6 +142,7 @@ async function loadServices(){
   services=Array.isArray(data.services)?data.services:[];
   loaded=true;render();
   try{const offersResponse=await fetch(OFFERS_URL+"?t="+Date.now());if(offersResponse.ok){const offersData=await offersResponse.json();offer=offersData.offer||offer;renderOffer();}}catch(_){/* تبقى قيم العرض الافتراضية عند تعذر التحميل */}
+  try{const settingsResponse=await fetch(SETTINGS_URL+"?t="+Date.now());if(settingsResponse.ok){siteSettings=await settingsResponse.json();renderSettings();}}catch(_){/* تبقى إعدادات النموذج الافتراضية */}
   message("تم تحميل الخدمات والعروض. يمكنك الآن التعديل والحفظ.");
  }catch(e){message("تعذر تحميل الخدمات. حاولي مرة أخرى.",true);}
  finally{button.disabled=false;}
