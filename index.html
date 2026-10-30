@@ -88,6 +88,50 @@ footer span{color:#d8bd91;font-family:"Heebo",sans-serif;letter-spacing:1px}
 [hidden]{display:none!important}
 @media(max-width:950px){.nav{display:none}.hero{grid-template-columns:1fr}.hero-copy{order:2;padding:55px 8vw}.hero-image{order:1;min-height:440px}.services{grid-template-columns:repeat(2,1fr)}.about{gap:35px}.about-photo{height:420px}}
 @media(max-width:600px){.topbar{min-height:74px;padding:9px 15px}.brand{font-size:.95rem;gap:8px}.brand img{width:49px;height:49px}.top-actions{gap:6px}.topbar .book{padding:9px 11px;font-size:.8rem}.lang button{padding:6px 9px}.hero-image{min-height:360px}.hero-copy{padding:48px 23px}.hero h1{font-size:2.65rem}.hero-copy p{font-size:1rem}.trust{padding:18px 10px}.trust-item{padding:3px 8px}.trust-item strong{font-size:.9rem}.trust-item span{font-size:.72rem}.section{padding:68px 19px}.section-head{margin-bottom:30px}.services{grid-template-columns:1fr 1fr;gap:11px}.service-photo{height:170px}.service-copy{padding:15px 13px 18px}.service-copy h3{font-size:1.08rem}.service-copy p{font-size:.82rem}.about{grid-template-columns:1fr}.about-photo{height:330px;order:2}.about-copy{order:1}.social-link{min-width:100%;justify-content:flex-start}.cta{margin:0 14px 55px;padding:43px 20px}footer{flex-direction:column;text-align:center}}
+
+/* فقاعة التواصل العائمة */
+.seba-chat-bubble {
+  position: fixed;
+  bottom: 22px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  background: #b77d79;
+  color: white;
+  border-radius: 40px;
+  box-shadow: 0 5px 22px rgba(55,43,34,.22);
+  font-family: "Tajawal", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  animation: sebaFloat 2.5s ease-in-out infinite;
+  transition: .25s;
+}
+
+.seba-chat-bubble:hover {
+  background: #865653;
+  transform: translateY(-4px);
+}
+
+.seba-chat-bubble .chat-icon {
+  font-size: 23px;
+}
+
+@keyframes sebaFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@media(max-width:600px) {
+  .seba-chat-bubble {
+    bottom: 16px;
+    right: 14px;
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+}
 </style>
 </head>
 <body>
@@ -156,10 +200,42 @@ footer span{color:#d8bd91;font-family:"Heebo",sans-serif;letter-spacing:1px}
 <section class="cta"><span class="kicker">YOUR MOMENT STARTS HERE</span><h2>העניקי לעור שלך זמן לעצמו</h2><p>אנחנו כאן כדי לעזור לך לבחור את התור הבא שלך.</p><a class="btn" href="https://wa.me/972526732880" target="_blank" rel="noopener">קביעת תור בוואטסאפ ↗</a></section>
 </main>
 <footer><span>Seba.skincare</span><div>© כל הזכויות שמורות · عناية وجمال بكل حب</div></footer>
-<script>
-const ar=document.getElementById('arabic'),he=document.getElementById('hebrew'),arBtn=document.getElementById('arBtn'),heBtn=document.getElementById('heBtn');
-function setLanguage(lang){const isHe=lang==='he';ar.hidden=isHe;he.hidden=!isHe;document.documentElement.lang=isHe?'he':'ar';document.documentElement.dir='rtl';arBtn.classList.toggle('active',!isHe);heBtn.classList.toggle('active',isHe);document.querySelectorAll('.nav a').forEach(a=>a.textContent=a.dataset[isHe?'he':'ar']);document.querySelector('.nav').setAttribute('aria-label',isHe?'ניווט':'التنقل');}
-arBtn.addEventListener('click',()=>setLanguage('ar'));heBtn.addEventListener('click',()=>setLanguage('he'));
+<a class="seba-chat-bubble" href="https://wa.me/972526732880" target="_blank" rel="noopener" aria-label="احكي مع صبا">
+  <span class="chat-icon">💬</span>
+  <span id="sebaChatText">احكي مع صبا</span>
+</a><script>
+  const ar = document.getElementById('arabic');
+const he = document.getElementById('hebrew');
+const arBtn = document.getElementById('arBtn');
+const heBtn = document.getElementById('heBtn');
+
+function setLanguage(lang) {
+  const isHe = lang === 'he';
+
+  ar.hidden = isHe;
+  he.hidden = !isHe;
+
+  document.documentElement.lang = isHe ? 'he' : 'ar';
+  document.documentElement.dir = 'rtl';
+
+  arBtn.classList.toggle('active', !isHe);
+  heBtn.classList.toggle('active', isHe);
+
+  document.querySelectorAll('.nav a').forEach(a => {
+    a.textContent = a.dataset[isHe ? 'he' : 'ar'];
+  });
+
+  document.querySelector('.nav').setAttribute(
+    'aria-label',
+    isHe ? 'ניווט' : 'التنقل'
+  );
+
+  document.getElementById('sebaChatText').textContent =
+    isHe ? 'דברי איתי' : 'احكي مع صبا';
+}
+
+arBtn.addEventListener('click', () => setLanguage('ar'));
+heBtn.addEventListener('click', () => setLanguage('he'));
 </script>
 </body>
 </html>
