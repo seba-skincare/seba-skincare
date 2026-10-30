@@ -193,9 +193,27 @@ footer span{color:#d8bd91;font-family:"Heebo",sans-serif;letter-spacing:1px}
     font-size: 14px;
   }
 }
+
+/* SEBA CINEMATIC OPENING — preview only */
+#seba-cinematic{position:fixed;inset:0;z-index:99999;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 42%,#80624f 0%,#4b382f 42%,#211a17 100%);color:#f8eee2;opacity:1;visibility:visible;transition:opacity 1s ease,visibility 1s ease;overflow:hidden}
+#seba-cinematic:before{content:"";position:absolute;inset:-35%;background:conic-gradient(from 0deg,transparent 0 72%,rgba(226,194,143,.18) 80%,transparent 88%);animation:sebaCinemaSweep 5s linear infinite}
+#seba-cinematic.is-leaving{opacity:0;visibility:hidden;pointer-events:none}
+.seba-cinema-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;padding:24px;animation:sebaCinemaRise 1.4s cubic-bezier(.2,.8,.2,1) both}
+.seba-cinema-logo{width:clamp(112px,24vw,174px);height:clamp(112px,24vw,174px);object-fit:cover;border-radius:50%;border:2px solid #d6b783;padding:5px;background:#fff;box-shadow:0 0 0 10px rgba(218,185,133,.09),0 0 65px rgba(229,194,139,.3);animation:sebaCinemaLogo 2.8s ease-in-out both}
+.seba-cinema-title{font-family:inherit;font-size:clamp(2.2rem,8vw,4rem);font-weight:700;letter-spacing:.16em;color:#f1d8b2;text-shadow:0 3px 24px rgba(0,0,0,.35);animation:sebaCinemaText 1.8s .35s both}
+.seba-cinema-sub{font-size:.85rem;letter-spacing:.28em;color:#f8eee2;opacity:.82;animation:sebaCinemaText 1.8s .7s both}
+.seba-cinema-line{width:100px;height:1px;background:linear-gradient(90deg,transparent,#e5c18b,transparent);animation:sebaCinemaLine 2.3s .5s both}
+@keyframes sebaCinemaSweep{to{transform:rotate(360deg)}}
+@keyframes sebaCinemaRise{from{opacity:0;transform:translateY(28px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes sebaCinemaLogo{0%{transform:scale(.72) rotate(-12deg);filter:blur(5px);opacity:0}65%{transform:scale(1.06) rotate(3deg);filter:blur(0);opacity:1}100%{transform:scale(1) rotate(0)}}
+@keyframes sebaCinemaText{from{opacity:0;letter-spacing:.5em;filter:blur(5px)}to{opacity:1;letter-spacing:.16em;filter:blur(0)}}
+@keyframes sebaCinemaLine{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:1}}
+@media(prefers-reduced-motion:reduce){#seba-cinematic:before,.seba-cinema-inner,.seba-cinema-logo,.seba-cinema-title,.seba-cinema-sub,.seba-cinema-line{animation:none!important}#seba-cinematic{transition:none}}
 </style>
 </head>
 <body>
+<div id="seba-cinematic" aria-label="Seba skincare opening" role="presentation"><div class="seba-cinema-inner"><img class="seba-cinema-logo" src="IMG_%D9%A2%D9%A0%D9%A2%D9%A6%D9%A1%D9%A0%D9%A2%D9%A9_%D9%A2%D9%A1%D9%A0%D9%A5%D9%A0%D9%A5.jpg" alt="Seba"><div class="seba-cinema-title">SEBA</div><div class="seba-cinema-line"></div><div class="seba-cinema-sub">SKINCARE & BEAUTY</div></div></div>
+
 <div style="position:sticky;top:0;z-index:10000;background:#49362f;color:#fff;text-align:center;padding:9px 12px;font:600 14px Arial">نسخة معاينة فقط — التعديلات لا تظهر للزوار بعد</div>
 <header class="topbar">
   <a class="brand" href="#home"><img src="IMG_%D9%A2%D9%A0%D9%A2%D9%A6%D9%A1%D9%A0%D9%A2%D9%A9_%D9%A2%D9%A1%D9%A0%D9%A5%D9%A0%D9%A5.jpg" alt="Seba.skincare"><span>Seba.skincare</span></a>
@@ -399,5 +417,9 @@ try{
 })();
 </script>
 
+
+<script>
+(()=>{const intro=document.getElementById('seba-cinematic');if(!intro)return;const close=()=>{intro.classList.add('is-leaving');window.setTimeout(()=>intro.remove(),1100)};window.setTimeout(close,3600);intro.addEventListener('click',close,{once:true});})();
+</script>
 </body>
 </html>
