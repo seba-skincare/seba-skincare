@@ -496,7 +496,7 @@ heBtn.addEventListener('click', () => setLanguage('he'));
   const configured=window.sebaWhatsAppURL||"https://wa.me/"+defaultPhone;
   let phone=defaultPhone;
   try{const parsed=new URL(configured);const digits=parsed.pathname.replace(/\\D/g,"");if(digits)phone=digits;}catch(_){}
-  const url="https://wa.me/"+phone+"?text="+encodeURIComponent(lines.join("\n"));
+  const url="https://wa.me/"+phone+"?text="+encodeURIComponent(lines.join(" "));
   const link=document.createElement("a");
   link.href=url;link.target="_blank";link.rel="noopener noreferrer";
   document.body.append(link);link.click();link.remove();
