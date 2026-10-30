@@ -491,8 +491,8 @@ heBtn.addEventListener('click', () => setLanguage('he'));
   const d=new FormData(form);
   const he=form.dataset.locale==="he";
   const lines=he
-   ?["שלום סבא, אשמח לתאם תור.","שם: "+d.get("name"),"טיפול: "+d.get("service"),"תאריך מועדף: "+(d.get("date")||"גמישה"),"שעה מועדפת: "+(d.get("time")||"גמישה")]
-   :["مرحباً صبا، أرغب بطلب موعد.","الاسم: "+d.get("name"),"الخدمة: "+d.get("service"),"اليوم المفضل: "+(d.get("date")||"مرن"),"الوقت المفضل: "+(d.get("time")||"مرن")];
+   ?["שלום סבא 🌷","אשמח לתאם תור לטיפוח העור ✨","שם: "+d.get("name"),"הטיפול המבוקש: "+d.get("service"),"תאריך מועדף: "+(d.get("date")||"גמישה"),"שעה מועדפת: "+(d.get("time")||"גמישה"),"תודה רבה 🤍"]
+   :["مرحباً صبا 🌷","أرغب بحجز موعد للعناية بالبشرة ✨","الاسم: "+d.get("name"),"الخدمة المطلوبة: "+d.get("service"),"الموعد المفضل: "+(d.get("date")||"مرن")+" – "+(d.get("time")||"مرن"),"شكراً لكِ 🤍"];
   const configured=window.sebaWhatsAppURL||"https://wa.me/"+defaultPhone;
   let phone=defaultPhone;
   try{const parsed=new URL(configured);const digits=parsed.pathname.replace(/\\D/g,"");if(digits)phone=digits;}catch(_){}
