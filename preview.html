@@ -88,6 +88,18 @@ button{font:inherit}
 .social-link{display:flex;align-items:center;gap:12px;padding:15px 22px;border:1px solid var(--line);min-width:190px;text-align:right;transition:.25s;background:white}
 .social-link:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:var(--shadow)}
 .social-icon{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--cream);color:var(--rose-dark)}
+/* حركة ناعمة لشعارات التواصل الاجتماعي */
+.social-link{position:relative;animation:sebaSocialFloat 3.8s ease-in-out infinite;box-shadow:0 4px 15px rgba(65,48,38,.06)}
+.social-link:nth-child(2){animation-delay:.45s}
+.social-link:nth-child(3){animation-delay:.9s}
+.social-icon{transition:transform .35s,background .35s,color .35s;animation:sebaSocialIcon 2.8s ease-in-out infinite}
+.social-link:nth-child(2) .social-icon{animation-delay:.4s}
+.social-link:nth-child(3) .social-icon{animation-delay:.8s}
+.social-link:hover{border-color:var(--gold);transform:translateY(-6px) scale(1.035);box-shadow:0 12px 28px rgba(183,154,104,.2)}
+.social-link:hover .social-icon{transform:rotate(-10deg) scale(1.16);background:var(--gold);color:white}
+@keyframes sebaSocialFloat{0%,100%{translate:0 0}50%{translate:0 -4px}}
+@keyframes sebaSocialIcon{0%,100%{box-shadow:0 0 0 0 rgba(183,154,104,0)}50%{box-shadow:0 0 0 5px rgba(183,154,104,.13)}}
+@media(prefers-reduced-motion:reduce){.social-link,.social-icon{animation:none;transition:none}}
 .social-link strong{display:block;font-size:1rem;font-weight:600}
 .social-link small{display:block;color:var(--muted);font-size:.78rem}
 .cta{margin:0 clamp(18px,6vw,85px) 90px;background:#3b3730;color:white;padding:58px 30px;text-align:center}
