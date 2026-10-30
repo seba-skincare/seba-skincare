@@ -74,6 +74,17 @@ button.danger{background:#a94442}
 <button id="saveSettingsButton" onclick="saveSettings()">حفظ إعدادات الموقع</button>
 <a href="/preview.html" target="_blank" rel="noopener" style="display:block;text-align:center;padding:12px;margin-top:8px;border-radius:10px;background:#49362f;color:white;text-decoration:none;font-weight:bold">فتح معاينة الموقع قبل النشر ↗</a>
 </div>
+<div class="card" id="publishCard">
+<h3>مراجعة التعديلات قبل النشر 🚀</h3>
+<p class="hint">كل ما تحفظيه من هذه اللوحة يبقى في النسخة التجريبية فقط. عند الانتهاء افتحي طلب المراجعة لمشاهدة التغييرات ومناقشتها. لن يتغير الموقع العام إلا بعد اعتماد الطلب ودمجه بموافقتك.</p>
+<div style="background:#f8f1ed;border:1px solid #eadbd5;border-radius:12px;padding:12px;margin:10px 0">
+<strong>حالة المشروع:</strong> نسخة تجريبية — غير منشورة<br>
+<strong>فرع العمل:</strong> photo-upload-dashboard<br>
+<strong>الموقع الأساسي:</strong> محمي من التعديلات المباشرة
+</div>
+<a href="https://github.com/seba-skincare/seba-skincare/pull/1" target="_blank" rel="noopener" style="display:block;text-align:center;padding:13px;margin-top:8px;border-radius:10px;background:#49362f;color:white;text-decoration:none;font-weight:bold">فتح طلب المراجعة على GitHub ↗</a>
+<p class="hint">هذا الزر يفتح طلب المراجعة فقط، ولا ينشر أو يدمج أي تغيير تلقائياً.</p>
+</div>
 <p id="status" class="status" role="status" aria-live="polite"></p>
 <script>
 const DATA_URL="https://raw.githubusercontent.com/seba-skincare/seba-skincare/photo-upload-dashboard/data/services.json";
