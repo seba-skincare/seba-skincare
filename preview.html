@@ -35,6 +35,13 @@ button{font:inherit}
 .lang button.active{background:var(--ink);color:white;border-color:var(--ink)}
 .book{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:11px 19px;background:var(--ink);color:white;border-radius:3px;font-size:.92rem;transition:.25s}
 .book:hover{background:var(--rose-dark);transform:translateY(-2px)}
+/* أزرار الحجز: حركة لافتة وراقية تشجع الزائرة على الضغط */
+.book,.btn.dark{position:relative;isolation:isolate;overflow:hidden;animation:sebaBookingPulse 2.1s ease-in-out infinite;box-shadow:0 5px 18px rgba(76,55,43,.18)}
+.book:after,.btn.dark:after{content:"";position:absolute;inset:-30% auto -30% -55%;width:38%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.42),transparent);transform:skewX(-22deg);animation:sebaBookingShine 3.4s ease-in-out infinite;z-index:-1}
+.book:hover,.btn.dark:hover{animation-play-state:paused;transform:translateY(-4px) scale(1.045);box-shadow:0 10px 26px rgba(76,55,43,.27)}
+@keyframes sebaBookingPulse{0%,100%{transform:translateY(0) scale(1);box-shadow:0 5px 18px rgba(76,55,43,.16)}50%{transform:translateY(-3px) scale(1.045);box-shadow:0 9px 25px rgba(183,125,121,.34)}}
+@keyframes sebaBookingShine{0%,58%{left:-55%}82%,100%{left:125%}}
+@media(prefers-reduced-motion:reduce){.book,.btn.dark,.book:after,.btn.dark:after{animation:none;transition:none}}
 .hero{display:grid;grid-template-columns:1fr 1.05fr;min-height:650px;background:var(--cream);overflow:hidden}
 .hero-copy{padding:clamp(55px,9vw,130px) clamp(25px,8vw,115px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
 .kicker{font-family:"Heebo",sans-serif;text-transform:uppercase;letter-spacing:3px;color:var(--rose-dark);font-size:.78rem;font-weight:600}
