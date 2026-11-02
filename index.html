@@ -410,6 +410,62 @@ body{background:var(--paper);line-height:1.75}
  .seba-opening-offer .offer-discount strong{font-size:1.6rem!important}
 }
 
+
+/* Restore SEBA signature motion and make the header comfortable on phones */
+.brand img{
+  animation:sebaLogoShow 3.2s cubic-bezier(.45,.05,.55,.95) infinite!important;
+  transform-origin:center;
+  box-shadow:0 0 0 5px rgba(183,154,104,.14),0 8px 26px rgba(55,43,34,.16)!important;
+  will-change:transform;
+}
+.brand span{
+  animation:sebaNameGlow 3.8s ease-in-out infinite!important;
+  background:linear-gradient(100deg,#59463e 5%,#9b765d 32%,#d0ad7c 48%,#765344 68%,#59463e 95%)!important;
+  background-size:220% auto!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;
+  color:transparent!important;
+}
+.brand span:after{display:block!important;animation:sebaNameLine 3.8s ease-in-out infinite!important}
+#seba-cinematic{display:grid!important}
+@media(max-width:760px){
+  .topbar{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:10px!important;
+    padding:12px 14px!important;
+    min-height:0!important;
+  }
+  .brand{grid-row:1;justify-self:center;gap:10px!important}
+  .brand img{width:54px!important;height:54px!important;flex:0 0 54px!important}
+  .brand span{font-size:1.35rem!important;letter-spacing:2px!important}
+  .top-actions{
+    grid-row:2;display:flex!important;width:100%;justify-content:center!important;
+    flex-wrap:wrap;gap:10px!important;
+  }
+  .lang{display:flex;gap:7px}
+  .lang button{padding:8px 14px!important}
+  .book{padding:10px 16px!important;font-size:.9rem!important}
+  .nav{
+    grid-row:3;order:initial!important;width:100%!important;
+    display:flex!important;justify-content:center!important;
+    flex-wrap:wrap;gap:8px 18px!important;font-size:.84rem!important;
+  }
+}
+@media(max-width:380px){
+  .topbar{padding:10px 10px!important}
+  .brand img{width:48px!important;height:48px!important;flex-basis:48px!important}
+  .brand span{font-size:1.2rem!important}
+  .top-actions{gap:7px!important}
+  .lang button{padding:7px 10px!important;font-size:.82rem!important}
+  .book{padding:8px 11px!important;font-size:.82rem!important}
+  .nav{gap:7px 13px!important;font-size:.8rem!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .brand img,.brand span,.brand span:after{animation:none!important}
+}
+
 </style>
 </head>
 <body>
