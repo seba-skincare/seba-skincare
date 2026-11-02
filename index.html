@@ -355,13 +355,53 @@ body{background:var(--paper);line-height:1.75}
 }
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 
+
+/* FINAL FIX: opening offer layout + clear SEBA wordmark */
+.seba-opening-offer{
+ display:grid!important;
+ grid-template-columns:180px minmax(220px,1fr) 118px auto!important;
+ grid-template-areas:"art copy discount action"!important;
+ align-items:center!important;
+ gap:24px!important;
+ min-width:0;
+ padding:30px clamp(18px,5vw,68px)!important;
+}
+.seba-opening-offer .offer-art{grid-area:art!important;width:180px!important;height:126px!important;max-width:100%;object-fit:cover;border-radius:8px;display:block}
+.seba-opening-offer .offer-copy{grid-area:copy!important;min-width:0;text-align:right!important}
+.seba-opening-offer .offer-copy h2{margin:7px 0 9px!important;line-height:1.5!important;overflow-wrap:anywhere}
+.seba-opening-offer .offer-copy p{line-height:1.8!important}
+.seba-opening-offer .offer-discount{grid-area:discount!important;width:112px!important;height:112px!important;min-width:112px;transform:none!important}
+.seba-opening-offer .offer-discount strong{line-height:1.1!important}
+.seba-opening-offer .offer-discount span{text-align:center;line-height:1.35;padding:0 6px}
+.seba-opening-offer .offer-details{grid-area:action!important;white-space:normal!important;min-width:132px;max-width:160px;line-height:1.6!important;border-radius:6px;padding:13px 15px!important}
+.brand{gap:11px!important}
+.brand span{font-family:"Heebo",sans-serif!important;font-size:1.55rem!important;font-weight:800!important;letter-spacing:2.5px!important;text-transform:uppercase!important;color:#76564b!important;-webkit-text-fill-color:#76564b!important;background:none!important;filter:none!important;animation:none!important;text-shadow:0 2px 0 #fff,0 5px 15px rgba(137,95,91,.18)!important}
+.brand span:after{content:"" " !important;display:none!important}
+@media(max-width:900px){
+ .seba-opening-offer{grid-template-columns:minmax(0,1fr) 108px!important;grid-template-areas:"art art" "copy discount" "action action"!important;gap:15px 18px!important;padding:22px 18px!important}
+ .seba-opening-offer .offer-art{width:100%!important;height:155px!important;object-position:center 42%}
+ .seba-opening-offer .offer-copy{grid-column:auto!important;grid-row:auto!important}
+ .seba-opening-offer .offer-discount{width:100px!important;height:100px!important;min-width:100px;justify-self:center}
+ .seba-opening-offer .offer-details{grid-column:auto!important;grid-row:auto!important;width:100%!important;max-width:none!important}
+}
+@media(max-width:520px){
+ .seba-opening-offer{grid-template-columns:minmax(0,1fr) 88px!important;gap:12px!important;padding:18px 15px!important}
+ .seba-opening-offer .offer-art{height:130px!important}
+ .seba-opening-offer .offer-copy h2{font-size:1.22rem!important}
+ .seba-opening-offer .offer-copy p{font-size:.91rem!important}
+ .seba-opening-offer .offer-discount{width:84px!important;height:84px!important;min-width:84px}
+ .seba-opening-offer .offer-discount strong{font-size:1.9rem!important}
+ .seba-opening-offer .offer-discount span{font-size:.68rem!important}
+ .brand span{font-size:1.3rem!important;letter-spacing:2px!important}
+}
+
 </style>
 </head>
 <body>
 <div id="seba-cinematic" aria-label="Seba skincare opening" role="presentation"><div class="seba-cinema-inner"><img class="seba-cinema-logo" src="IMG_%D9%A2%D9%A0%D9%A2%D9%A6%D9%A1%D9%A0%D9%A2%D9%A9_%D9%A2%D9%A1%D9%A0%D9%A5%D9%A0%D9%A5.jpg" alt="Seba"><div class="seba-cinema-title">SEBA</div><div class="seba-cinema-line"></div><div class="seba-cinema-sub">SKINCARE & BEAUTY</div></div></div>
 
 <header class="topbar">
-  <a class="brand" href="#home"><img src="IMG_%D9%A2%D9%A0%D9%A2%D9%A6%D9%A1%D9%A0%D9%A2%D9%A9_%D9%A2%D9%A1%D9%A0%D9%A5%D9%A0%D9%A5.jpg" alt="Seba.skincare"><span>Seba.skincare</span></a>
+  <a class="brand" href="#home"><img src="IMG_%D9%A2%D9%A0%D9%A2%D9%A6%D9%A1%D9%A0%D9%A2%D9%A9_%D9%A2%D9%A1%D9%A0%D9%A5%D9%A0%D9%A5.jpg" alt="Seba.skincare"><span>SEBA</span></a>
   <nav class="nav" aria-label="التنقل"><a href="#home" data-ar="الرئيسية" data-he="ראשי">الرئيسية</a><a href="#services" data-ar="الخدمات" data-he="השירותים">الخدمات</a><a href="#about" data-ar="عن صبا" data-he="על סבא">عن صبا</a><a href="#contact" data-ar="تواصل معنا" data-he="יצירת קשר">تواصل معنا</a></nav>
   <div class="top-actions">
     <div class="lang"><button class="active" id="arBtn" type="button">عربي</button><button id="heBtn" type="button">עברית</button></div>
