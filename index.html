@@ -468,6 +468,34 @@ body{background:var(--paper);line-height:1.75}
 @media(max-width:760px){.topbar{width:100%;max-width:100%;overflow:visible}.brand{max-width:100%;min-width:0}.brand span{font-size:1.3rem!important;letter-spacing:1.5px!important}.top-actions,.nav{min-width:0;max-width:100%}}
 @media(max-width:380px){.brand span{font-size:1.12rem!important;letter-spacing:1px!important}}
 
+
+/* Refined SEBA header and booking action */
+.topbar{min-height:94px;padding:12px clamp(18px,5vw,76px);gap:clamp(14px,2.5vw,34px)}
+.brand{gap:15px;min-width:max-content}
+.brand img{width:66px;height:66px;border-width:1.5px;padding:3px}
+.brand span{font-size:1.38rem;letter-spacing:2.4px}
+.nav{gap:clamp(16px,2.4vw,32px);font-weight:500}
+.top-actions{gap:13px}
+.book{min-height:48px;padding:10px 17px;border-radius:999px;background:linear-gradient(125deg,#57433a,#806052);gap:9px;box-shadow:0 7px 20px rgba(86,61,49,.16);white-space:nowrap}
+.book-icon{width:29px;height:29px;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.16);flex:0 0 29px}
+.book-icon svg{width:17px;height:17px}
+.book-label{font-weight:700}
+.book-arrow{font-size:1rem;opacity:.8;transition:transform .25s}
+.book:hover .book-arrow{transform:translate(2px,-2px)}
+@media(max-width:950px){.topbar{gap:12px}.brand{gap:11px}.brand img{width:58px;height:58px}.brand span{font-size:1.25rem}.top-actions{gap:9px}}
+@media(max-width:760px){
+ .topbar{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:12px!important;padding:14px 14px 12px!important}
+ .brand{grid-row:auto;justify-self:auto;gap:12px!important}
+ .brand img{width:56px!important;height:56px!important;flex:0 0 56px!important}
+ .brand span{font-size:1.38rem!important;letter-spacing:2px!important}
+ .top-actions{grid-row:auto;display:flex!important;width:100%;justify-content:center!important;align-items:center;gap:12px!important;flex-wrap:nowrap}
+ .book{min-height:44px;padding:8px 15px!important;font-size:.9rem!important}
+ .book-icon{width:26px;height:26px;flex-basis:26px}
+ .lang button{padding:7px 11px!important}
+ .nav{grid-row:auto;order:initial!important;width:100%!important;display:flex!important;justify-content:center!important;flex-wrap:wrap;gap:7px 19px!important;font-size:.86rem!important}
+}
+@media(max-width:380px){.topbar{padding:12px 10px!important;gap:10px!important}.brand img{width:49px!important;height:49px!important;flex-basis:49px!important}.brand span{font-size:1.2rem!important;letter-spacing:1.4px!important}.top-actions{gap:8px!important}.book{padding:7px 11px!important;font-size:.82rem!important;gap:7px}.book-icon{width:23px;height:23px;flex-basis:23px}.nav{gap:6px 13px!important;font-size:.8rem!important}}
+
 </style>
 </head>
 <body>
@@ -478,7 +506,7 @@ body{background:var(--paper);line-height:1.75}
   <nav class="nav" aria-label="التنقل"><a href="#home" data-ar="الرئيسية" data-he="ראשי">الرئيسية</a><a href="#services" data-ar="الخدمات" data-he="השירותים">الخدمات</a><a href="#about" data-ar="عن صبا" data-he="על סבא">عن صبا</a><a href="#contact" data-ar="تواصل معنا" data-he="יצירת קשר">تواصل معنا</a></nav>
   <div class="top-actions">
     <div class="lang"><button class="active" id="arBtn" type="button">عربي</button><button id="heBtn" type="button">עברית</button></div>
-    <a class="book" href="https://wa.me/972526732880" target="_blank" rel="noopener"><span data-ar="احجزي موعدك" data-he="קביעת תור">احجزي موعدك</span> <span aria-hidden="true">↗</span></a>
+    <a class="book" href="https://wa.me/972526732880" target="_blank" rel="noopener"><span class="book-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5.5" width="17" height="15" rx="3" stroke="currentColor" stroke-width="1.7"/><path d="M7.5 3.5v4M16.5 3.5v4M4 9.5h16M8 13h2m4 0h2m-8 3h2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="book-label" data-ar="احجزي موعدك" data-he="קביעת תור">احجزي موعدك</span><span class="book-arrow" aria-hidden="true">↗</span></a>
   </div>
 </header>
 
