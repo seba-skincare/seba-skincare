@@ -1,101 +1,30 @@
-<!doctype html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#f7f3ed">
-<title>تفاصيل الخدمة | Seba.skincare</title>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700&family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root{--ink:#292722;--muted:#77736b;--cream:#f7f3ed;--paper:#fffdfa;--rose:#865653;--gold:#b79a68;--line:#e8dfd3}
-*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Tajawal,sans-serif;line-height:1.9}
-header{padding:17px clamp(18px,6vw,80px);display:flex;justify-content:space-between;align-items:center;background:#fffdfa;border-bottom:1px solid var(--line)}
-.brand{font:700 1.05rem Heebo,sans-serif;letter-spacing:.4px;color:#59463e}
-.back{color:var(--rose);text-decoration:none;font-weight:600}
-main{max-width:1050px;margin:45px auto;padding:0 22px 70px}
-.hero{display:grid;grid-template-columns:1fr 1fr;gap:42px;align-items:center}
-.photo{height:390px;background:var(--cream);overflow:hidden;border-radius:3px}
-.photo img{width:100%;height:100%;object-fit:cover}
-.kicker{color:var(--gold);letter-spacing:2px;font:600 .75rem Heebo,sans-serif}
-h1{font-size:clamp(2rem,4vw,3.2rem);font-weight:600;line-height:1.3;margin:10px 0}
-.intro{font-size:1.12rem;color:var(--muted)}
-.details{margin-top:42px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.detail{padding:22px 24px;background:var(--cream);border:1px solid var(--line)}
-.detail h2{font-size:1.2rem;font-weight:600;margin:0 0 7px;color:var(--rose)}
-.detail p{margin:0;color:#615b53}
-.note{margin-top:18px;padding:16px 20px;border-right:3px solid var(--gold);background:#fffaf3;color:#665d52}
-.actions{margin-top:32px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
-.book{display:inline-block;padding:12px 25px;background:var(--ink);color:white;text-decoration:none;border-radius:3px}
-.book:hover{background:var(--rose)}
-.small{font-size:.88rem;color:var(--muted)}
-@media(max-width:720px){main{margin:25px auto}.hero{grid-template-columns:1fr;gap:20px}.photo{height:270px}.details{grid-template-columns:1fr;gap:12px}}
-</style>
-</head>
-<body>
-<header><a class="brand" href="./">Seba.skincare</a><a class="back" id="back" href="./">العودة إلى الخدمات ←</a></header>
-<main>
-<section class="hero">
-<div class="photo"><img id="photo" alt="" /></div>
-<div><span class="kicker">SEBA SKINCARE</span><h1 id="title">تفاصيل الخدمة</h1><p class="intro" id="intro"></p>
-<div class="actions"><a class="book" id="book" href="https://wa.me/972526732880" target="_blank" rel="noopener">احجزي موعدكِ عبر واتساب</a><span class="small" id="bookingNote">يمكنكِ مراسلتنا للاستفسار عن تفاصيل الجلسة.</span></div></div>
-</section>
-<section class="details" id="details"></section>
-<p class="note" id="note"></p>
-</main>
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>تفاصيل الخدمة | Seba.skincare</title><link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700&display=swap" rel="stylesheet"><style>
+:root{--ink:#302b28;--rose:#916b66;--gold:#b99b70;--cream:#f8f4ef;--line:#e9e0d7}*{box-sizing:border-box}body{margin:0;background:#fffdfa;color:var(--ink);font-family:Tajawal,sans-serif;line-height:1.9}header{padding:16px 6%;display:flex;justify-content:space-between;border-bottom:1px solid var(--line)}a{color:var(--rose);text-decoration:none;font-weight:600}.brand{color:#51433d;font-size:19px}main{max-width:1050px;margin:40px auto;padding:0 22px 65px}.hero{display:grid;grid-template-columns:1fr 1fr;gap:38px;align-items:center}.photo{height:390px;background:var(--cream);overflow:hidden}.photo img{width:100%;height:100%;object-fit:cover;display:block}.eyebrow{color:var(--gold);letter-spacing:2px;font-size:13px}h1{font-size:clamp(30px,4vw,48px);line-height:1.35;margin:8px 0 14px}.intro{font-size:19px;color:#706861}.details{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:38px}.detail{background:var(--cream);border:1px solid var(--line);padding:20px 23px}.detail h2{font-size:20px;color:var(--rose);margin:0 0 6px}.detail p{margin:0;color:#615b55}.note{margin-top:18px;padding:14px 18px;background:#fff9f1;border-right:3px solid var(--gold);color:#655d54}.book{display:inline-block;background:var(--ink);color:white;padding:11px 24px;margin-top:17px}.book:hover{background:var(--rose)}@media(max-width:720px){main{margin:24px auto}.hero{grid-template-columns:1fr;gap:20px}.photo{height:270px}.details{grid-template-columns:1fr}}
+</style></head><body><header><a class="brand" href="./">Seba.skincare</a><a id="back" href="./">العودة إلى الخدمات ←</a></header><main><section class="hero"><div class="photo"><img id="photo" alt="صورة الخدمة"></div><div><span class="eyebrow">SEBA SKINCARE</span><h1 id="title">تفاصيل الخدمة</h1><p class="intro" id="intro"></p><a class="book" id="book" href="https://wa.me/972526732880">احجزي موعدكِ عبر واتساب</a></div></section><section class="details" id="details"></section><p class="note" id="note"></p></main>
 <script>
-(async()=>{
+(async function(){
 const params=new URLSearchParams(location.search),slug=params.get("service"),he=params.get("lang")==="he";
-const copy={
-"wax-hair-removal":{
-ar:["إزالة الشعر بالشمع","جلسة لإزالة الشعر من المنطقة المطلوبة باستخدام الشمع المناسب، مع الاهتمام بنظافة البشرة وراحتها قبل الجلسة وبعدها.",[
-["كيف تتم الجلسة؟","نبدأ بتنظيف المنطقة وتجفيفها، ثم تُزال الشعيرات بالشمع بطريقة مناسبة للمنطقة. بعد ذلك نستخدم عناية مهدئة بحسب حاجة البشرة."],
-["ما الذي يُفضّل قبل الجلسة؟","يفضّل أن تكون البشرة نظيفة وجافة، وأن يكون طول الشعر مناسباً للإزالة. أخبرينا إذا كانت بشرتك حساسة أو تستخدمين منتجات تقشير."],
-["العناية بعد الجلسة","قد يظهر احمرار خفيف ومؤقت. يُفضّل تجنّب الحرارة العالية والاحتكاك والعطور على المنطقة لفترة قصيرة، واتباع إرشادات المختصة."],
-["متى نؤجل الجلسة؟","إذا كانت المنطقة مجروحة أو ملتهبة أو متهيجة بشدة، فمن الأفضل تأجيل الجلسة حتى تهدأ البشرة."]
-],"ملاحظة: الصور المعروضة للتوضيح، وقد تختلف خطوات الجلسة بحسب المنطقة وطبيعة البشرة."],
-"mesotherapy":{
-ar:["ميزوثيرابي","إجراء تجميلي تختلف تفاصيله بحسب التقنية والمواد المستخدمة والهدف من الجلسة. يتم تحديد مدى ملاءمته بعد استشارة وتقييم مسبق.",[
-["قبل البدء","تشرح المختصة طبيعة الإجراء والمواد المستخدمة والخطوات المتوقعة، وتراجع معكِ المعلومات الصحية والحساسية والأدوية."],
-["هل يناسب الجميع؟","ليس بالضرورة. يعتمد ذلك على الحالة الصحية والبشرة ونوع التقنية. لا بد من تقييم فردي قبل اتخاذ القرار."],
-["ما الذي ينبغي معرفته؟","قد تختلف الآثار الجانبية وفترة التعافي باختلاف الطريقة والمواد. اسألي عن المخاطر والعناية اللاحقة والنتائج الواقعية."],
-["اختيار مقدّم الخدمة","ينبغي إجراء أي تقنية تتضمن حقناً أو اختراقاً للجلد لدى ممارس مؤهل ومرخّص، ووفق الأنظمة المحلية."]
-],"لا يتم تأكيد الحجز قبل توضيح نوع الميزوثيرابي والتأكد من ملاءمته لكِ."],
-"hydrafacial":{
-ar:["هايدروفيشل","جلسة عناية للوجه تهدف إلى تنظيف البشرة وترطيبها، وقد تجمع بين التنظيف والتقشير اللطيف واستخلاص الشوائب وفق الجهاز والخطوات المعتمدة.",[
-["كيف تتم الجلسة؟","تُقيّم البشرة أولاً، ثم تُجرى خطوات التنظيف والعناية المناسبة. تختلف التفاصيل بحسب حالة البشرة والجهاز المستخدم."],
-["ما الفائدة المتوقعة؟","قد تساعد الجلسة على منح البشرة مظهراً أنظف وأكثر انتعاشاً وترطيباً. وتختلف النتيجة من بشرة إلى أخرى."],
-["لمن تناسب؟","تُحدّد الملاءمة بعد معرفة نوع البشرة وحساسيتها، ووجود تهيّج أو مشكلات جلدية حالية."],
-["بعد الجلسة","اتبعي إرشادات العناية التي تحصلين عليها، واستخدمي واقي الشمس وتجنّبي المنتجات القوية إذا أوصت المختصة بذلك."]
-],"إذا كانت بشرتك متهيجة أو لديكِ حالة جلدية، أخبرينا قبل تحديد الموعد."],
-"deep-cleansing":{
-ar:["تنظيف عميق للبشرة","جلسة مخصصة لتنظيف الوجه والعناية بمظهر البشرة، مع اختيار الخطوات المناسبة لنوعها واحتياجاتها.",[
-["ماذا تتضمن؟","قد تشمل تنظيف البشرة وإزالة الشوائب السطحية وتقشيراً لطيفاً، وقد تُضاف خطوات أخرى بحسب تقييم البشرة."],
-["لماذا نختارها؟","لمن ترغب في عناية منظمة بالبشرة وتنظيفها، مع مراعاة نوعها ومدى حساسيتها."],
-["قبل الجلسة","أخبرينا عن حساسية البشرة أو استخدام علاجات ومنتجات فعالة، مثل المقشرات أو الريتينول."],
-["بعد الجلسة","قد يحدث احمرار بسيط ومؤقت. يُفضّل الالتزام بتعليمات العناية واستخدام واقي الشمس."]
-],"تُختار خطوات التنظيف بما يناسب البشرة، ولا تُستخدم خطوة غير ملائمة لمجرد أنها جزء من روتين ثابت."]
-},
-"wax-hair-removal-he":{he:["הסרת שיער בשעווה","טיפול להסרת שיער מהאזור המבוקש באמצעות שעווה מתאימה, תוך הקפדה על ניקיון העור ונוחותו לפני הטיפול ואחריו.",[["איך מתבצע הטיפול?","מנקים ומייבשים את האזור, מסירים את השיער בשעווה המתאימה לאזור ומסיימים בטיפוח מרגיע לפי הצורך."],["לפני הטיפול","מומלץ להגיע עם עור נקי ויבש. עדכני אותנו אם העור רגיש או אם את משתמשת בתכשירי פילינג."],["אחרי הטיפול","ייתכן אדמומיות קלה וזמנית. מומלץ להימנע לזמן קצר מחום, חיכוך ובישום באזור ולפעול לפי הנחיות המטפלת."],["מתי לדחות?","אם האזור פצוע, מודלק או מגורה מאוד, עדיף לדחות את הטיפול."]],"התמונות להמחשה בלבד." ]},
-"mesotherapy-he":{he:["מזותרפיה","הליך אסתטי שפרטיו משתנים לפי הטכניקה, החומרים ומטרת הטיפול. התאמתו נקבעת לאחר ייעוץ והערכה מקדימה.",[["לפני תחילת הטיפול","המטפלת תסביר על ההליך, החומרים והשלבים הצפויים ותברר רגישויות, מצב בריאותי ותרופות."],["האם הוא מתאים לכולן?","לא בהכרח. ההתאמה תלויה במצב הבריאותי, בעור ובטכניקה, ולכן נדרשת הערכה אישית."],["מה חשוב לדעת?","תופעות הלוואי וזמן ההחלמה משתנים לפי השיטה והחומרים. חשוב לברר סיכונים והנחיות לאחר הטיפול."],["בחירת מטפל/ת","כל הליך הכולל הזרקה או חדירה לעור צריך להתבצע בידי איש מקצוע מוסמך ובעל רישיון ובהתאם לחוק המקומי."]],"יש לברר את סוג המזותרפיה ואת התאמתו לפני קביעת התור."]},
-"hydrafacial-he":{he:["הידרופיישל","טיפול פנים שמטרתו ניקוי והענקת לחות לעור. בהתאם למכשיר ולמצב העור, הוא עשוי לשלב ניקוי, פילינג עדין והוצאת שאריות.",[["איך מתבצע הטיפול?","מתחילים בהערכת העור, ולאחר מכן מבצעים את שלבי הניקוי והטיפוח המתאימים."],["למה אפשר לצפות?","הטיפול עשוי להעניק לעור מראה נקי ורענן יותר ולחות. התוצאה משתנה מאדם לאדם."],["למי מתאים?","ההתאמה נקבעת לפי סוג העור, רגישותו והאם קיימים גירוי או בעיות עור פעילות."],["לאחר הטיפול","מומלץ לפעול לפי הנחיות המטפלת ולהשתמש בהגנה מהשמש."]],"אם העור מגורה או שיש מצב עור פעיל, עדכני אותנו לפני קביעת התור."]},
-"deep-cleansing-he":{he:["ניקוי עמוק","טיפול פנים לניקוי ולטיפוח מראה העור, תוך בחירת השלבים המתאימים לסוג העור ולצרכיו.",[["מה כולל הטיפול?","הטיפול עשוי לכלול ניקוי, הסרת שאריות שטחיות ופילינג עדין, בהתאם להערכת העור."],["למה לבחור בו?","למי שמעוניינת בטיפוח מסודר ובניקוי העור תוך התחשבות ברגישותו."],["לפני הטיפול","עדכני אותנו לגבי רגישויות או שימוש בתכשירים פעילים כמו פילינג או רטינול."],["אחרי הטיפול","ייתכן אדמומיות קלה וזמנית. מומלץ לפעול לפי הנחיות הטיפוח ולהשתמש בהגנה מהשמש."]],"שלבי הטיפול נבחרים לפי מצב העור ולא לפי שגרה קבועה."]}
-};
-const item=(await fetch("https://raw.githubusercontent.com/seba-skincare/seba-skincare/main/data/services.json").then(r=>r.json())).services.find(x=>x.slug===slug);
-if(!item){document.getElementById("title").textContent=he?"השירות לא נמצא":"الخدمة غير متاحة";return;}
-const c=copy[slug+(he?"-he":"")]||copy[slug];
-const title=he?(item.titleHe||item.title):item.title;
+const content={
+"wax-hair-removal":{title:"إزالة الشعر بالشمع",intro:"جلسة لإزالة الشعر من المنطقة المطلوبة باستخدام الشمع المناسب، مع الاهتمام بنظافة البشرة وراحتها قبل الجلسة وبعدها.",sections:[["كيف تتم الجلسة؟","نبدأ بتنظيف المنطقة وتجفيفها، ثم تتم إزالة الشعر بالشمع بطريقة مناسبة للمنطقة، وتُختتم الجلسة بعناية مهدئة بحسب حاجة البشرة."],["قبل الجلسة","يفضّل أن تكون البشرة نظيفة وجافة. أخبرينا إذا كانت بشرتك حساسة أو تستخدمين منتجات تقشير، حتى نراعي ذلك عند تحديد الموعد."],["بعد الجلسة","قد يظهر احمرار خفيف ومؤقت. يُفضّل تجنّب الحرارة العالية والاحتكاك والعطور على المنطقة لفترة قصيرة، واتباع إرشادات المختصة."],["متى نؤجل الجلسة؟","إذا كانت المنطقة مجروحة أو ملتهبة أو متهيجة بشدة، فمن الأفضل تأجيل الجلسة حتى تهدأ البشرة."]],note:"تختلف طريقة إزالة الشعر بحسب المنطقة وطبيعة البشرة."},
+"mesotherapy":{title:"ميزوثيرابي",intro:"إجراء تجميلي تختلف تفاصيله بحسب التقنية والمواد المستخدمة والهدف من الجلسة. يتم تحديد مدى ملاءمته بعد استشارة وتقييم مسبق.",sections:[["ما طبيعة الجلسة؟","تختلف طريقة الميزوثيرابي والمواد المستخدمة بحسب النوع والهدف. تشرح المختصة تفاصيل الإجراء والخطوات المتوقعة قبل البدء."],["التقييم قبل الجلسة","تتم مراجعة حالة البشرة والمعلومات الصحية والحساسية والأدوية، لتحديد ما إذا كان الإجراء مناسباً."],["ما الذي ينبغي معرفته؟","قد تختلف الآثار الجانبية وفترة التعافي باختلاف الطريقة والمواد. من المهم السؤال عن المخاطر والعناية اللاحقة والنتائج الواقعية."],["اختيار مقدّم الخدمة","ينبغي إجراء أي تقنية تتضمن حقناً أو اختراقاً للجلد لدى ممارس مؤهل ومرخّص، ووفق الأنظمة المحلية."]],note:"لا يتم تأكيد الحجز قبل توضيح نوع الميزوثيرابي والتأكد من ملاءمته."},
+"hydrafacial":{title:"هايدروفيشل",intro:"جلسة عناية للوجه تهدف إلى تنظيف البشرة وترطيبها، وقد تجمع بين التنظيف والتقشير اللطيف واستخلاص الشوائب وفق الجهاز والخطوات المعتمدة.",sections:[["كيف تتم الجلسة؟","تُقيّم البشرة أولاً، ثم تُجرى خطوات التنظيف والعناية المناسبة. تختلف التفاصيل بحسب حالة البشرة والجهاز المستخدم."],["ما الفائدة المتوقعة؟","قد تساعد الجلسة على منح البشرة مظهراً أنظف وأكثر انتعاشاً وترطيباً. وتختلف النتيجة من بشرة إلى أخرى."],["لمن تناسب؟","تُحدّد الملاءمة بعد معرفة نوع البشرة وحساسيتها، ووجود تهيّج أو مشكلات جلدية حالية."],["بعد الجلسة","اتبعي إرشادات العناية التي تحصلين عليها، واستخدمي واقي الشمس وتجنّبي المنتجات القوية إذا أوصت المختصة بذلك."]],note:"إذا كانت بشرتك متهيجة أو لديكِ حالة جلدية، أخبرينا قبل تحديد الموعد."},
+"deep-cleansing":{title:"تنظيف عميق للبشرة",intro:"جلسة مخصصة لتنظيف الوجه والعناية بمظهر البشرة، مع اختيار الخطوات المناسبة لنوعها واحتياجاتها.",sections:[["ماذا تتضمن الجلسة؟","قد تشمل تنظيف البشرة وإزالة الشوائب السطحية وتقشيراً لطيفاً، وقد تُضاف خطوات أخرى بحسب تقييم البشرة."],["ما الهدف منها؟","تساعد على تنظيف البشرة والعناية بمظهرها، مع مراعاة نوعها ومدى حساسيتها."],["قبل الجلسة","أخبرينا عن حساسية البشرة أو استخدام علاجات ومنتجات فعالة، مثل المقشرات أو الريتينول."],["بعد الجلسة","قد يحدث احمرار بسيط ومؤقت. يُفضّل الالتزام بتعليمات العناية واستخدام واقي الشمس."]],note:"تُختار خطوات التنظيف بما يناسب البشرة، ولا تُستخدم خطوة غير ملائمة لحالة الجلد. "}};
+const heContent={
+"wax-hair-removal":{title:"הסרת שיער בשעווה",intro:"טיפול להסרת שיער מהאזור המבוקש באמצעות שעווה מתאימה, תוך הקפדה על ניקיון העור ונוחותו לפני הטיפול ואחריו.",sections:[["איך מתבצע הטיפול?","מנקים ומייבשים את האזור, מסירים את השיער בשעווה המתאימה לאזור ומסיימים בטיפוח מרגיע לפי הצורך."],["לפני הטיפול","מומלץ להגיע עם עור נקי ויבש. עדכני אותנו אם העור רגיש או אם את משתמשת בתכשירי פילינג."],["אחרי הטיפול","ייתכן אדמומיות קלה וזמנית. מומלץ להימנע לזמן קצר מחום, חיכוך ובישום באזור ולפעול לפי הנחיות המטפלת."],["מתי לדחות?","אם האזור פצוע, מודלק או מגורה מאוד, עדיף לדחות את הטיפול."]],note:"אופן הטיפול עשוי להשתנות בהתאם לאזור ולסוג העור."},
+"mesotherapy":{title:"מזותרפיה",intro:"הליך אסתטי שפרטיו משתנים לפי הטכניקה, החומרים ומטרת הטיפול. התאמתו נקבעת לאחר ייעוץ והערכה מקדימה.",sections:[["מה כולל הטיפול?","השיטה והחומרים משתנים בהתאם לסוג המזותרפיה ולמטרת הטיפול. המטפלת תסביר על השלבים לפני תחילת ההליך."],["הערכה מקדימה","נבדקים מצב העור, מידע בריאותי, רגישויות ותרופות כדי לקבוע אם הטיפול מתאים."],["מה חשוב לדעת?","תופעות הלוואי וזמן ההחלמה משתנים לפי השיטה והחומרים. חשוב לברר סיכונים והנחיות לאחר הטיפול."],["בחירת מטפל/ת","הליך הכולל הזרקה או חדירה לעור צריך להתבצע בידי איש מקצוע מוסמך ובעל רישיון ובהתאם לחוק המקומי."]],note:"יש לברר את סוג המזותרפיה ואת התאמתו לפני קביעת התור."},
+"hydrafacial":{title:"הידרופיישל",intro:"טיפול פנים שמטרתו ניקוי והענקת לחות לעור. בהתאם למכשיר ולמצב העור, הוא עשוי לשלב ניקוי, פילינג עדין והוצאת שאריות.",sections:[["איך מתבצע הטיפול?","מתחילים בהערכת העור, ולאחר מכן מבצעים את שלבי הניקוי והטיפוח המתאימים."],["למה אפשר לצפות?","הטיפול עשוי להעניק לעור מראה נקי ורענן יותר ולחות. התוצאה משתנה מאדם לאדם."],["למי מתאים?","ההתאמה נקבעת לפי סוג העור, רגישותו והאם קיימים גירוי או בעיות עור פעילות."],["לאחר הטיפול","מומלץ לפעול לפי הנחיות המטפלת ולהשתמש בהגנה מהשמש."]],note:"אם העור מגורה או שיש מצב עור פעיל, עדכני אותנו לפני קביעת התור."},
+"deep-cleansing":{title:"ניקוי עמוק",intro:"טיפול פנים לניקוי ולטיפוח מראה העור, תוך בחירת השלבים המתאימים לסוג העור ולצרכיו.",sections:[["מה כולל הטיפול?","הטיפול עשוי לכלול ניקוי, הסרת שאריות שטחיות ופילינג עדין, בהתאם להערכת העור."],["מה מטרת הטיפול?","הטיפול מסייע בניקוי ובטיפוח מראה העור תוך התחשבות בסוג העור וברגישותו."],["לפני הטיפול","עדכני אותנו לגבי רגישויות או שימוש בתכשירים פעילים כמו פילינג או רטינול."],["אחרי הטיפול","ייתכן אדמומיות קלה וזמנית. מומלץ לפעול לפי הנחיות הטיפוח ולהשתמש בהגנה מהשמש."]],note:"שלבי הטיפול נבחרים לפי מצב העור."}};
+const services=await fetch("https://raw.githubusercontent.com/seba-skincare/seba-skincare/main/data/services.json").then(r=>{if(!r.ok)throw Error("services");return r.json()});
+const item=services.services.find(x=>x.slug===slug),info=(he?heContent:content)[slug];
+if(!item||!info){document.getElementById("title").textContent="الخدمة غير متاحة";return;}
 document.documentElement.lang=he?"he":"ar";
-document.getElementById("title").textContent=c[he?"he":"ar"][0]||title;
-document.getElementById("intro").textContent=c[he?"he":"ar"][1]||item.description;
-const img=document.getElementById("photo");img.src=item.image;img.alt=title;
+document.getElementById("title").textContent=info.title;
+document.getElementById("intro").textContent=info.intro;
+const img=document.getElementById("photo");img.src=item.image;img.alt=info.title;img.onerror=()=>{img.style.display="none";document.querySelector(".photo").style.display="none";};
 document.getElementById("back").textContent=he?"חזרה לשירותים ←":"العودة إلى الخدمات ←";
-document.getElementById("back").href="./";
 document.getElementById("book").textContent=he?"לתיאום תור בוואטסאפ":"احجزي موعدكِ عبر واتساب";
-document.getElementById("bookingNote").textContent=he?"אפשר לפנות אלינו לשאלות ופרטים נוספים.":"يمكنكِ مراسلتنا للاستفسار عن تفاصيل الجلسة.";
-document.getElementById("note").textContent=c[he?"he":"ar"][3];
-document.getElementById("details").dir=he?"rtl":"rtl";
-c[he?"he":"ar"][2].forEach(([heading,body])=>{const article=document.createElement("article");article.className="detail";const h=document.createElement("h2");h.textContent=heading;const p=document.createElement("p");p.textContent=body;article.append(h,p);document.getElementById("details").append(article);});
-document.getElementById("book").href="https://wa.me/972526732880?text="+encodeURIComponent(he?"שלום, אשמח לקבל פרטים ולקבוע תור עבור "+title:"مرحباً صبا، أرغب بالاستفسار وحجز موعد لخدمة "+title);
-document.title=title+" | Seba.skincare";
-})();
-</script>
-</body></html>
+document.getElementById("book").href="https://wa.me/972526732880?text="+encodeURIComponent((he?"שלום, אשמח לקבל פרטים על ":"مرحباً، أرغب بالاستفسار عن خدمة ")+info.title);
+const details=document.getElementById("details");info.sections.forEach(([h,p])=>{const box=document.createElement("article");box.className="detail";const head=document.createElement("h2");head.textContent=h;const para=document.createElement("p");para.textContent=p;box.append(head,para);details.append(box);});
+document.getElementById("note").textContent=info.note;document.title=info.title+" | Seba.skincare";
+})().catch(()=>{document.getElementById("title").textContent="تعذر تحميل تفاصيل الخدمة. يرجى تحديث الصفحة.";});
+</script></body></html>
