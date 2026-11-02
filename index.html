@@ -425,7 +425,7 @@ heBtn.addEventListener('click', () => setLanguage('he'));
     const selected=select.value;
     select.replaceChildren(new Option(placeholder,""));
     list.forEach(item=>{
-     const title=String(item.title||"").trim();
+     const title=String(selector.includes("-he")?(item.titleHe||item.title):(item.title||"")).trim();
      if(title)select.add(new Option(title,title));
     });
     if(extra)select.add(new Option(extra,extra));
@@ -447,8 +447,8 @@ heBtn.addEventListener('click', () => setLanguage('he'));
    }
    const copy=document.createElement("div");copy.className="service-copy";
    const small=document.createElement("small");small.textContent=String(i+1).padStart(2,"0")+" / SEBA CARE";
-   const title=document.createElement("h3");title.textContent=item.title||"";
-   const desc=document.createElement("p");desc.textContent=item.description||"";
+   const title=document.createElement("h3");title.textContent=(lang==="he"?(item.titleHe||item.title):(item.title||""))||"";
+   const desc=document.createElement("p");desc.textContent=(lang==="he"?(item.descriptionHe||item.description):(item.description||""))||"";
    copy.append(small,title,desc);
    if(item.price){const price=document.createElement("p");price.style.fontWeight="700";price.style.marginTop="8px";price.textContent=(lang==="he"?"מחיר: ":"السعر: ")+item.price;copy.append(price);}
    article.append(photo,copy);return article;
