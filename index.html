@@ -395,6 +395,51 @@ body{background:var(--paper);line-height:1.75}
  .brand span{font-size:1.3rem!important;letter-spacing:2px!important}
 }
 
+
+/* Opening offer: prevent overlapping elements on phones and tablets */
+.seba-opening-offer{
+  grid-template-columns:minmax(150px,190px) minmax(0,1fr) 124px auto;
+  grid-template-areas:"art copy discount details";
+  align-items:center;
+  gap:clamp(12px,2.2vw,26px);
+}
+.seba-opening-offer>.offer-art{grid-area:art;display:block;width:100%;height:132px;min-width:0;object-fit:cover}
+.seba-opening-offer>.offer-copy{grid-area:copy;min-width:0;overflow-wrap:anywhere}
+.seba-opening-offer>.offer-discount{grid-area:discount}
+.seba-opening-offer>.offer-details{grid-area:details;max-width:100%;white-space:normal}
+.seba-opening-offer .offer-copy h2{font-size:clamp(1.2rem,2.2vw,2rem);line-height:1.4;overflow-wrap:anywhere}
+.seba-opening-offer .offer-copy p{line-height:1.65;overflow-wrap:anywhere}
+@media(max-width:760px){
+  .seba-opening-offer{
+    grid-template-columns:minmax(0,1fr) minmax(84px,104px);
+    grid-template-areas:"art art" "copy discount" "details details";
+    gap:14px;
+    padding:22px 16px;
+    align-items:center;
+  }
+  .seba-opening-offer>.offer-art{
+    grid-area:art;
+    width:min(100%,420px);
+    height:auto;
+    aspect-ratio:16/9;
+    justify-self:center;
+    object-fit:contain;
+  }
+  .seba-opening-offer>.offer-copy{grid-area:copy;text-align:right}
+  .seba-opening-offer .offer-copy h2{font-size:clamp(1.15rem,5vw,1.55rem);line-height:1.45;margin:5px 0}
+  .seba-opening-offer .offer-copy p{font-size:.95rem;line-height:1.55}
+  .seba-opening-offer .offer-eyebrow{font-size:.64rem;letter-spacing:1px}
+  .seba-opening-offer>.offer-discount{grid-area:discount;width:94px;height:94px;justify-self:center;transform:rotate(-4deg)}
+  .seba-opening-offer>.offer-discount strong{font-size:2rem}
+  .seba-opening-offer>.offer-discount span{font-size:.68rem;text-align:center;padding:0 5px}
+  .seba-opening-offer>.offer-details{grid-area:details;width:100%;padding:13px 12px;font-size:1rem}
+}
+@media(max-width:360px){
+  .seba-opening-offer{grid-template-columns:minmax(0,1fr) 82px;gap:10px;padding-inline:12px}
+  .seba-opening-offer>.offer-discount{width:78px;height:78px}
+  .seba-opening-offer>.offer-discount strong{font-size:1.7rem}
+}
+
 </style>
 </head>
 <body>
