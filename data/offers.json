@@ -1,9 +1,9 @@
 {
   "offer": {
-    "title": "",
-    "description": "",
-    "discount": "",
+    "title": "عرض خاص بمناسبة افتتاح المركز",
+    "description": "احتفلي معنا واستمتعي بخصم 20% على جميع خدمات صبا",
+    "discount": "خصم 20%",
     "endDate": "",
-    "active": false
+    "active": true
   }
 }
