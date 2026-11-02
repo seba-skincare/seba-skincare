@@ -6,7 +6,7 @@
       "description": "جلسة لإزالة الشعر بالشمع والعناية بنعومة البشرة.",
       "descriptionHe": "טיפול להסרת שיער בשעווה ולשמירה על תחושת עור חלק.",
       "price": "",
-      "image": "https://images.pexels.com/photos/35103884/pexels-photo-35103884.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "image": "./assets/wax-treatment.jpg",
       "slug": "wax-hair-removal"
     },
     {
