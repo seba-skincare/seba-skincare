@@ -168,7 +168,20 @@ button{font:inherit}
 footer{padding:30px clamp(20px,8vw,115px);display:flex;justify-content:space-between;gap:20px;align-items:center;background:#292722;color:#eee7dc;font-size:.88rem}
 footer span{color:#d8bd91;font-family:"Heebo",sans-serif;letter-spacing:1px}
 .mobile-menu{display:none}
-[hidden]{display:none!important}
+/* SEBA OPENING OFFER */
+.seba-opening-offer{position:relative;overflow:hidden;margin:0;padding:30px clamp(20px,6vw,76px);display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:26px;background:radial-gradient(circle at 8% 50%,rgba(255,255,255,.8),transparent 25%),linear-gradient(115deg,#fff7f3,#f8e6e5 50%,#f5e8d8);border-block:1px solid #ead5cf}
+.seba-opening-offer:before{content:"✧";position:absolute;left:24px;top:8px;color:#bd9b67;font-size:28px}
+.offer-copy h2{font-size:clamp(1.35rem,2.4vw,2.05rem);line-height:1.35;color:#573d3a;margin:5px 0}.offer-copy p{margin:0;color:#76635e}.offer-eyebrow{color:#9b6d69;font:600 .72rem Heebo,sans-serif;letter-spacing:2px}
+.offer-discount{width:124px;height:124px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(145deg,#fff8e8,#e8cfa5);border:2px solid #c9a36c;box-shadow:0 7px 20px #714c3822,inset 0 0 0 5px #ffffff99;color:#9c315c;transform:rotate(-5deg)}
+.offer-discount strong{font:700 2.7rem/1 Heebo,sans-serif}.offer-discount strong small{font-size:1.3rem}.offer-discount span{font-size:.8rem;font-weight:700;margin-top:5px;color:#725046}
+.offer-details{border:0;cursor:pointer;padding:13px 20px;background:linear-gradient(110deg,#9f2859,#c34d79);color:white;font:600 .95rem Tajawal,sans-serif;box-shadow:0 6px 18px #902c5333;transition:.2s;white-space:nowrap}.offer-details:hover{transform:translateY(-3px)}
+.offer-modal{position:fixed;inset:0;z-index:10050;display:none;align-items:center;justify-content:center;padding:20px}.offer-modal.is-open{display:flex}.offer-backdrop{position:absolute;inset:0;background:#231a1a9e;backdrop-filter:blur(5px)}
+.offer-card{position:relative;width:min(100%,520px);max-height:88vh;overflow:auto;background:#fffdfa;padding:38px clamp(22px,5vw,42px) 34px;text-align:center;box-shadow:0 25px 90px #0004;border:1px solid #e6d5c5}
+.offer-close{position:absolute;top:10px;left:14px;border:0;background:transparent;color:#6d5a54;font-size:30px;cursor:pointer}.offer-modal-icon{display:grid;place-items:center;width:52px;height:52px;margin:0 auto 13px;border-radius:50%;background:#f7e9e7;color:#a63a65;font-size:28px}
+.offer-card h2{font-size:1.7rem;line-height:1.35;color:#563d3b;margin:10px 0}.offer-big{display:inline-block;padding:8px 22px;margin:5px 0 12px;background:#f7e9e7;color:#a12f5d;font-size:1.5rem}.offer-card p{color:#71635c;font-size:1.02rem}.offer-card ul{padding:0 22px 0 0;text-align:right;color:#655a54;line-height:1.9;margin:12px 0 22px}.offer-book{display:inline-block;padding:13px 23px;background:#8e2854;color:white;font-weight:700}
+.offer-modal-open{overflow:hidden}
+@media(max-width:760px){.seba-opening-offer{grid-template-columns:1fr auto;gap:14px;padding:24px 18px}.offer-discount{width:96px;height:96px;grid-column:2;grid-row:1}.offer-discount strong{font-size:2.15rem}.offer-copy{grid-column:1;grid-row:1}.offer-details{grid-column:1/-1;width:100%}.offer-card{padding-top:42px}}
+\n[hidden]{display:none!important}
 @media(max-width:950px){.nav{display:none}.hero{grid-template-columns:1fr}.hero-copy{order:2;padding:55px 8vw}.hero-image{order:1;min-height:440px}.services{grid-template-columns:repeat(2,1fr)}.about{gap:35px}.about-photo{height:420px}}
 @media(max-width:600px){.topbar{min-height:74px;padding:9px 15px}.brand{font-size:.95rem;gap:8px}.brand img{width:49px;height:49px}.top-actions{gap:6px}.topbar .book{padding:9px 11px;font-size:.8rem}.lang button{padding:6px 9px}.hero-image{min-height:360px}.hero-copy{padding:48px 23px}.hero h1{font-size:2.65rem}.hero-copy p{font-size:1rem}.trust{padding:18px 10px}.trust-item{padding:3px 8px}.trust-item strong{font-size:.9rem}.trust-item span{font-size:.72rem}.section{padding:68px 19px}.section-head{margin-bottom:30px}.services{grid-template-columns:1fr 1fr;gap:11px}.service-photo{height:170px}.service-copy{padding:15px 13px 18px}.service-copy h3{font-size:1.08rem}.service-copy p{font-size:.82rem}.about{grid-template-columns:1fr}.about-photo{height:330px;order:2}.about-copy{order:1}.social-link{min-width:100%;justify-content:flex-start}.seba-gallery-grid{grid-template-columns:1fr 1fr;gap:10px}.seba-gallery-grid figure,.seba-gallery-grid figure:nth-child(2){height:190px}.seba-gallery-grid figure:last-child{grid-column:1/-1;height:220px}.seba-ba-grid{gap:9px}.seba-ba-slot{height:190px}.seba-review-card{padding:28px 18px}.cta{margin:0 14px 55px;padding:43px 20px}footer{flex-direction:column;text-align:center}}
 
@@ -489,17 +502,28 @@ heBtn.addEventListener('click', () => setLanguage('he'));
    document.querySelectorAll(".book,.hero-buttons .btn.dark,.about-copy .btn,.cta .btn").forEach(a=>a.href=wa);
    document.title=(s.siteName||"Seba.skincare")+" | معاينة";
   }catch(settingsError){console.warn("Preview settings could not be loaded:",settingsError);}
-  // Offers are optional too.
+  // Premium opening offer banner and details dialog (Arabic + Hebrew).
   try{
    const offersData=await load("offers.json"),offer=offersData.offer||{};
    const active=!!offer.active&&offer.title&&(!offer.endDate||offer.endDate>=new Date().toISOString().slice(0,10));
    if(active)document.querySelectorAll("main").forEach(main=>{
-    const banner=document.createElement("section");banner.className="section";banner.style.cssText="padding:25px 20px;background:var(--cream);text-align:center";
-    const title=document.createElement("h2");title.textContent=offer.title;title.style.margin="0 0 8px";
-    const desc=document.createElement("p");desc.textContent=[offer.description,offer.discount].filter(Boolean).join(" · ");
-    banner.append(title,desc);const trust=main.querySelector(".trust");if(trust)trust.after(banner);else main.prepend(banner);
+    const he=main.id==="hebrew",banner=document.createElement("section");
+    banner.className="seba-opening-offer";
+    banner.innerHTML=he
+     ?'<div class="offer-copy"><span class="offer-eyebrow">SEBA SKINCARE · חגיגת פתיחה</span><h2>חוגגות את פתיחת המרכז</h2><p>הטבה מיוחדת לכבוד הפתיחה — על כל שירותי הטיפוח</p></div><div class="offer-discount"><strong>20<small>%</small></strong><span>הנחה</span></div><button class="offer-details" type="button">לפרטי המבצע ←</button>'
+     :'<div class="offer-copy"><span class="offer-eyebrow">SEBA SKINCARE · افتتاحنا أجمل معكِ</span><h2>عرض خاص بمناسبة افتتاح مركز صبا</h2><p>دلّلي نفسكِ واستمتعي بخصم مميز على جميع خدماتنا</p></div><div class="offer-discount"><strong>20<small>%</small></strong><span>خصم على كل الخدمات</span></div><button class="offer-details" type="button">اكتشفي تفاصيل العرض ←</button>';
+    const hero=main.querySelector(".hero");if(hero)hero.after(banner);else main.prepend(banner);
+    const modal=document.createElement("div");modal.className="offer-modal";modal.setAttribute("aria-hidden","true");
+    modal.innerHTML=he
+     ?'<div class="offer-backdrop" data-close></div><section class="offer-card" role="dialog" aria-modal="true"><button class="offer-close" data-close aria-label="סגירה">×</button><span class="offer-modal-icon">✧</span><span class="offer-eyebrow">OPENING CELEBRATION</span><h2>מבצע מיוחד לכבוד פתיחת המרכז</h2><strong class="offer-big">20% הנחה</strong><p>לרגל פתיחת Seba.skincare, את מוזמנת ליהנות מהנחה של 20% על כל שירותי המרכז.</p><ul><li>ההטבה חלה על כל השירותים המוצגים באתר.</li><li>לקבלת פרטים ולתיאום תור, אפשר לפנות אלינו בוואטסאפ.</li><li>המבצע לתקופה מוגבלת; מומלץ לברר זמינות בעת ההזמנה.</li></ul><a class="offer-book" href="https://wa.me/972526732880?text='+encodeURIComponent("שלום, אשמח לקבל פרטים על מבצע הפתיחה והנחת 20%")+'">לתיאום תור בוואטסאפ ↗</a></section>'
+     :'<div class="offer-backdrop" data-close></div><section class="offer-card" role="dialog" aria-modal="true"><button class="offer-close" data-close aria-label="إغلاق">×</button><span class="offer-modal-icon">✧</span><span class="offer-eyebrow">OPENING CELEBRATION</span><h2>عرض خاص بمناسبة افتتاح المركز</h2><strong class="offer-big">خصم 20%</strong><p>بمناسبة افتتاح مركز Seba.skincare، يسعدنا أن نحتفل معكِ ونقدّم لكِ خصماً بنسبة 20% على جميع خدمات المركز.</p><ul><li>يشمل الخصم جميع الخدمات المعروضة على الموقع.</li><li>يمكنكِ التواصل معنا عبر واتساب لمعرفة التفاصيل وحجز موعدكِ.</li><li>العرض لفترة محدودة؛ يُرجى الاستفسار عن توفره عند الحجز.</li></ul><a class="offer-book" href="https://wa.me/972526732880?text='+encodeURIComponent("مرحباً صبا، أرغب بالاستفسار عن عرض الافتتاح وخصم 20% وحجز موعد")+'">احجزي موعدكِ عبر واتساب ↗</a></section>';
+    document.body.append(modal);
+    const close=()=>{modal.classList.remove("is-open");modal.setAttribute("aria-hidden","true");document.body.classList.remove("offer-modal-open");};
+    banner.querySelector(".offer-details").addEventListener("click",()=>{modal.classList.add("is-open");modal.setAttribute("aria-hidden","false");document.body.classList.add("offer-modal-open");});
+    modal.querySelectorAll("[data-close]").forEach(el=>el.addEventListener("click",close));
+    document.addEventListener("keydown",e=>{if(e.key==="Escape")close();});
    });
-  }catch(offerError){console.warn("Preview offers could not be loaded:",offerError);}
+  }catch(offerError){console.warn("Opening offer could not be displayed:",offerError);}
  }catch(error){
   console.error("Seba preview services failed:",error);
   showLoadError("تعذر تحميل قائمة الخدمات ("+error.message+"). جرّبي تحديث الصفحة بعد قليل.");
