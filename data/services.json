@@ -1,20 +1,36 @@
 {
   "services": [
     {
-      "title": "ازالة حبوب",
-      "description": "",
-      "price": ""
-    },
-    {
-      "title": "جلسات عناية بالبشرة",
-      "description": "",
-      "price": ""
-    },
-    {
-      "title": "ميزوثرابس",
-      "description": "",
+      "title": "إزالة الشعر بالشمع",
+      "titleHe": "הסרת שיער בשעווה",
+      "description": "جلسة لإزالة الشعر بالشمع والعناية بنعومة البشرة.",
+      "descriptionHe": "טיפול להסרת שיער בשעווה ולשמירה על תחושת עור חלק.",
       "price": "",
-      "image": "assets/services/service-1793384624331-3.jpg"
+      "image": "https://images.pexels.com/photos/35103884/pexels-photo-35103884.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    },
+    {
+      "title": "ميزوثيرابي",
+      "titleHe": "מזותרפיה",
+      "description": "جلسة ميزوثيرابي تجميلية للعناية بالبشرة وتجديد مظهرها.",
+      "descriptionHe": "טיפול מזותרפיה קוסמטי לטיפוח העור ולרענון מראהו.",
+      "price": "",
+      "image": "https://images.pexels.com/photos/29648626/pexels-photo-29648626/free-photo-of-microneedling-facial-treatment-procedure.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    },
+    {
+      "title": "هايدروفيشل",
+      "titleHe": "הידרופיישל",
+      "description": "جلسة تنظيف وترطيب للوجه باستخدام تقنية الهايدروفيشل.",
+      "descriptionHe": "טיפול ניקוי והענקת לחות לפנים באמצעות טכנולוגיית הידרופיישל.",
+      "price": "",
+      "image": "https://images.pexels.com/photos/18209809/pexels-photo-18209809/free-photo-of-woman-getting-a-facial-treatment.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    },
+    {
+      "title": "تنظيف عميق",
+      "titleHe": "ניקוי עמוק",
+      "description": "جلسة تنظيف عميق للبشرة لإزالة الشوائب والعناية بنظافتها.",
+      "descriptionHe": "טיפול ניקוי עמוק להסרת לכלוך ושאריות ולטיפוח העור.",
+      "price": "",
+      "image": "https://images.pexels.com/photos/5069589/pexels-photo-5069589.jpeg?auto=compress&cs=tinysrgb&w=1200"
     }
   ]
 }
