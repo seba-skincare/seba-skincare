@@ -440,7 +440,7 @@ heBtn.addEventListener('click', () => setLanguage('he'));
   const cards=(arr,lang)=>arr.map((item,i)=>{
    const article=document.createElement("article");article.className="service";
    const link=document.createElement("a");link.className="service-link";
-   link.href="services/"+(item.slug||"")+" .html".replace(" ","");
+   link.href="service.html?service="+encodeURIComponent(item.slug||"")+(lang==="he"?"&lang=he":"");
    link.setAttribute("aria-label",(lang==="he"?(item.titleHe||item.title):(item.title||""))+(lang==="he"?" – לפרטים נוספים":" – عرض التفاصيل"));
    const photo=document.createElement("div");photo.className="service-photo";
    if(item.image){
