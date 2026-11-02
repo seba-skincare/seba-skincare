@@ -356,88 +356,58 @@ body{background:var(--paper);line-height:1.75}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 
 
-/* FINAL FIX: opening offer layout + clear SEBA wordmark */
+/* SEBA responsive polish: preserve original logo and wordmark animations */
 .seba-opening-offer{
  display:grid!important;
- grid-template-columns:180px minmax(220px,1fr) 118px auto!important;
- grid-template-areas:"art copy discount action"!important;
+ grid-template-columns:minmax(0,1fr) 112px auto!important;
+ grid-template-areas:"copy discount action"!important;
  align-items:center!important;
- gap:24px!important;
+ gap:clamp(12px,2vw,24px)!important;
  min-width:0;
- padding:30px clamp(18px,5vw,68px)!important;
+ padding:clamp(18px,3vw,30px) clamp(16px,5vw,68px)!important;
 }
-.seba-opening-offer .offer-art{grid-area:art!important;width:180px!important;height:126px!important;max-width:100%;object-fit:cover;border-radius:8px;display:block}
-.seba-opening-offer .offer-copy{grid-area:copy!important;min-width:0;text-align:right!important}
-.seba-opening-offer .offer-copy h2{margin:7px 0 9px!important;line-height:1.5!important;overflow-wrap:anywhere}
-.seba-opening-offer .offer-copy p{line-height:1.8!important}
-.seba-opening-offer .offer-discount{grid-area:discount!important;width:112px!important;height:112px!important;min-width:112px;transform:none!important}
+.seba-opening-offer .offer-copy{grid-area:copy!important;min-width:0;text-align:right!important;overflow-wrap:anywhere}
+.seba-opening-offer .offer-copy h2{margin:7px 0 9px!important;line-height:1.45!important;overflow-wrap:anywhere}
+.seba-opening-offer .offer-copy p{line-height:1.7!important}
+.seba-opening-offer .offer-discount{grid-area:discount!important;width:108px!important;height:108px!important;min-width:0!important;justify-self:center}
 .seba-opening-offer .offer-discount strong{line-height:1.1!important}
 .seba-opening-offer .offer-discount span{text-align:center;line-height:1.35;padding:0 6px}
-.seba-opening-offer .offer-details{grid-area:action!important;white-space:normal!important;min-width:132px;max-width:160px;line-height:1.6!important;border-radius:6px;padding:13px 15px!important}
-.brand{gap:11px!important}
-.brand span{font-family:"Heebo",sans-serif!important;font-size:1.55rem!important;font-weight:800!important;letter-spacing:2.5px!important;text-transform:uppercase!important;color:#76564b!important;-webkit-text-fill-color:#76564b!important;background:none!important;filter:none!important;animation:none!important;text-shadow:0 2px 0 #fff,0 5px 15px rgba(137,95,91,.18)!important}
-.brand span:after{content:"" " !important;display:none!important}
-@media(max-width:900px){
- .seba-opening-offer{grid-template-columns:minmax(0,1fr) 108px!important;grid-template-areas:"art art" "copy discount" "action action"!important;gap:15px 18px!important;padding:22px 18px!important}
- .seba-opening-offer .offer-art{width:100%!important;height:155px!important;object-position:center 42%}
- .seba-opening-offer .offer-copy{grid-column:auto!important;grid-row:auto!important}
- .seba-opening-offer .offer-discount{width:100px!important;height:100px!important;min-width:100px;justify-self:center}
- .seba-opening-offer .offer-details{grid-column:auto!important;grid-row:auto!important;width:100%!important;max-width:none!important}
-}
-@media(max-width:520px){
- .seba-opening-offer{grid-template-columns:minmax(0,1fr) 88px!important;gap:12px!important;padding:18px 15px!important}
- .seba-opening-offer .offer-art{height:130px!important}
- .seba-opening-offer .offer-copy h2{font-size:1.22rem!important}
- .seba-opening-offer .offer-copy p{font-size:.91rem!important}
- .seba-opening-offer .offer-discount{width:84px!important;height:84px!important;min-width:84px}
- .seba-opening-offer .offer-discount strong{font-size:1.9rem!important}
- .seba-opening-offer .offer-discount span{font-size:.68rem!important}
- .brand span{font-size:1.3rem!important;letter-spacing:2px!important}
-}
-
-
-/* Opening offer: prevent overlapping elements on phones and tablets */
-.seba-opening-offer{
-  grid-template-columns:minmax(0,1fr) 124px auto;
-  grid-template-areas:"copy discount details";
-  align-items:center;
-  gap:clamp(12px,2.2vw,26px);
-}
-.seba-opening-offer>.offer-art{grid-area:art;display:block;width:100%;height:132px;min-width:0;object-fit:cover}
-.seba-opening-offer>.offer-copy{grid-area:copy;min-width:0;overflow-wrap:anywhere}
-.seba-opening-offer>.offer-discount{grid-area:discount}
-.seba-opening-offer>.offer-details{grid-area:details;max-width:100%;white-space:normal}
-.seba-opening-offer .offer-copy h2{font-size:clamp(1.2rem,2.2vw,2rem);line-height:1.4;overflow-wrap:anywhere}
-.seba-opening-offer .offer-copy p{line-height:1.65;overflow-wrap:anywhere}
+.seba-opening-offer .offer-details{grid-area:action!important;white-space:normal!important;min-width:0!important;max-width:170px!important;line-height:1.55!important;padding:13px 15px!important}
+.offer-card{width:min(92vw,560px);max-height:88vh;overflow-y:auto}
+.offer-modal-art{display:block;width:100%;max-height:230px;object-fit:contain}
 @media(max-width:760px){
-  .seba-opening-offer{
-    grid-template-columns:minmax(0,1fr) minmax(84px,104px);
-    grid-template-areas:"copy discount" "details details";
-    gap:14px;
-    padding:22px 16px;
-    align-items:center;
-  }
-  .seba-opening-offer>.offer-art{
-    grid-area:art;
-    width:min(100%,420px);
-    height:auto;
-    aspect-ratio:16/9;
-    justify-self:center;
-    object-fit:contain;
-  }
-  .seba-opening-offer>.offer-copy{grid-area:copy;text-align:right}
-  .seba-opening-offer .offer-copy h2{font-size:clamp(1.15rem,5vw,1.55rem);line-height:1.45;margin:5px 0}
-  .seba-opening-offer .offer-copy p{font-size:.95rem;line-height:1.55}
-  .seba-opening-offer .offer-eyebrow{font-size:.64rem;letter-spacing:1px}
-  .seba-opening-offer>.offer-discount{grid-area:discount;width:94px;height:94px;justify-self:center;transform:rotate(-4deg)}
-  .seba-opening-offer>.offer-discount strong{font-size:2rem}
-  .seba-opening-offer>.offer-discount span{font-size:.68rem;text-align:center;padding:0 5px}
-  .seba-opening-offer>.offer-details{grid-area:details;width:100%;padding:13px 12px;font-size:1rem}
+ .topbar{min-height:76px;padding:10px 14px;gap:9px;flex-wrap:wrap}
+ .brand{gap:9px;min-width:0}
+ .brand img{width:48px;height:48px;flex:0 0 48px}
+ .brand span{font-size:1.25rem;letter-spacing:1.8px}
+ .top-actions{gap:7px}
+ .book{padding:9px 12px;font-size:.82rem}
+ .nav{order:3;width:100%;justify-content:center;gap:clamp(12px,4vw,24px);font-size:.86rem;flex-wrap:wrap}
+ .seba-opening-offer{
+  grid-template-columns:minmax(0,1fr) 88px!important;
+  grid-template-areas:"copy discount" "action action"!important;
+  gap:12px 14px!important;
+  padding:20px 15px!important;
+ }
+ .seba-opening-offer .offer-copy h2{font-size:clamp(1.1rem,4.8vw,1.45rem)!important;line-height:1.45!important}
+ .seba-opening-offer .offer-copy p{font-size:.92rem!important;line-height:1.6!important}
+ .seba-opening-offer .offer-eyebrow{font-size:.62rem;letter-spacing:1px}
+ .seba-opening-offer .offer-discount{width:82px!important;height:82px!important}
+ .seba-opening-offer .offer-discount strong{font-size:1.8rem!important}
+ .seba-opening-offer .offer-discount span{font-size:.66rem!important}
+ .seba-opening-offer .offer-details{width:100%!important;max-width:none!important;text-align:center}
+ .seba-cinema-logo{max-width:min(42vw,220px);height:auto}
+ .seba-cinema-title{font-size:clamp(2.5rem,13vw,5rem)}
 }
-@media(max-width:360px){
-  .seba-opening-offer{grid-template-columns:minmax(0,1fr) 82px;gap:10px;padding-inline:12px}
-  .seba-opening-offer>.offer-discount{width:78px;height:78px}
-  .seba-opening-offer>.offer-discount strong{font-size:1.7rem}
+@media(max-width:380px){
+ .topbar{padding-inline:10px}
+ .brand img{width:42px;height:42px;flex-basis:42px}
+ .brand span{font-size:1.08rem;letter-spacing:1.2px}
+ .book{font-size:.76rem;padding:8px 9px}
+ .lang button{padding:6px 9px}
+ .seba-opening-offer{grid-template-columns:minmax(0,1fr) 76px!important;gap:10px!important;padding:16px 12px!important}
+ .seba-opening-offer .offer-discount{width:72px!important;height:72px!important}
+ .seba-opening-offer .offer-discount strong{font-size:1.6rem!important}
 }
 
 </style>
