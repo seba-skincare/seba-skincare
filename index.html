@@ -125,7 +125,10 @@ button{font:inherit}
 .seba-review-card p{color:var(--muted);margin:0 0 22px}
 .seba-review-card .btn{display:inline-flex}
 .service{background:white;border:1px solid var(--line);transition:.3s}
+.service-link{display:block;height:100%;color:inherit;text-decoration:none}
+.service-link:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
 .service:hover{transform:translateY(-7px);box-shadow:var(--shadow)}
+.service-more{display:inline-block;margin-top:15px;color:var(--gold);font-size:.9rem;font-weight:600}
 .service-photo{height:255px;overflow:hidden;background:#e8ded4}
 .service-photo img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
 .service:hover .service-photo img{transform:scale(1.05)}
@@ -436,6 +439,9 @@ heBtn.addEventListener('click', () => setLanguage('he'));
   syncBookingServices("#seba-service-he","בחרי טיפול","בירור לגבי טיפול אחר");
   const cards=(arr,lang)=>arr.map((item,i)=>{
    const article=document.createElement("article");article.className="service";
+   const link=document.createElement("a");link.className="service-link";
+   link.href="services/"+(item.slug||"")+" .html".replace(" ","");
+   link.setAttribute("aria-label",(lang==="he"?(item.titleHe||item.title):(item.title||""))+(lang==="he"?" – לפרטים נוספים":" – عرض التفاصيل"));
    const photo=document.createElement("div");photo.className="service-photo";
    if(item.image){
     const img=document.createElement("img");
@@ -451,7 +457,8 @@ heBtn.addEventListener('click', () => setLanguage('he'));
    const desc=document.createElement("p");desc.textContent=(lang==="he"?(item.descriptionHe||item.description):(item.description||""))||"";
    copy.append(small,title,desc);
    if(item.price){const price=document.createElement("p");price.style.fontWeight="700";price.style.marginTop="8px";price.textContent=(lang==="he"?"מחיר: ":"السعر: ")+item.price;copy.append(price);}
-   article.append(photo,copy);return article;
+   const more=document.createElement("span");more.className="service-more";more.textContent=lang==="he"?"לפרטים נוספים ←":"التفاصيل الكاملة ←";
+   copy.append(more);link.append(photo,copy);article.append(link);return article;
   });
   const arabic=document.querySelectorAll("#arabic .services");
   const hebrew=document.querySelectorAll("#hebrew .services");
