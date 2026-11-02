@@ -466,6 +466,15 @@ body{background:var(--paper);line-height:1.75}
   .brand img,.brand span,.brand span:after{animation:none!important}
 }
 
+
+/* FINAL BRAND RESTORE — classic SEBA gold shimmer */
+.brand img{animation:sebaLogoShow 3.2s cubic-bezier(.45,.05,.55,.95) infinite!important;transform-origin:center!important}
+.brand span{display:inline-block!important;color:#b58a43!important;background:linear-gradient(105deg,#8a672f 0%,#c39a4d 24%,#f6dfa0 43%,#b88735 60%,#e8c979 76%,#8a672f 100%)!important;background-size:240% auto!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;text-shadow:none!important;animation:sebaNameGlowGold 3.4s ease-in-out infinite!important}
+.brand span:after{display:block!important;background:linear-gradient(90deg,transparent,#d9b45e,#fff0bd,#d9b45e,transparent)!important;animation:sebaNameLine 3.4s ease-in-out infinite!important}
+@keyframes sebaNameGlowGold{0%,100%{background-position:100% center;filter:drop-shadow(0 1px 1px rgba(147,105,38,.12))}50%{background-position:0 center;filter:drop-shadow(0 2px 8px rgba(196,151,62,.62))}}
+@media(max-width:760px){.topbar{width:100%;max-width:100%;overflow:visible}.brand{max-width:100%;min-width:0}.brand span{font-size:1.3rem!important;letter-spacing:1.5px!important}.top-actions,.nav{min-width:0;max-width:100%}}
+@media(max-width:380px){.brand span{font-size:1.12rem!important;letter-spacing:1px!important}}
+
 </style>
 </head>
 <body>
