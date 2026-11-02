@@ -274,6 +274,87 @@ footer span{color:#d8bd91;font-family:"Heebo",sans-serif;letter-spacing:1px}
 .seba-reveal.is-visible{opacity:1;transform:translateY(0)}
 @media(max-width:700px){.seba-ritual-grid{grid-template-columns:1fr;gap:12px}.seba-ritual-card{padding:21px}.seba-booking-grid{grid-template-columns:1fr}.seba-booking{padding:20px}}
 @media(prefers-reduced-motion:reduce){.seba-ritual-card,.seba-reveal{transition:none}.seba-reveal{opacity:1;transform:none}}
+
+/* SEBA visual cleanup: calm, cohesive, and mobile-first */
+:root{--ink:#342d29;--muted:#81766e;--cream:#f8f3ef;--paper:#fffdfb;--rose:#b98783;--rose-dark:#895f5b;--gold:#b99b72;--line:#eee4dc;--shadow:0 14px 38px rgba(66,48,39,.08)}
+body{background:var(--paper);line-height:1.75}
+.topbar{min-height:78px;padding:10px clamp(18px,5vw,72px);box-shadow:0 4px 20px rgba(55,43,34,.035)}
+.brand img{width:54px;height:54px;animation:none!important;transform:none!important;box-shadow:0 0 0 3px rgba(183,154,104,.12)}
+.brand span,.brand span:after{animation:none!important;filter:none!important}
+.brand span{-webkit-text-fill-color:#59463e;background:none}
+.brand span:after{display:none}
+.book,.btn.dark,.social-link,.social-icon,.seba-chat-bubble{animation:none!important}
+.book:after,.btn.dark:after{display:none}
+.book,.btn.dark{box-shadow:0 5px 15px rgba(76,55,43,.12)}
+.hero{min-height:570px;background:#f7f1ec}
+.hero-copy{padding-top:85px;padding-bottom:85px}
+.hero h1{font-weight:600;letter-spacing:-.5px}
+.hero-image{min-height:520px}
+.hero-image img{object-position:center 44%}
+.image-note{border-radius:4px;right:clamp(16px,4vw,38px);bottom:clamp(16px,4vw,38px)}
+.trust{padding-top:22px;padding-bottom:22px}
+.section{padding-top:82px;padding-bottom:82px}
+.section-head{margin-bottom:38px}
+.section-head h2{font-weight:600}
+.services{gap:22px}
+.service{border:1px solid #eee5df;border-radius:7px;box-shadow:0 7px 22px rgba(64,48,38,.045)}
+.service:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(64,48,38,.09)}
+.service:after,.service-photo:after{display:none}
+.service-photo{height:235px}
+.service-photo img{transition:transform .45s ease}
+.service-copy{padding:22px 20px 24px}
+.service-copy h3{font-weight:600}
+.seba-opening-offer{grid-template-columns:minmax(0,1fr) auto auto;gap:22px;padding:25px clamp(18px,5vw,70px);background:linear-gradient(110deg,#fbf2ee,#f4e5e1 58%,#f8efe4)}
+.offer-art{width:158px;height:112px;border-radius:5px}
+.offer-discount{width:108px;height:108px;transform:none}
+.offer-details{border-radius:4px;background:#895f5b;box-shadow:none}
+.offer-details:hover{transform:translateY(-2px)}
+.seba-gallery-grid{gap:14px}
+.seba-gallery-grid figure,.seba-gallery-grid figure:nth-child(2){height:300px;border-radius:5px;box-shadow:0 8px 24px rgba(64,48,38,.07)}
+.seba-gallery-grid img{transition:transform .5s ease}
+.seba-ritual{background:#f8f3ef}
+.seba-ritual-card{border-radius:8px;box-shadow:0 7px 22px rgba(86,61,49,.045)}
+.seba-ritual-card:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(86,61,49,.08)}
+.seba-booking{border-radius:10px;box-shadow:0 10px 30px rgba(77,54,43,.055)}
+.seba-field input,.seba-field select{border-radius:6px}
+.seba-review-card{border-radius:8px}
+.cta{border-radius:5px;background:#51423c}
+.social-link{border-radius:6px;box-shadow:none}
+.social-link:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(183,154,104,.12)}
+.seba-chat-bubble{background:#795d54;border-radius:30px;box-shadow:0 5px 18px rgba(55,43,34,.15)}
+#seba-cinematic{display:none!important}
+.seba-reveal{opacity:1!important;transform:none!important}
+@media(max-width:950px){
+ .hero{grid-template-columns:1fr}
+ .hero-copy{order:2;padding:48px 7vw}
+ .hero-image{order:1;min-height:390px}
+ .seba-opening-offer{grid-template-columns:minmax(0,1fr) auto;gap:14px}
+ .offer-art{grid-column:1/-1;grid-row:1;width:100%;height:150px;object-position:center 42%}
+ .offer-copy{grid-column:1;grid-row:2}
+ .offer-discount{grid-column:2;grid-row:2}
+ .offer-details{grid-column:1/-1;width:100%}
+}
+@media(max-width:600px){
+ .brand img{width:46px;height:46px}
+ .hero-image{min-height:310px}
+ .hero-copy{padding:38px 22px 42px}
+ .hero h1{font-size:2.35rem}
+ .section{padding:58px 18px}
+ .services{gap:10px}
+ .service-photo{height:155px}
+ .service-copy{padding:14px 12px 16px}
+ .service-copy h3{font-size:1rem}
+ .service-copy p{font-size:.82rem;line-height:1.6}
+ .seba-opening-offer{padding:20px 16px}
+ .offer-art{height:132px}
+ .offer-discount{width:86px;height:86px}
+ .offer-discount strong{font-size:1.9rem}
+ .seba-gallery-grid figure,.seba-gallery-grid figure:nth-child(2){height:180px}
+ .seba-gallery-grid figure:last-child{height:195px}
+ .seba-chat-bubble{bottom:14px;right:12px;padding:9px 14px;font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
 </style>
 </head>
 <body>
