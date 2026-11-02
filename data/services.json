@@ -6,7 +6,8 @@
       "description": "جلسة لإزالة الشعر بالشمع والعناية بنعومة البشرة.",
       "descriptionHe": "טיפול להסרת שיער בשעווה ולשמירה על תחושת עור חלק.",
       "price": "",
-      "image": "https://images.pexels.com/photos/35103884/pexels-photo-35103884.jpeg?auto=compress&cs=tinysrgb&w=1200"
+      "image": "https://images.pexels.com/photos/35103884/pexels-photo-35103884.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "slug": "wax-hair-removal"
     },
     {
       "title": "ميزوثيرابي",
@@ -14,7 +15,8 @@
       "description": "جلسة ميزوثيرابي تجميلية للعناية بالبشرة وتجديد مظهرها.",
       "descriptionHe": "טיפול מזותרפיה קוסמטי לטיפוח העור ולרענון מראהו.",
       "price": "",
-      "image": "https://images.pexels.com/photos/29648626/pexels-photo-29648626/free-photo-of-microneedling-facial-treatment-procedure.jpeg?auto=compress&cs=tinysrgb&w=1200"
+      "image": "https://images.pexels.com/photos/29648626/pexels-photo-29648626/free-photo-of-microneedling-facial-treatment-procedure.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "slug": "mesotherapy"
     },
     {
       "title": "هايدروفيشل",
@@ -22,7 +24,8 @@
       "description": "جلسة تنظيف وترطيب للوجه باستخدام تقنية الهايدروفيشل.",
       "descriptionHe": "טיפול ניקוי והענקת לחות לפנים באמצעות טכנולוגיית הידרופיישל.",
       "price": "",
-      "image": "https://images.pexels.com/photos/18209809/pexels-photo-18209809/free-photo-of-woman-getting-a-facial-treatment.jpeg?auto=compress&cs=tinysrgb&w=1200"
+      "image": "https://images.pexels.com/photos/18209809/pexels-photo-18209809/free-photo-of-woman-getting-a-facial-treatment.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "slug": "hydrafacial"
     },
     {
       "title": "تنظيف عميق",
@@ -30,7 +33,8 @@
       "description": "جلسة تنظيف عميق للبشرة لإزالة الشوائب والعناية بنظافتها.",
       "descriptionHe": "טיפול ניקוי עמוק להסרת לכלוך ושאריות ולטיפוח העור.",
       "price": "",
-      "image": "https://images.pexels.com/photos/5069589/pexels-photo-5069589.jpeg?auto=compress&cs=tinysrgb&w=1200"
+      "image": "https://images.pexels.com/photos/5069589/pexels-photo-5069589.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "slug": "deep-cleansing"
     }
   ]
 }
