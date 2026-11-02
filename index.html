@@ -496,6 +496,38 @@ body{background:var(--paper);line-height:1.75}
 }
 @media(max-width:380px){.topbar{padding:12px 10px!important;gap:10px!important}.brand img{width:49px!important;height:49px!important;flex-basis:49px!important}.brand span{font-size:1.2rem!important;letter-spacing:1.4px!important}.top-actions{gap:8px!important}.book{padding:7px 11px!important;font-size:.82rem!important;gap:7px}.book-icon{width:23px;height:23px;flex-basis:23px}.nav{gap:6px 13px!important;font-size:.8rem!important}}
 
+
+/* Elegant animated glow for the 20% all-services discount badge */
+.offer-discount{
+ position:relative;isolation:isolate;overflow:hidden;
+ animation:sebaDiscountFloat 3.2s ease-in-out infinite;
+ box-shadow:0 9px 26px rgba(156,115,55,.2),inset 0 0 0 5px rgba(255,255,255,.68),0 0 0 1px rgba(255,255,255,.75);
+}
+.offer-discount:before{
+ content:"";position:absolute;inset:-45%;z-index:-1;pointer-events:none;
+ background:linear-gradient(112deg,transparent 38%,rgba(255,255,255,.08) 43%,rgba(255,255,255,.92) 49%,rgba(255,239,190,.55) 53%,transparent 60%);
+ transform:translateX(-115%) rotate(12deg);
+ animation:sebaDiscountShine 3.1s ease-in-out infinite;
+}
+.offer-discount:after{
+ content:"✧";position:absolute;top:12px;right:19px;
+ color:#fff9df;font-size:19px;line-height:1;
+ text-shadow:0 0 7px rgba(183,137,57,.8);
+ animation:sebaDiscountSpark 2s ease-in-out infinite;
+}
+.offer-discount strong,.offer-discount span{position:relative;z-index:1}
+@keyframes sebaDiscountFloat{
+ 0%,100%{transform:rotate(-5deg) translateY(0);box-shadow:0 8px 22px rgba(156,115,55,.18),inset 0 0 0 5px rgba(255,255,255,.68),0 0 0 1px rgba(255,255,255,.75)}
+ 50%{transform:rotate(-2deg) translateY(-4px);box-shadow:0 13px 30px rgba(183,137,57,.34),inset 0 0 0 5px rgba(255,255,255,.78),0 0 18px rgba(222,190,123,.38)}
+}
+@keyframes sebaDiscountShine{
+ 0%,18%{transform:translateX(-115%) rotate(12deg);opacity:0}
+ 35%{opacity:1}
+ 68%,100%{transform:translateX(115%) rotate(12deg);opacity:0}
+}
+@keyframes sebaDiscountSpark{0%,100%{opacity:.45;transform:scale(.8) rotate(0)}50%{opacity:1;transform:scale(1.25) rotate(35deg)}}
+@media(prefers-reduced-motion:reduce){.offer-discount,.offer-discount:before,.offer-discount:after{animation:none!important}}
+
 </style>
 </head>
 <body>
