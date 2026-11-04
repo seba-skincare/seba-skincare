@@ -86,11 +86,11 @@ button.danger{background:#a94442}
 </div>
 <p id="status" class="status" role="status" aria-live="polite"></p>
 <script>
-const DATA_URL="https://raw.githubusercontent.com/seba-skincare/seba-skincare/main/data/services.json";
-const SAVE_URL="/api/save";
-const OFFERS_URL="https://raw.githubusercontent.com/seba-skincare/seba-skincare/main/data/offers.json";
-const SETTINGS_URL="https://raw.githubusercontent.com/seba-skincare/seba-skincare/main/data/settings.json";
-const IMAGE_BASE="https://raw.githubusercontent.com/seba-skincare/seba-skincare/main/";
+const DATA_URL="/data/services.json";
+const SAVE_URL=location.hostname.endsWith(".netlify.app")?"https://sprightly-horse-bca4a5.netlify.app/.netlify/functions/save":"/api/save";
+const OFFERS_URL="/data/offers.json";
+const SETTINGS_URL="/data/settings.json";
+const IMAGE_BASE="/";
 let services=[];
 let loaded=false;
 let offer={title:"",description:"",discount:"",endDate:"",active:false};
