@@ -25,7 +25,7 @@ function decodeBase64Utf8(value) {
 
 export async function onRequest(context) {
   const { request, env } = context;
-  const branch = env.CF_PAGES_branch && env.CF_PAGES_branch !== "main" ? env.CF_PAGES_branch : "main";
+  const branch = env.CF_PAGES_BRANCH && env.CF_PAGES_BRANCH !== "main" ? env.CF_PAGES_BRANCH : "main";
   const requestOrigin = new URL(request.url).origin;
   const origin = request.headers.get("Origin") || "";
   const sameOrigin = !origin || origin === requestOrigin;
