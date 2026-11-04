@@ -1,6 +1,6 @@
 const OWNER = "seba-skincare";
 const REPO = "seba-skincare";
-const BRANCH = "main";
+
 const API = "https://api.github.com";
 
 function json(data, status, headers) {
@@ -25,6 +25,7 @@ function decodeBase64Utf8(value) {
 
 export async function onRequest(context) {
   const { request, env } = context;
+  const branch = env.CF_PAGES_branch && env.CF_PAGES_branch !== "main" ? env.CF_PAGES_branch : "main";
   const requestOrigin = new URL(request.url).origin;
   const origin = request.headers.get("Origin") || "";
   const sameOrigin = !origin || origin === requestOrigin;
@@ -83,7 +84,7 @@ export async function onRequest(context) {
       "X-GitHub-Api-Version": "2022-11-28"
     };
 
-    const current = await fetch(apiUrl + "?ref=" + BRANCH, { headers: authHeaders });
+    const current = await fetch(apiUrl + "?ref=" + branch, { headers: authHeaders });
     let sha;
     if (current.ok) {
       const file = await current.json();
@@ -99,7 +100,7 @@ export async function onRequest(context) {
       body: JSON.stringify({
         message: isImage ? "Upload service image " + path : "Update " + path + " from Seba admin",
         content: encoded,
-        branch: BRANCH,
+        branch: branch,
         ...(sha ? { sha } : {})
       })
     });
@@ -114,7 +115,7 @@ export async function onRequest(context) {
 
     for (let attempt = 0; attempt < 5; attempt++) {
       if (attempt) await new Promise(resolve => setTimeout(resolve, 800));
-      const check = await fetch(apiUrl + "?ref=" + BRANCH + "&verify=" + Date.now(), {
+      const check = await fetch(apiUrl + "?ref=" + branch + "&verify=" + Date.now(), {
         headers: { ...authHeaders, "Cache-Control": "no-cache" }
       });
       if (!check.ok) continue;
