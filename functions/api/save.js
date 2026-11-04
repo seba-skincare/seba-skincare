@@ -18,7 +18,7 @@ function encodeBase64Utf8(value) {
 }
 
 function decodeBase64Utf8(value) {
-  const binary = atob(value.replace(/\\s/g, ""));
+  const binary = atob(value.replace(/\s/g, ""));
   const bytes = Uint8Array.from(binary, char => char.charCodeAt(0));
   return new TextDecoder().decode(bytes);
 }
@@ -57,7 +57,7 @@ export async function onRequest(context) {
     if (isImage) {
       if (
         typeof path !== "string" ||
-        !/^assets\\/services\\/service-[0-9]+-[0-9]+\\.(jpg|jpeg|png|webp|gif)$/i.test(path) ||
+        !/^assets[/]services[/]service-[0-9]+-[0-9]+[.](jpg|jpeg|png|webp|gif)$/i.test(path) ||
         typeof imageBase64 !== "string" ||
         imageBase64.length > 7_000_000 ||
         !/^[A-Za-z0-9+/]+={0,2}$/.test(imageBase64)
@@ -76,15 +76,14 @@ export async function onRequest(context) {
       }
     }
 
-    const token = env.GITHUB_TOKEN;
-    const apiUrl = `${API}/repos/${OWNER}/${REPO}/contents/${path}`;
+    const apiUrl = API + "/repos/" + OWNER + "/" + REPO + "/contents/" + path;
     const authHeaders = {
-      "Authorization": `Bearer ${token}`,
+      "Authorization": "Bearer " + env.GITHUB_TOKEN,
       "Accept": "application/vnd.github+json",
       "X-GitHub-Api-Version": "2022-11-28"
     };
 
-    const current = await fetch(`${apiUrl}?ref=${BRANCH}`, { headers: authHeaders });
+    const current = await fetch(apiUrl + "?ref=" + BRANCH, { headers: authHeaders });
     let sha;
     if (current.ok) {
       const file = await current.json();
@@ -98,7 +97,7 @@ export async function onRequest(context) {
       method: "PUT",
       headers: { ...authHeaders, "Content-Type": "application/json" },
       body: JSON.stringify({
-        message: isImage ? `Upload service image ${path}` : `Update ${path} from Seba admin`,
+        message: isImage ? "Upload service image " + path : "Update " + path + " from Seba admin",
         content: encoded,
         branch: BRANCH,
         ...(sha ? { sha } : {})
@@ -107,10 +106,7 @@ export async function onRequest(context) {
 
     if (!saved.ok) {
       const details = await saved.text();
-      return json({
-        error: "فشل الحفظ على GitHub",
-        details: details.slice(0, 250)
-      }, 502, headers);
+      return json({ error: "فشل الحفظ على GitHub", details: details.slice(0, 250) }, 502, headers);
     }
 
     const savedData = await saved.json();
@@ -118,7 +114,7 @@ export async function onRequest(context) {
 
     for (let attempt = 0; attempt < 5; attempt++) {
       if (attempt) await new Promise(resolve => setTimeout(resolve, 800));
-      const check = await fetch(`${apiUrl}?ref=${BRANCH}&verify=${Date.now()}`, {
+      const check = await fetch(apiUrl + "?ref=" + BRANCH + "&verify=" + Date.now(), {
         headers: { ...authHeaders, "Cache-Control": "no-cache" }
       });
       if (!check.ok) continue;
@@ -132,10 +128,7 @@ export async function onRequest(context) {
     }
 
     if (!verified) {
-      return json({
-        success: false,
-        error: "وصل طلب الحفظ إلى GitHub، لكن تعذّر التحقق من الملف بعد الحفظ."
-      }, 502, headers);
+      return json({ success: false, error: "وصل طلب الحفظ إلى GitHub، لكن تعذّر التحقق من الملف بعد الحفظ." }, 502, headers);
     }
 
     return json({
