@@ -10,12 +10,12 @@ This branch prepares a Cloudflare Pages deployment without changing the current 
 - Admin save endpoint: `/api/save`
 - Admin page: `/admin.html`
 
-Create the Pages project with **Connect to Git** (not Direct Upload), select this repository, and keep `main` as the production branch. The `cloudflare-pages-migration` branch should deploy as a preview.
+Create the Pages project with **Connect to Git** (not Direct Upload), select this repository, and keep `main` as the production branch. The `cloudflare-pages-migration` branch should deploy as a preview. The save function writes preview changes to the branch being previewed; production saves go to `main`.
 
 Build settings for this plain HTML/CSS/JS site:
 - Framework preset: None
 - Build command: leave blank
-- Build output directory: `. ` (enter a single dot: `.`)
+- Build output directory: `.` (a single dot)
 - Root directory: leave blank (repository root)
 
 ## Required encrypted secrets
@@ -32,7 +32,7 @@ After adding or changing secrets, trigger a new deployment so the Pages Function
 1. Deploy the preview branch.
 2. Open the preview URL and verify the homepage, service detail pages, and `/admin.html`.
 3. Confirm the admin can load the catalogue.
-4. Test a harmless edit to a service description and verify the commit appears in GitHub `main`; then revert the test edit if needed.
+4. Test a harmless edit to a service description and verify the commit appears only on `cloudflare-pages-migration`; preview tests must not change production data on `main`.
 5. Test image upload only after text saving is confirmed.
 6. Only after the preview is verified should the migration PR be merged and the production branch deployed.
 
